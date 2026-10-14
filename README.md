@@ -11,6 +11,8 @@ A visual scenario editor for [EmptyEpsilon](https://github.com/daid/EmptyEpsilon
 - Optional, separate **backup utility** for campaign saves (PowerShell).
 - Windows desktop app (Electron), works offline.
 
+**📖 Manual:** [User guide (PDF)](community/forge-community-pack-1.0/manual/Forge-User-Guide.pdf) · [Markdown](community/forge-community-pack-1.0/manual/Forge-User-Guide.md) · [HTML](community/forge-community-pack-1.0/manual/Forge-User-Guide.html)
+
 ## Download
 
 Get the Windows installer from the [**Releases**](../../releases/latest) page (`EE-FORGE-Setup-<version>-x64.exe`, with a `SHA256SUMS.txt` to check it).
