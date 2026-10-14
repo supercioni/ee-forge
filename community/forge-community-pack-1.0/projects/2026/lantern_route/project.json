@@ -1,0 +1,721 @@
+{
+  "schemaVersion": 5,
+  "id": "lantern_route",
+  "name": "The Lantern Route",
+  "description": "Recover the Echo Reach navigation archive. Hail PORT LANTERN, travel through its corridor, defeat two raiders, download the archive from ECHO RELAY and bring it home. One Atlantis crew; no GM or external service required. Choose Campaign = New for a fresh run.",
+  "eeVersion": "EE-2026.09.22PR",
+  "requires": [],
+  "factions": [],
+  "models": [],
+  "templates": [],
+  "map": {
+    "sectors": [
+      {
+        "id": "lantern",
+        "label": "Lantern Anchorage"
+      },
+      {
+        "id": "echo",
+        "label": "Echo Reach"
+      }
+    ],
+    "startSector": "lantern",
+    "groups": [
+      {
+        "id": "crew",
+        "label": "Shared / player ship",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "player",
+            "callsign": "LANTERN-1",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "description": "Your ship. Relay handles mission progress through station comms.",
+            "variables": [],
+            "rotation": 0,
+            "faction": "Human Navy",
+            "type": "PlayerSpaceship",
+            "template": "Atlantis"
+          }
+        ],
+        "sector": null
+      },
+      {
+        "id": "home",
+        "label": "Lantern / port",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "port",
+            "callsign": "PORT LANTERN",
+            "position": {
+              "x": -2200,
+              "y": 1500
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "SpaceStation",
+            "template": "Small Station",
+            "dialogueId": "port_comms"
+          }
+        ],
+        "sector": "lantern"
+      },
+      {
+        "id": "home_scenery",
+        "label": "Lantern / asteroid field",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "a1",
+            "callsign": null,
+            "position": {
+              "x": -5000,
+              "y": -3500
+            },
+            "description": null,
+            "variables": [],
+            "type": "Asteroid",
+            "size": 110
+          },
+          {
+            "id": "a2",
+            "callsign": null,
+            "position": {
+              "x": -5500,
+              "y": -4000
+            },
+            "description": null,
+            "variables": [],
+            "type": "Asteroid",
+            "size": 160
+          },
+          {
+            "id": "a3",
+            "callsign": null,
+            "position": {
+              "x": -4300,
+              "y": -4300
+            },
+            "description": null,
+            "variables": [],
+            "type": "Asteroid",
+            "size": 85
+          },
+          {
+            "id": "home_nebula",
+            "callsign": null,
+            "position": {
+              "x": -14000,
+              "y": 10000
+            },
+            "description": null,
+            "variables": [],
+            "type": "Nebula"
+          }
+        ],
+        "sector": "lantern"
+      },
+      {
+        "id": "relay",
+        "label": "Echo / archive relay",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "relay_station",
+            "callsign": "ECHO RELAY",
+            "position": {
+              "x": -2200,
+              "y": 1500
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "SpaceStation",
+            "template": "Small Station",
+            "dialogueId": "relay_comms"
+          }
+        ],
+        "sector": "echo"
+      },
+      {
+        "id": "echo_scenery",
+        "label": "Echo / navigation hazards",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "e1",
+            "callsign": null,
+            "position": {
+              "x": -4500,
+              "y": -4500
+            },
+            "description": null,
+            "variables": [],
+            "type": "Asteroid",
+            "size": 180
+          },
+          {
+            "id": "e2",
+            "callsign": null,
+            "position": {
+              "x": -5300,
+              "y": -3800
+            },
+            "description": null,
+            "variables": [],
+            "type": "Asteroid",
+            "size": 95
+          },
+          {
+            "id": "echo_nebula",
+            "callsign": null,
+            "position": {
+              "x": 10000,
+              "y": 12000
+            },
+            "description": null,
+            "variables": [],
+            "type": "Nebula"
+          }
+        ],
+        "sector": "echo"
+      },
+      {
+        "id": "raiders",
+        "label": "Echo / raiders on demand",
+        "when": "on_call",
+        "objects": [
+          {
+            "id": "raider_1",
+            "callsign": "RAIDER-1",
+            "position": {
+              "x": 900,
+              "y": -250
+            },
+            "description": null,
+            "variables": [],
+            "rotation": 180,
+            "faction": "Kraylor",
+            "type": "CpuShip",
+            "template": "MT52 Hornet",
+            "ai": null,
+            "order": {
+              "kind": "idle"
+            },
+            "dialogueId": null
+          },
+          {
+            "id": "raider_2",
+            "callsign": "RAIDER-2",
+            "position": {
+              "x": 1300,
+              "y": 300
+            },
+            "description": null,
+            "variables": [],
+            "rotation": 180,
+            "faction": "Kraylor",
+            "type": "CpuShip",
+            "template": "MT52 Hornet",
+            "ai": null,
+            "order": {
+              "kind": "idle"
+            },
+            "dialogueId": null
+          }
+        ],
+        "sector": "echo"
+      }
+    ],
+    "markers": [
+      {
+        "id": "lantern_arrival",
+        "label": "Lantern arrival",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "notes": null,
+        "sector": "lantern"
+      },
+      {
+        "id": "echo_arrival",
+        "label": "Echo arrival",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "notes": null,
+        "sector": "echo"
+      }
+    ]
+  },
+  "logic": {
+    "variables": [
+      {
+        "name": "briefed",
+        "initial": 0
+      },
+      {
+        "name": "raiders_cleared",
+        "initial": 0
+      },
+      {
+        "name": "archive",
+        "initial": 0
+      },
+      {
+        "name": "delivered",
+        "initial": 0
+      }
+    ],
+    "beats": [
+      {
+        "id": "welcome",
+        "label": "Opening briefing",
+        "at": 2,
+        "sector": null,
+        "actions": [
+          {
+            "kind": "ship_log",
+            "text": "THE LANTERN ROUTE: Relay, hail PORT LANTERN for orders. Use station comms to travel. Protect both stations and your ship.",
+            "color": "white"
+          },
+          {
+            "kind": "global_message",
+            "text": "Relay: hail PORT LANTERN for orders.",
+            "timeoutS": 10
+          }
+        ]
+      },
+      {
+        "id": "echo_reminder",
+        "label": "Echo local reminder (clock freezes away)",
+        "at": 90,
+        "sector": "echo",
+        "actions": [
+          {
+            "kind": "ship_log",
+            "text": "ECHO RELAY: Clear both raiders, then hail us and choose Download the archive. Return transit remains available if you need to regroup.",
+            "color": "white"
+          }
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "enter_echo",
+        "label": "First visit: spawn the raiders",
+        "when": {
+          "kind": "current_sector",
+          "sectorId": "echo"
+        },
+        "conditions": [],
+        "once": true,
+        "sector": null,
+        "actions": [
+          {
+            "kind": "spawn_group",
+            "groupId": "raiders"
+          },
+          {
+            "kind": "order_stand_ground",
+            "target": {
+              "ref": "group",
+              "groupId": "raiders"
+            }
+          },
+          {
+            "kind": "ship_log",
+            "text": "Two Kraylor raiders guard the approach. Raise shields and engage. Protect ECHO RELAY.",
+            "color": "white"
+          },
+          {
+            "kind": "global_message",
+            "text": "Two raiders guard the relay. Protect ECHO RELAY.",
+            "timeoutS": 10
+          }
+        ]
+      },
+      {
+        "id": "clear_raiders",
+        "label": "Combat complete: unlock archive",
+        "when": {
+          "kind": "group_destroyed",
+          "groupId": "raiders"
+        },
+        "conditions": [],
+        "once": true,
+        "sector": null,
+        "actions": [
+          {
+            "kind": "set_variable",
+            "name": "raiders_cleared",
+            "value": 1
+          },
+          {
+            "kind": "ship_log",
+            "text": "Raiders cleared. Relay: hail ECHO RELAY and choose Download the archive.",
+            "color": "white"
+          },
+          {
+            "kind": "global_message",
+            "text": "Raiders cleared. Download the archive from ECHO RELAY.",
+            "timeoutS": 10
+          }
+        ]
+      },
+      {
+        "id": "win",
+        "label": "Archive delivered: Human Navy victory",
+        "when": {
+          "kind": "variable_equals",
+          "name": "delivered",
+          "value": 1
+        },
+        "conditions": [],
+        "once": true,
+        "sector": null,
+        "actions": [
+          {
+            "kind": "ship_log",
+            "text": "Archive delivered. The Lantern Route is secure. Mission complete.",
+            "color": "white"
+          },
+          {
+            "kind": "global_message",
+            "text": "Archive delivered. Mission complete.",
+            "timeoutS": 10
+          },
+          {
+            "kind": "victory",
+            "faction": "Human Navy"
+          }
+        ]
+      },
+      {
+        "id": "lose_port",
+        "label": "Mission failure: port",
+        "when": {
+          "kind": "object_destroyed",
+          "objectId": "port"
+        },
+        "conditions": [],
+        "once": true,
+        "sector": null,
+        "actions": [
+          {
+            "kind": "global_message",
+            "text": "A protected ship or station has been destroyed. Mission failed.",
+            "timeoutS": 10
+          },
+          {
+            "kind": "victory",
+            "faction": "Kraylor"
+          }
+        ]
+      },
+      {
+        "id": "lose_relay_station",
+        "label": "Mission failure: relay_station",
+        "when": {
+          "kind": "object_destroyed",
+          "objectId": "relay_station"
+        },
+        "conditions": [],
+        "once": true,
+        "sector": null,
+        "actions": [
+          {
+            "kind": "global_message",
+            "text": "A protected ship or station has been destroyed. Mission failed.",
+            "timeoutS": 10
+          },
+          {
+            "kind": "victory",
+            "faction": "Kraylor"
+          }
+        ]
+      },
+      {
+        "id": "lose_player",
+        "label": "Mission failure: player",
+        "when": {
+          "kind": "object_destroyed",
+          "objectId": "player"
+        },
+        "conditions": [],
+        "once": true,
+        "sector": null,
+        "actions": [
+          {
+            "kind": "global_message",
+            "text": "A protected ship or station has been destroyed. Mission failed.",
+            "timeoutS": 10
+          },
+          {
+            "kind": "victory",
+            "faction": "Kraylor"
+          }
+        ]
+      }
+    ],
+    "gmButtons": [],
+    "dialogues": [
+      {
+        "id": "port_comms",
+        "label": "PORT LANTERN mission control",
+        "entry": "welcome",
+        "nodes": [
+          {
+            "id": "welcome",
+            "text": "PORT LANTERN: The Echo Reach archive has stopped updating. Read your orders, open the corridor, clear the raiders, recover the archive and deliver it here.",
+            "replies": [
+              {
+                "text": "Read mission orders",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "orders"
+                },
+                "conditions": [],
+                "actions": [
+                  {
+                    "kind": "set_variable",
+                    "name": "briefed",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "text": "Open corridor to Echo Reach",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "depart"
+                },
+                "conditions": [
+                  {
+                    "kind": "variable_equals",
+                    "name": "briefed",
+                    "value": 1
+                  }
+                ],
+                "actions": [
+                  {
+                    "kind": "ship_log",
+                    "text": "Transit to Echo Reach authorised.",
+                    "color": "white"
+                  },
+                  {
+                    "kind": "change_sector",
+                    "sectorId": "echo",
+                    "arrivalMarkerId": "echo_arrival",
+                    "rotation": 0
+                  }
+                ]
+              },
+              {
+                "text": "Deliver the recovered archive",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "complete"
+                },
+                "conditions": [
+                  {
+                    "kind": "variable_equals",
+                    "name": "archive",
+                    "value": 1
+                  },
+                  {
+                    "kind": "variable_equals",
+                    "name": "delivered",
+                    "value": 0
+                  }
+                ],
+                "actions": [
+                  {
+                    "kind": "set_variable",
+                    "name": "delivered",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "text": "Station services (repairs / supplies)",
+                "target": {
+                  "kind": "services"
+                },
+                "conditions": [],
+                "actions": []
+              }
+            ]
+          },
+          {
+            "id": "orders",
+            "text": "Your Atlantis is LANTERN-1. In Echo Reach, two Kraylor Hornets guard the relay. Destroy both, hail ECHO RELAY to download its archive, return here and deliver it. Protect both stations. You may return early to regroup.",
+            "replies": [
+              {
+                "text": "Back to mission control",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "welcome"
+                },
+                "conditions": [],
+                "actions": []
+              }
+            ]
+          },
+          {
+            "id": "depart",
+            "text": "Corridor engaged. Close this comms window. You are now in Echo Reach: defend against the raiders, then hail ECHO RELAY.",
+            "replies": []
+          },
+          {
+            "id": "complete",
+            "text": "Archive accepted. Thank you, LANTERN-1. The route is open again.",
+            "replies": []
+          }
+        ]
+      },
+      {
+        "id": "relay_comms",
+        "label": "ECHO RELAY archive control",
+        "entry": "welcome",
+        "nodes": [
+          {
+            "id": "welcome",
+            "text": "ECHO RELAY: We can transmit the archive once both Kraylor raiders are destroyed. Return transit is available at any time. After a transit, close comms and hail the destination station.",
+            "replies": [
+              {
+                "text": "Download the archive",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "download"
+                },
+                "conditions": [
+                  {
+                    "kind": "variable_equals",
+                    "name": "raiders_cleared",
+                    "value": 1
+                  },
+                  {
+                    "kind": "variable_equals",
+                    "name": "archive",
+                    "value": 0
+                  }
+                ],
+                "actions": [
+                  {
+                    "kind": "set_variable",
+                    "name": "archive",
+                    "value": 1
+                  },
+                  {
+                    "kind": "ship_log",
+                    "text": "Archive aboard. Return to PORT LANTERN and choose Deliver the recovered archive.",
+                    "color": "white"
+                  },
+                  {
+                    "kind": "save_checkpoint"
+                  }
+                ]
+              },
+              {
+                "text": "Archive already aboard: check next step",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "aboard"
+                },
+                "conditions": [
+                  {
+                    "kind": "variable_equals",
+                    "name": "archive",
+                    "value": 1
+                  }
+                ],
+                "actions": []
+              },
+              {
+                "text": "Return to Lantern Anchorage",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "depart"
+                },
+                "conditions": [],
+                "actions": [
+                  {
+                    "kind": "change_sector",
+                    "sectorId": "lantern",
+                    "arrivalMarkerId": "lantern_arrival",
+                    "rotation": 0
+                  }
+                ]
+              },
+              {
+                "text": "Station services (repairs / supplies)",
+                "target": {
+                  "kind": "services"
+                },
+                "conditions": [],
+                "actions": []
+              }
+            ]
+          },
+          {
+            "id": "download",
+            "text": "Transfer complete. Request return transit, then hail PORT LANTERN and deliver the archive.",
+            "replies": [
+              {
+                "text": "Return to Lantern Anchorage",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "depart"
+                },
+                "conditions": [],
+                "actions": [
+                  {
+                    "kind": "change_sector",
+                    "sectorId": "lantern",
+                    "arrivalMarkerId": "lantern_arrival",
+                    "rotation": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "aboard",
+            "text": "You have the archive. Return to PORT LANTERN and choose Deliver the recovered archive.",
+            "replies": [
+              {
+                "text": "Back",
+                "target": {
+                  "kind": "node",
+                  "nodeId": "welcome"
+                },
+                "conditions": [],
+                "actions": []
+              }
+            ]
+          },
+          {
+            "id": "depart",
+            "text": "Return corridor engaged. Close this comms window and hail PORT LANTERN.",
+            "replies": []
+          }
+        ]
+      }
+    ],
+    "exodusSteps": []
+  },
+  "campaign": {
+    "persistence": true
+  },
+  "unmodelled": {}
+}

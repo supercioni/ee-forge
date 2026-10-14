@@ -1,0 +1,35 @@
+[
+  {
+    "target": "EE-2024.12.08",
+    "checks": [
+      "Schema 5; exactly one shared player; two sectors",
+      "Station conversations attached",
+      "Rebuild: zero warnings, three byte-identical portable Lua files",
+      "No EXODUS, custom templates or models",
+      "Idle at home does not win or spawn raiders",
+      "Simulation: port destruction causes defeat",
+      "Simulation: player destruction causes defeat",
+      "Simulation: relay destruction in Echo causes defeat",
+      "Simulation: delivery action sets the flag that triggers victory",
+      "Delivery is gated on archive; download gated on combat and not repeated",
+      "Simulation: round trip preserves kills and does not cause false victory"
+    ]
+  },
+  {
+    "target": "EE-2026.09.22PR",
+    "checks": [
+      "Schema 5; exactly one shared player; two sectors",
+      "Station conversations attached",
+      "Rebuild: zero warnings, three byte-identical portable Lua files",
+      "No EXODUS, custom templates or models",
+      "Idle at home does not win or spawn raiders",
+      "Simulation: port destruction causes defeat",
+      "Simulation: player destruction causes defeat",
+      "Simulation: relay destruction in Echo causes defeat",
+      "Simulation: delivery action sets the flag that triggers victory",
+      "Delivery is gated on archive; download gated on combat and not repeated",
+      "Simulation: round trip preserves kills and does not cause false victory",
+      "Target variants differ only in eeVersion"
+    ]
+  }
+]

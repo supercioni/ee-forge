@@ -21,6 +21,10 @@ It is a per-user install: no administrator rights.
 
 Your projects live in `Documents\EE FORGE\Projects`; they are plain `project.json` folders you can back up or version.
 
+## Community pack
+
+[`community/`](community) holds the **EE FORGE Community Pack 1.0**: a ready-made demo scenario (*Lantern Route*) for EmptyEpsilon 2024.12.08 and 2026.09.22PR (project and generated Lua), a user manual (HTML/PDF/Markdown) and the test report. Start with [`community/README.md`](community/README.md); the zip and its `.sha256` are there too.
+
 ## Using it
 
 The step-by-step guide (in Italian) is [`docs/guida-ee-forge-windows.md`](docs/guida-ee-forge-windows.md); the authoring reference (English) is

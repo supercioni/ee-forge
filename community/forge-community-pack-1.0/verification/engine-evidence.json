@@ -1,0 +1,16 @@
+[
+  {
+    "year": "2024",
+    "executableSha256": "f976e175b2b905474b398e9b110d37a7388dd49e2c4c0dc246181dd5643886d5",
+    "scriptReferenceSha256": "4950538c68ec551a061cfa0ccd794d94e9bcfc4cefbabbc723311c739389a1cc",
+    "distributedLuaMatchesTestedFiles": true,
+    "liveChecksPassed": 10
+  },
+  {
+    "year": "2026",
+    "executableSha256": "b441630e76a773bb48e93600650ac8502175e7ede3157a403df76d6d22385139",
+    "scriptReferenceSha256": "c13191638c9122df14191eaef1c212d79b0527d882dd8fb80d6cb6f3b3fda033",
+    "distributedLuaMatchesTestedFiles": true,
+    "liveChecksPassed": 10
+  }
+]

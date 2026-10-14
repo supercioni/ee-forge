@@ -1,0 +1,54 @@
+[
+  {
+    "target": "EE-2024.12.08",
+    "sourceSha256": "eb12f9d67212b70b9707b94276d4b40d363d18b8252d901c7c50ffc3cf006de5",
+    "warnings": [],
+    "checks": [
+      "Three portable Lua files, zero warnings",
+      "No extensions or custom assets",
+      "No premature victory or raiders at home",
+      "Defeat when port destroyed",
+      "Defeat when player destroyed"
+    ],
+    "files": [
+      {
+        "name": "lantern_route_content.lua",
+        "sha256": "dfb8536344db7c3c82d963048125b3e2575b24bbfbeac215c9c0a8829955a22c"
+      },
+      {
+        "name": "lantern_route_map.lua",
+        "sha256": "01f787f281be5de72920bdf808bdbad553d07c3d1f9f954a5ce11fe1980c932e"
+      },
+      {
+        "name": "scenario_lantern_route.lua",
+        "sha256": "d631ce9d917f4d2596c5efd7223b3d6c4fd89d1c18dc5dcb09a6239580d18dc8"
+      }
+    ]
+  },
+  {
+    "target": "EE-2026.09.22PR",
+    "sourceSha256": "a349b2102a7e9fb3f8b53d778af8321030a2bd53af9b36c71d44bb64e99c3f57",
+    "warnings": [],
+    "checks": [
+      "Three portable Lua files, zero warnings",
+      "No extensions or custom assets",
+      "No premature victory or raiders at home",
+      "Defeat when port destroyed",
+      "Defeat when player destroyed"
+    ],
+    "files": [
+      {
+        "name": "lantern_route_content.lua",
+        "sha256": "89e4288ffb61a2461217752c337f220590c8e4819e999c97f8edd05cb16f0abe"
+      },
+      {
+        "name": "lantern_route_map.lua",
+        "sha256": "535424997e622c2cdc4a0cb7c1352f907d0deca4f543dea17a132267a09589dd"
+      },
+      {
+        "name": "scenario_lantern_route.lua",
+        "sha256": "c4ab4d3b30cce4a2dcb62140c46639caf93975446ff24838abde92a157c799d3"
+      }
+    ]
+  }
+]

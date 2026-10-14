@@ -1,0 +1,46 @@
+{
+  "year": "2026",
+  "method": "Native comms, helm and weapons commands through HTTP on an isolated headless engine. No forced kills, flags or victory callbacks. Restart by stopping only the clone process.",
+  "checks": [
+    {
+      "name": "Initial ship and home station",
+      "passed": true
+    },
+    {
+      "name": "Dialogue opens Echo sector and spawns two raiders",
+      "passed": true
+    },
+    {
+      "name": "RAIDER-1 destroyed by native weapons",
+      "passed": true
+    },
+    {
+      "name": "RAIDER-2 destroyed by native weapons",
+      "passed": true
+    },
+    {
+      "name": "Checkpoint exists in actual disk file",
+      "passed": true
+    },
+    {
+      "name": "Return corridor restores home without false victory",
+      "passed": true
+    },
+    {
+      "name": "Revisit: dead raiders stay dead",
+      "passed": true
+    },
+    {
+      "name": "Second return home",
+      "passed": true
+    },
+    {
+      "name": "Actual process restart resumes at home",
+      "passed": true
+    },
+    {
+      "name": "Persisted archive delivered through comms; scenario ends",
+      "passed": true
+    }
+  ]
+}

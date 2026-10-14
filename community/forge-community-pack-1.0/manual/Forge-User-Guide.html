@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Community teaching edition • Pack 1.0" />
+  <meta name="dcterms.date" content="2026-10-14" />
+  <title>EE FORGE — User Guide</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="guide.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">EE FORGE — User Guide</h1>
+<p class="subtitle">From your first map to a playable vanilla
+mission</p>
+<p class="author">Community teaching edition • Pack 1.0</p>
+<p class="date">14 October 2026</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#start-here" id="toc-start-here">Start here</a></li>
+<li><a href="#set-up-your-workspace" id="toc-set-up-your-workspace">1.
+Set up your workspace</a>
+<ul>
+<li><a href="#register-the-right-engine"
+id="toc-register-the-right-engine">Register the right engine</a></li>
+<li><a href="#import-the-teaching-example"
+id="toc-import-the-teaching-example">Import the teaching
+example</a></li>
+<li><a href="#start-a-new-project" id="toc-start-a-new-project">Start a
+new project</a></li>
+</ul></li>
+<li><a href="#know-what-each-command-does"
+id="toc-know-what-each-command-does">2. Know what each command
+does</a></li>
+<li><a href="#build-and-edit-the-map" id="toc-build-and-edit-the-map">3.
+Build and edit the map</a>
+<ul>
+<li><a href="#place-select-and-move"
+id="toc-place-select-and-move">Place, select and move</a></li>
+<li><a href="#use-the-inspector" id="toc-use-the-inspector">Use the
+inspector</a></li>
+</ul></li>
+<li><a href="#organise-sectors-and-groups"
+id="toc-organise-sectors-and-groups">4. Organise sectors and groups</a>
+<ul>
+<li><a href="#editing-visibility-versus-gameplay"
+id="toc-editing-visibility-versus-gameplay">Editing visibility versus
+gameplay</a></li>
+<li><a href="#make-travel-happen-in-the-game"
+id="toc-make-travel-happen-in-the-game">Make travel happen in the
+game</a></li>
+<li><a href="#revisit-behaviour" id="toc-revisit-behaviour">Revisit
+behaviour</a></li>
+</ul></li>
+<li><a href="#write-the-mission-with-rules-and-events"
+id="toc-write-the-mission-with-rules-and-events">5. Write the mission
+with rules and events</a>
+<ul>
+<li><a href="#understand-a-rule" id="toc-understand-a-rule">Understand a
+rule</a></li>
+<li><a href="#variables-in-human-terms"
+id="toc-variables-in-human-terms">Variables in human terms</a></li>
+<li><a href="#recipe-victory-after-delivery"
+id="toc-recipe-victory-after-delivery">Recipe: victory after
+delivery</a></li>
+<li><a href="#recipe-defeat-if-a-protected-object-is-destroyed"
+id="toc-recipe-defeat-if-a-protected-object-is-destroyed">Recipe: defeat
+if a protected object is destroyed</a></li>
+<li><a href="#timed-events-and-sector-clocks"
+id="toc-timed-events-and-sector-clocks">Timed events and sector
+clocks</a></li>
+<li><a href="#messages-and-gm-controls"
+id="toc-messages-and-gm-controls">Messages and GM controls</a></li>
+<li><a href="#what-simulation-proves"
+id="toc-what-simulation-proves">What Simulation proves</a></li>
+</ul></li>
+<li><a href="#build-conversations-the-crew-can-use"
+id="toc-build-conversations-the-crew-can-use">6. Build conversations the
+crew can use</a>
+<ul>
+<li><a href="#create-and-attach-a-conversation"
+id="toc-create-and-attach-a-conversation">Create and attach a
+conversation</a></li>
+<li><a href="#conditional-replies-and-actions"
+id="toc-conditional-replies-and-actions">Conditional replies and
+actions</a></li>
+<li><a href="#preserve-station-services"
+id="toc-preserve-station-services">Preserve station services</a></li>
+</ul></li>
+<li><a href="#work-with-ships-in-fleet"
+id="toc-work-with-ships-in-fleet">7. Work with ships in Fleet</a></li>
+<li><a href="#campaign-saves-and-their-limits"
+id="toc-campaign-saves-and-their-limits">8. Campaign saves and their
+limits</a>
+<ul>
+<li><a href="#the-three-start-modes-in-ee"
+id="toc-the-three-start-modes-in-ee">The three start modes in
+EE</a></li>
+<li><a href="#where-the-save-lives" id="toc-where-the-save-lives">Where
+the save lives</a></li>
+<li><a href="#what-comes-back-and-what-does-not"
+id="toc-what-comes-back-and-what-does-not">What comes back, and what
+does not</a></li>
+<li><a href="#if-resume-cannot-continue"
+id="toc-if-resume-cannot-continue">If Resume cannot continue</a></li>
+</ul></li>
+<li><a href="#optional-dmx-lighting" id="toc-optional-dmx-lighting">9.
+Optional DMX lighting</a></li>
+<li><a href="#verify-export-install-and-play"
+id="toc-verify-export-install-and-play">10. Verify, export, install and
+play</a>
+<ul>
+<li><a href="#before-every-release" id="toc-before-every-release">Before
+every release</a></li>
+<li><a href="#export-for-both-targets"
+id="toc-export-for-both-targets">Export for both targets</a></li>
+<li><a href="#playtest-checklist" id="toc-playtest-checklist">Playtest
+checklist</a></li>
+</ul></li>
+<li><a href="#learn-by-modifying-the-lantern-route"
+id="toc-learn-by-modifying-the-lantern-route">11. Learn by modifying The
+Lantern Route</a></li>
+<li><a href="#troubleshooting-and-quick-reference"
+id="toc-troubleshooting-and-quick-reference">12. Troubleshooting and
+quick reference</a></li>
+</ul>
+</nav>
+<h1 id="start-here">Start here</h1>
+<p>This guide is for <strong>Forge 0.9.0</strong>, with its English
+interface and project format 5. It teaches the authoring workflow using
+<strong>The Lantern Route</strong>, the editable mission included with
+this guide. No programming knowledge is required for the main
+workflow.</p>
+<p>The target engines in this edition are <strong>EmptyEpsilon
+2024.12.08</strong> and <strong>EmptyEpsilon 2026.09.22PR</strong>. Use
+the matching export. A later prerelease needs its own compatibility
+check.</p>
+<p><strong>Forge creates scenarios. EmptyEpsilon runs them.</strong> You
+can close Forge before playing. Vanilla exports do not require EXODUS,
+its bridge, a web browser or an HTTP server. Screenshots in this guide
+show Forge’s browser edition; the desktop edition adds native file and
+installation controls.</p>
+<p>If you only want to play the example, start with
+<code>START-HERE.md</code> in the pack. If you want to create your own
+mission, work through chapters 1–8, then verify and export it using
+chapter 10.</p>
+<h1 id="set-up-your-workspace">1. Set up your workspace</h1>
+<h2 id="register-the-right-engine">Register the right engine</h2>
+<p>Open Forge. In the desktop application, open
+<strong>Settings</strong> to choose your projects folder, and
+<strong>Installations…</strong> to register the folder containing your
+EmptyEpsilon executable. Scan the installation so Forge can offer its
+ship templates, factions and assets. This reads the installation; it
+does not launch a game.</p>
+<p>Select the installation you intend to use. A recognised version means
+Forge matched a known engine reference; it is not a guarantee about
+every modified resource in that folder. Rescan after changing engine
+content. If you keep two installations of the same version, select the
+intended one explicitly.</p>
+<p>You do not need to run EXODUS. Leave its optional extension disabled
+for this guide.</p>
+<h2 id="import-the-teaching-example">Import the teaching example</h2>
+<ol type="1">
+<li>Choose <strong>Import…</strong>.</li>
+<li>Select <code>projects/2024/lantern_route/project.json</code> or
+<code>projects/2026/lantern_route/project.json</code> from the
+pack.</li>
+<li>Import it as a copy into your workspace.</li>
+<li>Open <strong>Map</strong> and select <strong>Lantern
+Anchorage</strong> in the sector selector.</li>
+<li>Choose <strong>Verify</strong>. Read any problems before
+exporting.</li>
+</ol>
+<p>Both variants use the id <code>lantern_route</code>. Keep them in
+separate workspaces when you want to compare them, or let the import
+workflow create a distinct copy. Do not overwrite one with the other by
+manually copying folders together.</p>
+<p>The project document is the editable source. Back up the whole
+project folder before experimenting. Generated Lua is an output: editing
+it does not update Forge, and the next build replaces it.</p>
+<h2 id="start-a-new-project">Start a new project</h2>
+<p>Choose <strong>New</strong>, enter a meaningful mission name, and
+save. A starter includes a group and a player ship. Keep exactly one
+player ship while learning this workflow. First make a small scenario
+work; then add more objects and story branches.</p>
+<p>Do not confuse the selected installation with a change to the
+project’s target. The editor does not provide a general in-place project
+retargeting workflow. Use Export’s target choice for target-specific
+bundles, or the supplied matching project variant for this example.</p>
+<h1 id="know-what-each-command-does">2. Know what each command does</h1>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Result</th>
+<th>Does it put a scenario in EE?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Save</strong></td>
+<td>Stores the editable project document</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><strong>Verify</strong></td>
+<td>Generates and checks the scenario; reports problems</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><strong>Export…</strong></td>
+<td>Writes distributable output for your chosen target(s)</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><strong>Install scenario</strong></td>
+<td>Previews and copies files to a selected EE installation</td>
+<td>Yes, after the install workflow</td>
+</tr>
+<tr class="odd">
+<td><strong>Save rig</strong></td>
+<td>Stores the separate DMX lighting document</td>
+<td>No scenario save</td>
+</tr>
+<tr class="even">
+<td><strong>Save checkpoint</strong> in EE</td>
+<td>Requests a campaign-state write during play</td>
+<td>No change to the Forge project</td>
+</tr>
+</tbody>
+</table>
+<p>The main views are <strong>Map</strong>, <strong>Mission</strong>,
+<strong>Fleet</strong>, <strong>Dialogues</strong> and
+<strong>DMX</strong>. The bottom status area reports operations; the
+Problems area collects issues and can take you to their source. A
+successful Verify becomes out of date after you change the project.
+Verify again before distributing.</p>
+<p>Unsaved changes have a marker. When leaving a document, use
+<strong>Save</strong>, <strong>Don’t save</strong> or
+<strong>Cancel</strong> deliberately. A DMX rig and a scenario are
+different documents: saving one does not save the other.</p>
+<h1 id="build-and-edit-the-map">3. Build and edit the map</h1>
+<h2 id="place-select-and-move">Place, select and move</h2>
+<p>The Scene column lists groups and their objects. <strong>+
+Add</strong> opens the palette; choosing a type arms placement. Click on
+the map to place it. Cancel or press <strong>Esc</strong> when finished.
+<strong>Scatter…</strong> places a seeded field or cluster, useful for
+asteroids; inspect the preview before committing.</p>
+<p>Click a scene row or map object to select it. Ctrl/Command-click
+scene rows adds or removes objects from the selection. On the map, left
+drag moves objects or draws a selection rectangle on empty space; right
+drag pans. The wheel zooms about the cursor. Use the visible selection
+before pressing Delete.</p>
+<p><strong>Esc</strong> without a reference-picking operation stays on
+Map and clears/disarms the current map interaction. During a reference
+pick started elsewhere, Esc cancels that pick and returns to the
+originating view.</p>
+<p>Use Snap for deliberate placement. Coordinates follow EE: x increases
+right, y increases down. Map labels use U; <strong>1 U = 1,000 game
+units</strong>. Rotation is not compass heading: an authored rotation of
+<strong>0 degrees points right/east</strong>. Set it explicitly when the
+starting orientation matters.</p>
+<h2 id="use-the-inspector">Use the inspector</h2>
+<p>Select an object and edit the relevant section:
+<strong>Identity</strong>, <strong>Position &amp; shape</strong>,
+<strong>Behavior</strong>, <strong>Story</strong>,
+<strong>Appearance</strong> or <strong>More</strong>. The available
+fields depend on the object type.</p>
+<p>An <strong>id</strong> is the project’s reference, such as
+<code>relay_station</code>. A <strong>callsign</strong> is what the crew
+recognises, such as <code>ECHO RELAY</code>. They do not need to match.
+Rename ids through Forge so references are updated. Repeated callsigns
+are allowed; the Scene list shows ids to distinguish them.</p>
+<p><strong>Used by</strong> lists rules, dialogues and other content
+that reference the selection. Follow a reference to inspect its use,
+then return to Map. Before deleting, review references and the
+confirmation. Removing a group also removes its member objects.</p>
+<p>Search and type filters change the Scene list, not the mission. If a
+selection is hidden by a filter, clear the filter to see it. Collapse
+Scene or Inspector when you need more map space on a small screen.</p>
+<h1 id="organise-sectors-and-groups">4. Organise sectors and groups</h1>
+<p>Think of a <strong>sector</strong> as a location, a
+<strong>group</strong> as a set of objects that appear together, and an
+<strong>object</strong> as one ship, station or hazard. A group is not a
+folder of nested subgroups.</p>
+<figure>
+<img src="images/map-echo.png"
+alt="The example viewed in Echo Reach. The home sector occupies overlapping coordinates but is hidden by the sector filter." />
+<figcaption aria-hidden="true">The example viewed in Echo Reach. The
+home sector occupies overlapping coordinates but is hidden by the sector
+filter.</figcaption>
+</figure>
+<h2 id="editing-visibility-versus-gameplay">Editing visibility versus
+gameplay</h2>
+<p>Choose a sector to edit it without overlapping other locations.
+<strong>All sectors</strong> shows everything, so two locations built at
+the same coordinates overlap. Visibility and lock controls help you
+edit; they do not destroy objects, delay their appearance in the game or
+change the active game sector.</p>
+<p>A group’s appearance setting is separate: <strong>At mission
+start</strong> or <strong>When spawned</strong>. For the latter, add a
+<strong>Spawn group</strong> action. Merely drawing a group in the
+editor does not schedule it.</p>
+<h2 id="make-travel-happen-in-the-game">Make travel happen in the
+game</h2>
+<ol type="1">
+<li>Create your sectors and assign their groups.</li>
+<li>Choose the game’s starting sector using the flag button beside the
+sector in Scene (tooltip: <strong>Start the game in …</strong>).</li>
+<li>Put the player ship in <strong>Shared</strong>, as this example
+does.</li>
+<li>Add an arrival marker to each destination sector.</li>
+<li>Add a <strong>Change sector</strong> action to a rule or dialogue
+reply. Select the destination, its arrival marker and the desired
+rotation.</li>
+</ol>
+<p>With a game start sector chosen, only that sector’s start groups and
+Shared start groups initially appear. Shared groups are not unloaded
+during travel. A Change sector action keeps the player ship and
+relocates it to the arrival marker. A marker is an authoring reference,
+not a physical beacon in EE.</p>
+<p><strong>Current sector is</strong> lets a rule check the active game
+location. It does not itself move the ship. Likewise, the ship’s normal
+jump drive only changes its position within the current game world; it
+does not select a Forge sector.</p>
+<p>Use Change sector to unload a location. Do not emulate it with
+<strong>Destroy group</strong>: genuine destruction can satisfy
+<strong>Group wiped out</strong> and trigger rewards or victory. Proper
+sector unloading is distinguished from a kill.</p>
+<h2 id="revisit-behaviour">Revisit behaviour</h2>
+<p>Enable campaign saves to use frozen sector state. Objects destroyed
+there stay destroyed, surviving objects restore the supported saved
+properties, and sector-local progress resumes. A sector does not
+simulate while you are away.</p>
+<p>With campaign persistence disabled, revisited sectors are rebuilt
+from their initial object definitions rather than retaining a full
+sector snapshot. Test your rules with that mode if you intend to use it.
+Do not assume an editor visibility setting chooses either behaviour.</p>
+<h1 id="write-the-mission-with-rules-and-events">5. Write the mission
+with rules and events</h1>
+<p>Open <strong>Mission</strong>. Use <strong>Rules</strong> for
+conditions, <strong>Timeline</strong> for timed events,
+<strong>Variables</strong> for progress, <strong>Diagram</strong> for an
+overview and the <strong>Logic simulation</strong> panel for a logic
+rehearsal. <strong>Campaign</strong> controls persistence.</p>
+<h2 id="understand-a-rule">Understand a rule</h2>
+<p>A rule reads: <strong>When this happens, and these additional
+conditions are true, do these actions.</strong> Actions execute in their
+listed order.</p>
+<p>Rules trigger when their combined condition changes from false to
+true. With <strong>Run once</strong> enabled, that rule will not run
+again. Turning Run once off does not mean “repeat every frame”: the
+condition must become false and then true again to re-arm.</p>
+<p>A group that has never appeared is not considered wiped out. A group
+unloaded by Change sector is not considered killed. A normal
+<strong>Destroy</strong> action really destroys its targets and can
+satisfy destruction conditions.</p>
+<h2 id="variables-in-human-terms">Variables in human terms</h2>
+<p>A variable remembers a fact: <code>archive = 0</code> means the
+archive is not aboard; <code>archive = 1</code> means it is. Declare its
+initial value in Variables, set it with <strong>Set variable</strong>,
+and test it with <strong>Variable equals</strong>.</p>
+<p>Types matter. Number <code>1</code>, text <code>"1"</code> and
+boolean <code>true</code> are different values. The example consistently
+uses numbers 0 and 1. <strong>Declare</strong> helps create a missing
+declaration from use, but review the inferred type and initial
+value.</p>
+<p>Object variables belong to particular objects; global variables
+belong to the whole mission. Use a global variable for campaign-wide
+milestones.</p>
+<h2 id="recipe-victory-after-delivery">Recipe: victory after
+delivery</h2>
+<p>In the example, the port’s delivery reply sets <code>delivered</code>
+to <code>1</code>. Open rule <strong>Archive delivered: Human Navy
+victory</strong>:</p>
+<ul>
+<li><strong>When:</strong> Variable equals → <code>delivered</code> →
+numeric <code>1</code>.</li>
+<li><strong>Run once:</strong> enabled.</li>
+<li><strong>Actions:</strong> write a ship-log entry, show a global
+message, then <strong>Victory → Human Navy</strong>.</li>
+</ul>
+<p>Victory names the winning faction. Do not award victory merely
+because the archive was downloaded if the objective also requires
+returning home.</p>
+<figure>
+<img src="images/mission-victory.png"
+alt="The victory rule in the Mission view." />
+<figcaption aria-hidden="true">The victory rule in the Mission
+view.</figcaption>
+</figure>
+<h2 id="recipe-defeat-if-a-protected-object-is-destroyed">Recipe: defeat
+if a protected object is destroyed</h2>
+<p>Add a rule with <strong>Object destroyed</strong> pointing to the
+player or protected station. Add a failure message and <strong>Victory →
+Kraylor</strong> (the opposing faction in this example). There is no
+need for a separate invented defeat action: awarding victory to the
+opposition ends the player’s mission as a loss.</p>
+<p>Test each loss condition, not only the win. Avoid competing win and
+loss conditions that can both become true in the same update; action
+order should not decide your story accidentally.</p>
+<h2 id="timed-events-and-sector-clocks">Timed events and sector
+clocks</h2>
+<p>A Timeline event runs at its configured time. <strong>Belongs to:
+Global</strong> uses campaign time. An event belonging to Echo Reach
+uses only the time spent in Echo Reach when persistence is enabled; that
+clock freezes elsewhere.</p>
+<p>Adding a <strong>Current sector is Echo</strong> condition to a
+global rule does <strong>not</strong> give it a local clock. Choose the
+scope explicitly. The example’s reminder belongs to Echo and occurs
+after 90 active seconds there.</p>
+<h2 id="messages-and-gm-controls">Messages and GM controls</h2>
+<p>Use <strong>Ship log</strong> for instructions the crew can reread,
+and <strong>Global message</strong> for a brief announcement. Keep the
+announcement short; EE station banners can clip long text.
+<strong>Banner</strong> is not an ordinary crew-visible message in EE;
+read the action’s warning.</p>
+<p>GM buttons are useful for manual scenario control, but make any
+required GM involvement explicit in the player instructions. The Lantern
+Route needs none.</p>
+<h2 id="what-simulation-proves">What Simulation proves</h2>
+<p>Simulation runs the mission logic against a virtual clock and events
+you supply, such as a destroyed object. It does not fly ships, balance
+weapons, provide a real comms player or render EE. Read its “not
+simulated” notes.</p>
+<p>Use it to test premature victory, loss rules and timer order. Then
+play in the real target engine. A successful logic rehearsal is not
+proof that the enemy can be reached or that the crew can find the right
+dialogue reply.</p>
+<h1 id="build-conversations-the-crew-can-use">6. Build conversations the
+crew can use</h1>
+<p>Open <strong>Dialogues</strong>. A dialogue contains
+<strong>nodes</strong> (what a character or station says) and
+<strong>replies</strong> (what the crew can choose). Select an entry
+node. Replies can lead to another node, run actions, or hand off to
+stock services or the GM.</p>
+<figure>
+<img src="images/dialogue.png"
+alt="PORT LANTERN’s conversation and its conditional replies." />
+<figcaption aria-hidden="true">PORT LANTERN’s conversation and its
+conditional replies.</figcaption>
+</figure>
+<h2 id="create-and-attach-a-conversation">Create and attach a
+conversation</h2>
+<ol type="1">
+<li>Create a dialogue with a clear id and label.</li>
+<li>Add an entry node with a short instruction.</li>
+<li>Add replies and their destination nodes.</li>
+<li>Add a Back reply where the crew should be able to return.</li>
+<li>Select the station on Map and assign the dialogue in its Story
+properties.</li>
+<li>Verify, export and hail the station in EE.</li>
+</ol>
+<p>A dialogue that exists but is not attached to an object cannot be
+discovered by hailing that object. A node with no replies ends that
+branch; the player closes comms normally.</p>
+<h2 id="conditional-replies-and-actions">Conditional replies and
+actions</h2>
+<p>The example’s <strong>Download the archive</strong> reply requires
+<code>raiders_cleared = 1</code> and <code>archive = 0</code>. Its
+actions set <code>archive = 1</code>, write the next instruction and
+request a checkpoint.</p>
+<p>A reply whose condition is false is <strong>absent</strong>, not
+greyed out. Tell players what they must accomplish in the node text so
+they do not mistake a missing reply for a broken interface.</p>
+<p>After a Change sector reply, explicitly tell the crew to close the
+old comms window and hail the destination station. The old station is
+being unloaded; its conversation should not be used as the new station’s
+menu.</p>
+<h2 id="preserve-station-services">Preserve station services</h2>
+<p>Attaching a custom dialogue replaces the station’s usual service
+conversation. Add a reply targeting <strong>EE’s station
+services</strong> if you want to retain repair, supply and other stock
+options. Their availability and costs remain governed by EE. Once in the
+service menu, close comms and hail again to return to your story
+dialogue.</p>
+<h1 id="work-with-ships-in-fleet">7. Work with ships in Fleet</h1>
+<p><strong>Original ships</strong> come from the selected EE
+installation and are read-only. <strong>Project templates</strong>
+belong to your project. A ship object on Map is an instance that
+references a template.</p>
+<p>Select an original and choose <strong>Copy into project</strong> to
+make an editable template. Review the offer to move existing instances
+to it: copying and reassigning are separate decisions. Duplicating a
+project template does not automatically move instances.</p>
+<p>Fleet sections are <strong>Identity</strong>, <strong>Hull</strong>,
+<strong>Movement</strong>, <strong>Weapons</strong> and
+<strong>Interior</strong>. <strong>Search properties</strong> finds a
+field and opens its section without changing its value. <strong>Used
+by</strong> shows the map instances that use the template.</p>
+<p>Use firing-arc previews beside weapon settings and the deck plan
+beside rooms and doors. Numeric fields remain the precise alternative. A
+3D stand-in is not proof that the selected EE model is available.
+Resource status distinguishes <strong>Found</strong>, <strong>Not
+found</strong>, <strong>Not checked</strong>, <strong>Stand-in</strong>
+and <strong>Other source</strong>. A missing resource name is kept
+visible rather than silently replaced.</p>
+<p>Custom templates and models require launch-time installation in EE
+and a restart. Let Forge’s install preview explain the extra files and
+changes. The Lantern Route deliberately uses stock Atlantis, MT52 Hornet
+and Small Station templates, so its export is only three drop-in Lua
+files.</p>
+<h1 id="campaign-saves-and-their-limits">8. Campaign saves and their
+limits</h1>
+<figure>
+<img src="images/campaign.png"
+alt="Campaign configuration and the supported persistence contract." />
+<figcaption aria-hidden="true">Campaign configuration and the supported
+persistence contract.</figcaption>
+</figure>
+<p>Enable saves in <strong>Mission → Campaign</strong>, and set a
+starting sector. A saved campaign includes mission variables, supported
+object properties, destroyed-object records, visited-sector state, and
+rule/timer progress.</p>
+<h2 id="the-three-start-modes-in-ee">The three start modes in EE</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Campaign setting</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>New</strong></td>
+<td>Start a fresh campaign beside existing saves</td>
+</tr>
+<tr class="even">
+<td><strong>Resume</strong></td>
+<td>Try the latest campaign for this project; a truly empty history
+starts a first campaign</td>
+</tr>
+<tr class="odd">
+<td><strong>Off</strong></td>
+<td>Play without writing campaign checkpoints</td>
+</tr>
+</tbody>
+</table>
+<p>For the first intentional run of this example, select
+<strong>New</strong> explicitly. Resume is the generated default. New
+does not overwrite an older campaign, but the interface is not a browser
+for selecting arbitrary older campaigns.</p>
+<p>Checkpoint requests occur at campaign start and around sector
+transitions. You can also add <strong>Save checkpoint</strong> as an
+action or press the in-game Engineering/GM checkpoint button. The
+archive download in this example requests one.</p>
+<h2 id="where-the-save-lives">Where the save lives</h2>
+<p>The host engine writes its <code>scriptstorage.json</code>; saves are
+not stored in the Forge project or distributed Lua files. All clients
+depend on that host’s save. Keep the same scenario version and EE target
+when resuming. Structural project changes or a different engine can make
+a checkpoint incompatible.</p>
+<p>The engine’s storage API cannot confirm a successful physical disk
+write. A message saying a checkpoint was <strong>sent to the save
+file</strong> means a write was requested. It is not a guarantee against
+permissions errors or disk failure. Close and restart the host to check
+a real resume.</p>
+<h2 id="what-comes-back-and-what-does-not">What comes back, and what
+does not</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>State</th>
+<th>Resume/revisit expectation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Destroyed authored objects</td>
+<td>Stay destroyed with persistence enabled</td>
+</tr>
+<tr class="even">
+<td>Supported surviving-object properties</td>
+<td>Restored from the recorded state</td>
+</tr>
+<tr class="odd">
+<td>Global variables and scoped progress</td>
+<td>Restored</td>
+</tr>
+<tr class="even">
+<td>Inactive sector timers</td>
+<td>Frozen until that sector becomes active</td>
+</tr>
+<tr class="odd">
+<td>Player velocity after restart</td>
+<td>Ship starts at rest</td>
+</tr>
+<tr class="even">
+<td>Loaded missile tubes after restart</td>
+<td>Empty; a loaded round is lost, not refunded to inventory</td>
+</tr>
+<tr class="odd">
+<td>Launched missiles, mines and probes</td>
+<td>Not restored</td>
+</tr>
+<tr class="even">
+<td>Probe inventory</td>
+<td>Restored</td>
+</tr>
+<tr class="odd">
+<td>Docking after restart</td>
+<td>Ship is undocked</td>
+</tr>
+<tr class="even">
+<td>Scan knowledge</td>
+<td>Reset, including on sector revisit</td>
+</tr>
+<tr class="odd">
+<td>Alert, shields up/down, beam frequency, selected target after
+restart</td>
+<td>Engine defaults; inspect controls before combat</td>
+</tr>
+<tr class="even">
+<td>Engineering power/coolant requests</td>
+<td>Restored through player control requests</td>
+</tr>
+<tr class="odd">
+<td>Objects created outside the authored map</td>
+<td>Not part of the persisted object set</td>
+</tr>
+</tbody>
+</table>
+<p>During a sector jump within a running game, the player remains the
+same ship and keeps tactical controls; restarting reconstructs it.
+Neither mode is a complete save of everything in EE.</p>
+<h2 id="if-resume-cannot-continue">If Resume cannot continue</h2>
+<p>An unusable checkpoint is not silently replaced with a new game. You
+may see a holding ship named <strong>NO CAMPAIGN</strong>. Select it and
+read its log. Engineering offers <strong>Start a NEW campaign</strong>
+or <strong>Play without saving</strong>, depending on what is
+recoverable; a damaged campaign index can restrict the choice to unsaved
+play. Alternatively end the game and choose Campaign = New when
+appropriate.</p>
+<p>Two internal slots can recover some interrupted or damaged
+checkpoints, but both are in the same file. They are <strong>not
+independent backups</strong>. Whole-file corruption can appear to the
+engine as an empty history.</p>
+<p>With EE closed, make a dated copy of <code>scriptstorage.json</code>
+before updating scenarios or engines. Forge’s distribution includes a
+separate optional <strong>Save backup tool</strong>; read its own
+instructions. It validates the JSON copy, not every campaign’s
+playability. Restoring that file affects other scenarios’ stored keys
+too. Never include your personal save in a community mission ZIP.</p>
+<h1 id="optional-dmx-lighting">9. Optional DMX lighting</h1>
+<p>The DMX view edits a lighting rig, a separate document that produces
+<code>hardware.ini</code> for EE’s hardware integration. Save it using
+<strong>Save rig</strong>. It is not a requirement for normal scenarios
+and it is not the campaign save system.</p>
+<p>Define fixtures and channels, then effects and mappings to game
+triggers. Preview before installing and check against the actual
+fixture’s channel layout. A software preview is not evidence that
+physical lighting hardware works. The community example contains no rig
+and does not require a DMX controller.</p>
+<h1 id="verify-export-install-and-play">10. Verify, export, install and
+play</h1>
+<h2 id="before-every-release">Before every release</h2>
+<ol type="1">
+<li>Save the project.</li>
+<li>Choose <strong>Verify</strong> and inspect the Problems area.</li>
+<li>Fix errors; read warnings rather than suppressing them by
+habit.</li>
+<li>Follow a problem’s location to correct its field or reference.</li>
+<li>Verify again after changes so the result is current.</li>
+</ol>
+<p>Stock-template warnings can indicate an absent or wrong installation
+scan. Register the matching engine and rescan. Do not change a valid
+ship name just because another engine’s list is showing.</p>
+<h2 id="export-for-both-targets">Export for both targets</h2>
+<p>Choose <strong>Export…</strong>, select vanilla, and select 2024,
+2026 or both. Both produces two independent bundles, built against the
+matching catalogs. Keep the target folders labelled when sharing. Export
+success does not test the generated mission inside either engine.</p>
+<p>For this pack, copy the three <code>.lua</code> files from the
+matching <code>play/&lt;year&gt;/scripts/</code> folder to EE’s
+<code>scripts</code> folder. The scenario picker reads
+<code>scenario_lantern_route.lua</code>; the other two files must be
+alongside it. Do not copy only the scenario entry file.</p>
+<p>For projects with custom templates/models, manual copying requires
+additional launch-time steps. Prefer <strong>Install scenario</strong>,
+review its plan, and follow any restart requirement. Check the selected
+destination and any overwrite/collision notice. Do not change files that
+belong to someone else’s scenario to make a collision disappear.</p>
+<p>A file can be held open by another program. If installation reports
+<strong>HELD OPEN</strong>, release the file and retry. The fact that EE
+is running is not by itself proof that it holds a scenario file
+locked.</p>
+<h2 id="playtest-checklist">Playtest checklist</h2>
+<ul>
+<li>Start a new game in each target engine, using a copy of your
+work.</li>
+<li>Can the crew recognise the objective without an author explaining
+it?</li>
+<li>Does the first conversation offer the correct next action?</li>
+<li>Do enemies spawn only when intended, and can weapons reach
+them?</li>
+<li>Does each intended victory and defeat actually end the game?</li>
+<li>Can the crew return early without earning false rewards?</li>
+<li>Does returning to a saved sector retain supported damage and
+progress?</li>
+<li>Does a checkpoint survive a real host-process restart?</li>
+<li>Are service menus reachable and instructions visible in the ship
+log?</li>
+</ul>
+<p>Use <code>verification/TEST-REPORT.md</code> for the evidence
+attached to this particular pack. Do not treat test results from another
+project or earlier draft as results for your export.</p>
+<h1 id="learn-by-modifying-the-lantern-route">11. Learn by modifying The
+Lantern Route</h1>
+<p>Use an imported copy. Start with these small changes and test after
+each one.</p>
+<p><strong>Exercise 1 — a clearer briefing.</strong> Edit the port’s
+welcome node. Save, Verify, export and hail the station in EE. Confirm
+the new text appears. This teaches the source-to-game loop.</p>
+<p><strong>Exercise 2 — a third raider.</strong> Add a stock enemy to
+the <code>raiders</code> group. Keep that group’s spawn mode and rule
+unchanged. The group-destroyed objective now includes the new member.
+Test combat balance; adding an enemy is not merely cosmetic.</p>
+<p><strong>Exercise 3 — a flag-controlled destination.</strong> Add a
+numeric variable <code>access_granted</code>, initially 0. Make a
+dialogue reply set it to 1. Add a new Change sector reply that requires
+that value. Its text should tell the player why the route is unavailable
+before authorisation.</p>
+<p><strong>Exercise 4 — a local reminder.</strong> Inspect
+<code>echo_reminder</code>, which belongs to Echo Reach. Leave before
+its local 90-second threshold, spend time at home, then return. Compare
+with a global event. A sector filter in Map is not the same thing as
+event scope.</p>
+<p><strong>Exercise 5 — an alternate ending.</strong> On a copy, add a
+different final objective and a matching winning-faction action. Ensure
+the old delivery victory cannot fire first. Test both intended success
+and failure.</p>
+<p>Start a new campaign after structural edits. Keep an unmodified copy
+of the original example for comparison.</p>
+<h1 id="troubleshooting-and-quick-reference">12. Troubleshooting and
+quick reference</h1>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>Check first</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Scenario absent from EE’s picker</td>
+<td>Correct scripts folder, entry filename and matching export; all
+three files copied</td>
+</tr>
+<tr class="even">
+<td>Station shows only stock services</td>
+<td>Dialogue assigned to the station object, not merely created in
+Dialogues</td>
+</tr>
+<tr class="odd">
+<td>Download reply absent</td>
+<td>Both raiders truly destroyed; correct station; archive not already
+aboard</td>
+</tr>
+<tr class="even">
+<td>Archive downloaded but no victory</td>
+<td>Return to PORT LANTERN and explicitly deliver through comms</td>
+</tr>
+<tr class="odd">
+<td>Enemy never appears</td>
+<td>Group set to spawn by rule, rule reached, destination sector
+active</td>
+</tr>
+<tr class="even">
+<td>Victory happens too early</td>
+<td>Ending condition, initial variable type/value, genuine Destroy
+actions</td>
+</tr>
+<tr class="odd">
+<td>Two maps overlap in Forge</td>
+<td>All sectors selected; choose one sector to edit</td>
+</tr>
+<tr class="even">
+<td>Hidden objects still appear in EE</td>
+<td>Editor visibility does not control gameplay</td>
+</tr>
+<tr class="odd">
+<td>Travel changes position but not location</td>
+<td>Normal ship jump used; use the authored Change sector
+interaction</td>
+</tr>
+<tr class="even">
+<td>Old conversation remains after transit</td>
+<td>Close comms and hail the destination station</td>
+</tr>
+<tr class="odd">
+<td>Ship template list wrong or empty</td>
+<td>Target/installation selection and scan; rescan after engine
+changes</td>
+</tr>
+<tr class="even">
+<td>3D ship looks generic</td>
+<td>Check resource status; a stand-in is not the selected model</td>
+</tr>
+<tr class="odd">
+<td>Verification marked out of date</td>
+<td>Re-Verify after edits</td>
+</tr>
+<tr class="even">
+<td>Resume shows NO CAMPAIGN</td>
+<td>Read the holding ship’s log; choose recovery/new/unsaved
+intentionally</td>
+</tr>
+<tr class="odd">
+<td>Restart loses loaded missiles or scan data</td>
+<td>Documented save limits, not a complete EE snapshot</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Authoring:</strong> Save document → Verify → Export/Install →
+play in EE.</p>
+<p><strong>Mission logic:</strong> event/condition → actions → changed
+world or variable → later rule.</p>
+<p><strong>Travel:</strong> select a game start sector → assign groups →
+place arrival markers → Change sector.</p>
+<p><strong>Persistence:</strong> enable campaign saves → choose
+New/Resume/Off in EE → request checkpoints → verify after restart.</p>
+<p>For the full example solution and the exact variable sequence, read
+<code>WALKTHROUGH.md</code>. For the measured checks and remaining
+limits, read <code>verification/TEST-REPORT.md</code>.</p>
+</body>
+</html>
