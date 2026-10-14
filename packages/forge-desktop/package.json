@@ -1,0 +1,36 @@
+{
+  "name": "@forge/desktop",
+  "version": "0.9.0",
+  "private": true,
+  "type": "module",
+  "description": "EE FORGE \u2014 scenario editor for EmptyEpsilon",
+  "main": "./dist/main.cjs",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit && node scripts/bundle.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "start": "node scripts/start.mjs",
+    "e2e": "node e2e/run.mjs",
+    "installer": "node scripts/build-installer.mjs",
+    "icon": "node scripts/make-icon.mjs"
+  },
+  "dependencies": {
+    "@forge/app": "workspace:*",
+    "@forge/contracts": "workspace:*",
+    "@forge/core": "workspace:*",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@electron/asar": "3.4.1",
+    "@exodus/web-forge": "workspace:*",
+    "@types/node": "^22.9.0",
+    "electron": "^44.0.0",
+    "electron-builder": "26.15.3",
+    "esbuild": "^0.24.0",
+    "playwright-core": "^1.49.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  },
+  "author": "EE FORGE authors"
+}

@@ -1,0 +1,61 @@
+# EE FORGE — Windows installer (increment 6, ADR-0052). Run through scripts/build-installer.mjs.
+appId: app.eeforge.desktop
+productName: EE FORGE
+copyright: EE FORGE authors
+# The packager runs on a STAGE folder (scripts/build-installer.mjs): a copy of dist/ — main.cjs, preload.cjs, renderer/,
+# resources/, and a package.json with no dependencies — plus build/. Run inside the workspace, electron-builder would walk the
+# monorepo's node_modules and put the workspace packages, their sources and tests into the app.
+directories:
+  buildResources: build     # icon.ico / icon.png (scripts/make-icon.mjs)
+artifactName: EE-FORGE-Setup-${version}-${arch}.${ext}
+asar: true
+compression: normal
+# Nothing from the repository other than the bundle goes in: no sources, no tests, no e2e, no node_modules.
+files:
+  - "**/*"
+  - "!**/*.map"
+  - "!save-backup/**"       # the optional backup utility goes beside the program (extraFiles below), not inside app.asar
+extraMetadata:
+  main: main.cjs
+# Hardening baked into the executable (flipped by electron-builder after packaging): the program cannot be turned into
+# a general Node interpreter (ELECTRON_RUN_AS_NODE), cannot be steered with NODE_OPTIONS or --inspect, only loads its own
+# app.asar, and refuses a modified one.
+electronFuses:
+  runAsNode: false
+  enableNodeOptionsEnvironmentVariable: false
+  enableNodeCliInspectArguments: false
+  enableEmbeddedAsarIntegrityValidation: true
+  onlyLoadAppFromAsar: true
+  grantFileProtocolExtraPrivileges: false
+# The notices go beside the program too (the copy inside app.asar is not something a user can open).
+extraFiles:
+  - from: resources/licenses/THIRD-PARTY-NOTICES.txt
+    to: THIRD-PARTY-NOTICES.txt
+  # Optional, separate: a PowerShell utility that copies/restores EmptyEpsilon's scriptstorage.json (campaign saves) on request. No service, no EXODUS.
+  - from: save-backup
+    to: Save backup tool
+electronLanguages:
+  - en-US
+  - it
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: build/icon.ico
+  requestedExecutionLevel: asInvoker      # a per-user install: no administrator rights, no UAC prompt
+  signAndEditExecutable: true             # embeds the icon and version resources; NOT code signing (no certificate is used)
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: EE FORGE
+  runAfterFinish: true
+  deleteAppDataOnUninstall: false         # projects (Documents\EE FORGE) and settings (%APPDATA%) survive an uninstall
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  uninstallDisplayName: EE FORGE

@@ -1,0 +1,48 @@
+{
+  "name": "@forge/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Forge core — EmptyEpsilon content toolkit: verified API catalogs per target, install scanner, logic simulator, vanilla-Lua codegen (ADR-0034). Depends on @forge/contracts and zod only.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./editor": {
+      "types": "./dist/editor/index.d.ts",
+      "default": "./dist/editor/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ee:catalog": "tsx src/cli.ts catalog",
+    "ee:scan": "tsx src/cli.ts scan",
+    "forge:new": "tsx src/cli.ts new",
+    "forge:build": "tsx src/cli.ts build",
+    "forge:simulate": "tsx src/cli.ts simulate",
+    "clean": "rm -rf dist",
+    "forge:dmx": "tsx src/cli.ts dmx",
+    "forge:migrate": "tsx src/cli.ts migrate"
+  },
+  "dependencies": {
+    "@forge/contracts": "workspace:*",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  }
+}

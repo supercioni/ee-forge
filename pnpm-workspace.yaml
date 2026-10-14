@@ -1,0 +1,14 @@
+packages:
+  - "packages/*"
+
+allowBuilds:
+  # esbuild ships a platform-specific binary postinstall (used by vitest).
+  esbuild: true
+  # Electron downloads its platform binary at install time (the desktop shell, increment 5).
+  electron: true
+  # Only Squirrel installers use it; the installer is NSIS, so its build script is deliberately not run.
+  electron-winstaller: false
+
+# pnpm settings (auto-install-peers must live here, not in global config in pnpm 10+)
+auto-install-peers: true
+strict-peer-dependencies: false

@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 2,
+  "id": "exodus_optional_demo",
+  "name": "EXODUS optional — vanilla-complete demo",
+  "description": "A short mission that uses EXODUS for a lore drop, a cooling puzzle, encrypted orders and the chapter end — and finishes without it: every EXODUS step records what the crew gets instead.",
+  "eeVersion": "EE-2026.09.22PR",
+  "requires": [
+    "exodus"
+  ],
+  "factions": [],
+  "models": [],
+  "templates": [],
+  "map": {
+    "groups": [
+      {
+        "id": "core",
+        "label": "Core",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "player",
+            "callsign": "PS-01",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "PlayerSpaceship",
+            "template": "Atlantis"
+          }
+        ]
+      }
+    ],
+    "markers": []
+  },
+  "logic": {
+    "variables": [
+      {
+        "name": "briefed",
+        "initial": false
+      },
+      {
+        "name": "cooled",
+        "initial": false
+      },
+      {
+        "name": "reactor_ok",
+        "initial": false
+      },
+      {
+        "name": "orders",
+        "initial": false
+      }
+    ],
+    "beats": [
+      {
+        "id": "briefing",
+        "label": "Lore fragment and the cooling puzzle",
+        "at": 2,
+        "actions": [
+          {
+            "kind": "exodus_lore",
+            "stepId": "briefing_lore",
+            "fragmentId": "frag_demo_001",
+            "foundBy": null
+          },
+          {
+            "kind": "exodus_puzzle",
+            "stepId": "cooling",
+            "puzzleId": "cooling_redirect",
+            "role": "engineer",
+            "params": {},
+            "timeoutS": null
+          }
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "orders_arrive",
+        "label": "Reactor stable → encrypted orders",
+        "when": {
+          "kind": "variable_equals",
+          "name": "reactor_ok",
+          "value": true
+        },
+        "conditions": [
+          {
+            "kind": "variable_equals",
+            "name": "briefed",
+            "value": true
+          }
+        ],
+        "once": true,
+        "actions": [
+          {
+            "kind": "exodus_encrypted_comms",
+            "stepId": "orders",
+            "channel": "tactical",
+            "from": "Athena-7",
+            "text": "Return to Anchorage. Jump when ready."
+          }
+        ]
+      },
+      {
+        "id": "finish",
+        "label": "Orders received → end of the chapter",
+        "when": {
+          "kind": "variable_equals",
+          "name": "orders",
+          "value": true
+        },
+        "conditions": [],
+        "once": true,
+        "actions": [
+          {
+            "kind": "exodus_complete_chapter",
+            "stepId": "chapter_end",
+            "nextChapterId": null
+          }
+        ]
+      }
+    ],
+    "gmButtons": [],
+    "dialogues": [],
+    "exodusSteps": [
+      {
+        "id": "briefing_lore",
+        "essential": false,
+        "alternative": {
+          "kind": "immediate",
+          "actions": [
+            {
+              "kind": "global_message",
+              "text": "Recovered fragment: the signal came from Anchorage.",
+              "timeoutS": 12
+            }
+          ]
+        },
+        "onSuccess": [
+          {
+            "kind": "set_variable",
+            "name": "briefed",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "cooling",
+        "essential": true,
+        "alternative": {
+          "kind": "gm",
+          "label": "Cooling restored",
+          "message": "GM: the cooling puzzle is unavailable. Press “Cooling restored” once Engineering has rerouted the coolant by hand.",
+          "actions": [
+            {
+              "kind": "set_variable",
+              "name": "cooled",
+              "value": true
+            }
+          ]
+        },
+        "answerWithinS": 90,
+        "onSuccess": [
+          {
+            "kind": "set_variable",
+            "name": "reactor_ok",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "orders",
+        "essential": true,
+        "alternative": {
+          "kind": "immediate",
+          "actions": [
+            {
+              "kind": "global_message",
+              "text": "Athena-7: Return to Anchorage. Jump when ready.",
+              "timeoutS": 15
+            }
+          ]
+        },
+        "onSuccess": [
+          {
+            "kind": "set_variable",
+            "name": "orders",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "chapter_end",
+        "essential": true,
+        "alternative": {
+          "kind": "wait",
+          "seconds": 10,
+          "actions": [
+            {
+              "kind": "victory",
+              "faction": "Human Navy"
+            }
+          ]
+        },
+        "onSuccess": []
+      }
+    ]
+  },
+  "unmodelled": {}
+}

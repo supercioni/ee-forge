@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 5,
+  "id": "hop_jump_24",
+  "name": "Hop Jump",
+  "description": "Two sectors, a jump between them, and a real fight in each. Used to check Change sector in an isolated engine.",
+  "eeVersion": "EE-2024.12.08",
+  "requires": [],
+  "factions": [],
+  "models": [],
+  "templates": [],
+  "map": {
+    "sectors": [
+      {
+        "id": "sys-a",
+        "label": "System A"
+      },
+      {
+        "id": "sys-b",
+        "label": "System B"
+      }
+    ],
+    "startSector": "sys-a",
+    "groups": [
+      {
+        "id": "ship",
+        "label": "Player ship",
+        "when": "on_start",
+        "sector": null,
+        "objects": [
+          {
+            "id": "player",
+            "callsign": "PS-01",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "description": null,
+            "variables": [],
+            "rotation": 0,
+            "faction": "Human Navy",
+            "type": "PlayerSpaceship",
+            "template": "Atlantis"
+          }
+        ]
+      },
+      {
+        "id": "depot",
+        "label": "Depot",
+        "when": "on_start",
+        "sector": null,
+        "objects": [
+          {
+            "id": "depot",
+            "callsign": "DEPOT",
+            "position": {
+              "x": -2500,
+              "y": 1500
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "SpaceStation",
+            "template": "Small Station",
+            "dialogueId": null
+          }
+        ]
+      },
+      {
+        "id": "a_env",
+        "label": "A environment",
+        "when": "on_start",
+        "sector": "sys-a",
+        "objects": [
+          {
+            "id": "ast_a",
+            "callsign": null,
+            "position": {
+              "x": 2500,
+              "y": 1800
+            },
+            "description": null,
+            "variables": [],
+            "type": "Asteroid",
+            "size": null
+          }
+        ]
+      },
+      {
+        "id": "a_raiders",
+        "label": "A raiders",
+        "when": "on_start",
+        "sector": "sys-a",
+        "objects": [
+          {
+            "id": "raider_a",
+            "callsign": "TG-A",
+            "position": {
+              "x": 800,
+              "y": 0
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Kraylor",
+            "type": "CpuShip",
+            "template": "MT52 Hornet",
+            "ai": null,
+            "order": {
+              "kind": "idle"
+            },
+            "dialogueId": null
+          }
+        ]
+      },
+      {
+        "id": "a_ambush",
+        "label": "A ambush",
+        "when": "on_call",
+        "sector": "sys-a",
+        "objects": [
+          {
+            "id": "amb_a",
+            "callsign": "AMB-A",
+            "position": {
+              "x": 3000,
+              "y": -2500
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Kraylor",
+            "type": "CpuShip",
+            "template": "MT52 Hornet",
+            "ai": null,
+            "order": {
+              "kind": "idle"
+            },
+            "dialogueId": null
+          }
+        ]
+      },
+      {
+        "id": "b_env",
+        "label": "B environment",
+        "when": "on_start",
+        "sector": "sys-b",
+        "objects": [
+          {
+            "id": "neb_b",
+            "callsign": null,
+            "position": {
+              "x": 52500,
+              "y": 1800
+            },
+            "description": null,
+            "variables": [],
+            "type": "Nebula"
+          }
+        ]
+      },
+      {
+        "id": "b_guards",
+        "label": "B guards",
+        "when": "on_start",
+        "sector": "sys-b",
+        "objects": [
+          {
+            "id": "raider_b",
+            "callsign": "TG-B",
+            "position": {
+              "x": 50800,
+              "y": 0
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Kraylor",
+            "type": "CpuShip",
+            "template": "MT52 Hornet",
+            "ai": null,
+            "order": {
+              "kind": "idle"
+            },
+            "dialogueId": null
+          }
+        ]
+      },
+      {
+        "id": "b_ambush",
+        "label": "B ambush",
+        "when": "on_call",
+        "sector": "sys-b",
+        "objects": [
+          {
+            "id": "amb_b",
+            "callsign": "AMB-B",
+            "position": {
+              "x": 53000,
+              "y": -2500
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Kraylor",
+            "type": "CpuShip",
+            "template": "MT52 Hornet",
+            "ai": null,
+            "order": {
+              "kind": "idle"
+            },
+            "dialogueId": null
+          }
+        ]
+      }
+    ],
+    "markers": [
+      {
+        "id": "arrive_a",
+        "label": "Arrive in A",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "notes": null,
+        "sector": "sys-a"
+      },
+      {
+        "id": "arrive_b",
+        "label": "Arrive in B",
+        "position": {
+          "x": 50000,
+          "y": 0
+        },
+        "notes": null,
+        "sector": "sys-b"
+      }
+    ]
+  },
+  "logic": {
+    "variables": [
+      {
+        "name": "go_b",
+        "initial": 0
+      },
+      {
+        "name": "go_a",
+        "initial": 0
+      },
+      {
+        "name": "go_b2",
+        "initial": 0
+      },
+      {
+        "name": "kills_a",
+        "initial": 0
+      },
+      {
+        "name": "b_wiped",
+        "initial": 0
+      },
+      {
+        "name": "jumps",
+        "initial": 0
+      }
+    ],
+    "beats": [
+      {
+        "id": "damage",
+        "label": "damage the ship",
+        "at": 60,
+        "actions": [
+          {
+            "kind": "damage_hull",
+            "target": {
+              "ref": "player"
+            },
+            "amount": 40
+          },
+          {
+            "kind": "set_system_health",
+            "target": {
+              "ref": "player"
+            },
+            "system": "reactor",
+            "value": 0.6
+          }
+        ]
+      },
+      {
+        "id": "refused_spawn",
+        "label": "spawn B's ambush while in A",
+        "at": 80,
+        "actions": [
+          {
+            "kind": "spawn_group",
+            "groupId": "b_ambush"
+          }
+        ]
+      },
+      {
+        "id": "flag_b",
+        "label": "ready for B",
+        "at": 90,
+        "actions": [
+          {
+            "kind": "set_variable",
+            "name": "go_b",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "again_b",
+        "label": "repeated requests for B",
+        "at": 105,
+        "actions": [
+          {
+            "kind": "change_sector",
+            "sectorId": "sys-b",
+            "arrivalMarkerId": "arrive_b",
+            "rotation": null
+          },
+          {
+            "kind": "change_sector",
+            "sectorId": "sys-b",
+            "arrivalMarkerId": "arrive_b",
+            "rotation": null
+          }
+        ]
+      },
+      {
+        "id": "flag_a",
+        "label": "ready for A",
+        "at": 120,
+        "actions": [
+          {
+            "kind": "set_variable",
+            "name": "go_a",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "again_a",
+        "label": "repeated requests for A",
+        "at": 135,
+        "actions": [
+          {
+            "kind": "change_sector",
+            "sectorId": "sys-a",
+            "arrivalMarkerId": "arrive_a",
+            "rotation": null
+          },
+          {
+            "kind": "change_sector",
+            "sectorId": "sys-a",
+            "arrivalMarkerId": "arrive_a",
+            "rotation": null
+          }
+        ]
+      },
+      {
+        "id": "flag_b2",
+        "label": "ready for B again",
+        "at": 150,
+        "actions": [
+          {
+            "kind": "set_variable",
+            "name": "go_b2",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "r_kill_a",
+        "label": "A raider down",
+        "once": false,
+        "when": {
+          "kind": "group_destroyed",
+          "groupId": "a_raiders"
+        },
+        "conditions": [],
+        "actions": [
+          {
+            "kind": "add_variable",
+            "name": "kills_a",
+            "delta": 1
+          },
+          {
+            "kind": "damage_hull",
+            "target": {
+              "ref": "object",
+              "objectId": "depot"
+            },
+            "amount": 10
+          },
+          {
+            "kind": "ship_log",
+            "text": "The raider of sector A is down.",
+            "color": "white"
+          }
+        ]
+      },
+      {
+        "id": "r_jump_1",
+        "label": "Jump A to B",
+        "once": false,
+        "when": {
+          "kind": "variable_equals",
+          "name": "go_b",
+          "value": 1
+        },
+        "conditions": [
+          {
+            "kind": "current_sector",
+            "sectorId": "sys-a"
+          }
+        ],
+        "actions": [
+          {
+            "kind": "change_sector",
+            "sectorId": "sys-b",
+            "arrivalMarkerId": "arrive_b",
+            "rotation": null
+          },
+          {
+            "kind": "add_variable",
+            "name": "jumps",
+            "delta": 1
+          },
+          {
+            "kind": "damage_hull",
+            "target": {
+              "ref": "object",
+              "objectId": "depot"
+            },
+            "amount": 1
+          },
+          {
+            "kind": "set_variable",
+            "name": "go_b",
+            "value": 0
+          },
+          {
+            "kind": "ship_log",
+            "text": "Arrived in sector B.",
+            "color": "white"
+          }
+        ]
+      },
+      {
+        "id": "r_jump_2",
+        "label": "Jump B to A",
+        "once": false,
+        "when": {
+          "kind": "variable_equals",
+          "name": "go_a",
+          "value": 1
+        },
+        "conditions": [
+          {
+            "kind": "current_sector",
+            "sectorId": "sys-b"
+          }
+        ],
+        "actions": [
+          {
+            "kind": "change_sector",
+            "sectorId": "sys-a",
+            "arrivalMarkerId": "arrive_a",
+            "rotation": 180
+          },
+          {
+            "kind": "add_variable",
+            "name": "jumps",
+            "delta": 1
+          },
+          {
+            "kind": "damage_hull",
+            "target": {
+              "ref": "object",
+              "objectId": "depot"
+            },
+            "amount": 1
+          },
+          {
+            "kind": "set_variable",
+            "name": "go_a",
+            "value": 0
+          },
+          {
+            "kind": "ship_log",
+            "text": "Back in sector A.",
+            "color": "white"
+          }
+        ]
+      },
+      {
+        "id": "r_jump_3",
+        "label": "Jump A to B again",
+        "once": false,
+        "when": {
+          "kind": "variable_equals",
+          "name": "go_b2",
+          "value": 1
+        },
+        "conditions": [
+          {
+            "kind": "current_sector",
+            "sectorId": "sys-a"
+          }
+        ],
+        "actions": [
+          {
+            "kind": "change_sector",
+            "sectorId": "sys-b",
+            "arrivalMarkerId": "arrive_b",
+            "rotation": 0
+          },
+          {
+            "kind": "add_variable",
+            "name": "jumps",
+            "delta": 1
+          },
+          {
+            "kind": "damage_hull",
+            "target": {
+              "ref": "object",
+              "objectId": "depot"
+            },
+            "amount": 1
+          },
+          {
+            "kind": "set_variable",
+            "name": "go_b2",
+            "value": 0
+          },
+          {
+            "kind": "ship_log",
+            "text": "Arrived in sector B again.",
+            "color": "white"
+          }
+        ]
+      },
+      {
+        "id": "r_win_b",
+        "label": "B guard down",
+        "once": true,
+        "when": {
+          "kind": "group_destroyed",
+          "groupId": "b_guards"
+        },
+        "conditions": [],
+        "actions": [
+          {
+            "kind": "set_variable",
+            "name": "b_wiped",
+            "value": 1
+          },
+          {
+            "kind": "global_message",
+            "text": "Sector B cleared.",
+            "timeoutS": null
+          },
+          {
+            "kind": "victory",
+            "faction": "Human Navy"
+          }
+        ]
+      }
+    ],
+    "gmButtons": [],
+    "dialogues": [],
+    "exodusSteps": []
+  },
+  "campaign": {
+    "persistence": false
+  },
+  "unmodelled": {}
+}

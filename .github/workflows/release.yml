@@ -1,0 +1,29 @@
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  installer:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Build the installer
+        shell: bash
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          node packages/forge-desktop/scripts/build-installer.mjs --skip-bundle --version "$V"
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            packages/forge-desktop/release/EE-FORGE-Setup-*.exe
+            packages/forge-desktop/release/SHA256SUMS.txt
+          generate_release_notes: true

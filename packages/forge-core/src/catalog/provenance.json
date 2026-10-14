@@ -1,0 +1,12 @@
+{
+  "EE-2024.12.08": {
+    "catalogSha256": "b3ba3b28a2de791fdabe04d942662a94e5b1f50588c76d36f83b7700adf0a07c",
+    "scriptReferenceSha256": "4950538c68ec551a061cfa0ccd794d94e9bcfc4cefbabbc723311c739389a1cc",
+    "generatedAt": "2026-10-02T17:18:25.410Z"
+  },
+  "EE-2026.09.22PR": {
+    "catalogSha256": "938a0f9b1de037e810cac1e7a212a45eba3d556193827fd6cd7a5ca6fb544bcc",
+    "scriptReferenceSha256": "c13191638c9122df14191eaef1c212d79b0527d882dd8fb80d6cb6f3b3fda033",
+    "generatedAt": "2026-09-23T17:35:49.805Z"
+  }
+}

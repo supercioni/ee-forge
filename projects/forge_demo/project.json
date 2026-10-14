@@ -1,0 +1,879 @@
+{
+  "id": "forge_demo",
+  "name": "EE FORGE Demo — Corsair Ambush",
+  "description": "STEP 35 gate scenario. Exercises every layer of the forge on plain EmptyEpsilon: a custom faction, a custom ModelData, two custom ship templates (one derived with copy()), a map with orbits/zone/belt, and a narrative of beats plus edge-triggered rules.",
+  "eeVersion": "EE-2026.09.22PR",
+  "requires": [],
+  "factions": [
+    {
+      "id": "corsairs",
+      "name": "Corsairs",
+      "localeName": "Corsairs",
+      "gmColor": [
+        210,
+        70,
+        40
+      ],
+      "description": "Raiders working the shipping lanes beyond the Anchorage line. They fly refitted hulls and jump before a response fleet arrives.",
+      "enemies": [
+        "Human Navy"
+      ],
+      "friends": []
+    }
+  ],
+  "models": [
+    {
+      "id": "corsair_hull",
+      "name": "corsair_hull",
+      "mesh": "battleship_destroyer_1_upgraded/battleship_destroyer_1_upgraded.model",
+      "texture": "battleship_destroyer_1_upgraded/battleship_destroyer_1_upgraded_color.jpg",
+      "specular": "battleship_destroyer_1_upgraded/battleship_destroyer_1_upgraded_specular.jpg",
+      "illumination": "battleship_destroyer_1_upgraded/battleship_destroyer_1_upgraded_illumination.jpg",
+      "scale": 4,
+      "radius": 200,
+      "collisionBox": [
+        280,
+        180
+      ],
+      "renderOffset": null,
+      "beamPositions": [],
+      "tubePositions": [],
+      "engineEmitters": []
+    }
+  ],
+  "templates": [
+    {
+      "id": "corsair_mk1",
+      "name": "Corsair Mk1",
+      "localeName": "Corsair Mk1",
+      "kind": "ship",
+      "copyOf": null,
+      "className": "Frigate",
+      "subclassName": "Raider",
+      "description": "A cheap raider hull with a single forward battery and no shields worth the name.",
+      "model": "corsair_hull",
+      "radarTrace": "cruiser.png",
+      "hull": 120,
+      "shields": [
+        80,
+        80
+      ],
+      "speed": {
+        "impulse": 70,
+        "turn": 12,
+        "acceleration": 25,
+        "reverseSpeed": null,
+        "reverseAcceleration": null
+      },
+      "combatManeuver": null,
+      "warpSpeed": null,
+      "jumpDrive": null,
+      "cloaking": null,
+      "energyStorage": null,
+      "repairCrewCount": 2,
+      "beams": [
+        {
+          "index": 0,
+          "arc": 90,
+          "direction": 0,
+          "range": 1200,
+          "cycleTime": 6,
+          "damage": 6,
+          "turret": null,
+          "texture": null,
+          "energyPerFire": null,
+          "heatPerFire": null
+        }
+      ],
+      "tubes": {
+        "count": 1,
+        "loadTime": 10,
+        "perTube": [
+          {
+            "index": 0,
+            "direction": 0,
+            "loadTime": null,
+            "size": "small",
+            "exclusiveFor": null,
+            "allow": [],
+            "disallow": [
+              "Nuke"
+            ]
+          }
+        ]
+      },
+      "weaponStorage": [
+        {
+          "weapon": "HVLI",
+          "amount": 8
+        }
+      ],
+      "rooms": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "system": "maneuver"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "width": 2,
+          "height": 1,
+          "system": "beamweapons"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "system": "frontshield"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "width": 2,
+          "height": 1,
+          "system": "reactor"
+        },
+        {
+          "x": 3,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "system": "rearshield"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "width": 2,
+          "height": 1,
+          "system": "impulse"
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "system": "missilesystem"
+        }
+      ],
+      "doors": [
+        {
+          "x": 1,
+          "y": 1,
+          "horizontal": true
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "horizontal": true
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "horizontal": false
+        },
+        {
+          "x": 3,
+          "y": 1,
+          "horizontal": false
+        }
+      ],
+      "longRangeRadarRange": 25000,
+      "shortRangeRadarRange": null,
+      "defaultAI": "fighter",
+      "dockClasses": [],
+      "externalDockClasses": [],
+      "internalDockClasses": [],
+      "sharesEnergyWithDocked": null,
+      "repairDocked": null,
+      "restocksScanProbes": false,
+      "restocksMissilesDocked": null,
+      "impulseSoundFile": "sfx/engine_fighter.wav",
+      "canScan": null,
+      "canHack": false,
+      "canDock": null,
+      "canCombatManeuver": null,
+      "canSelfDestruct": false,
+      "canLaunchProbe": null,
+      "hidden": false
+    },
+    {
+      "id": "corsair_mk2",
+      "name": "Corsair Mk2",
+      "localeName": "Corsair Mk2",
+      "kind": "ship",
+      "copyOf": "Corsair Mk1",
+      "className": "Frigate",
+      "subclassName": "Raider",
+      "description": "The Mk1 with a second battery and a heavier magazine. Corsair crews call it the argument-ender.",
+      "model": "corsair_hull",
+      "radarTrace": "cruiser.png",
+      "hull": 160,
+      "shields": [
+        120,
+        120
+      ],
+      "speed": {
+        "impulse": 80,
+        "turn": 14,
+        "acceleration": 30,
+        "reverseSpeed": null,
+        "reverseAcceleration": null
+      },
+      "combatManeuver": {
+        "boost": 400,
+        "strafe": 150
+      },
+      "warpSpeed": null,
+      "jumpDrive": null,
+      "cloaking": null,
+      "energyStorage": null,
+      "repairCrewCount": 3,
+      "beams": [
+        {
+          "index": 0,
+          "arc": 90,
+          "direction": 0,
+          "range": 1400,
+          "cycleTime": 5,
+          "damage": 8,
+          "turret": null,
+          "texture": null,
+          "energyPerFire": 3,
+          "heatPerFire": 0.02
+        },
+        {
+          "index": 1,
+          "arc": 90,
+          "direction": 180,
+          "range": 1000,
+          "cycleTime": 8,
+          "damage": 5,
+          "turret": null,
+          "texture": "texture/beam_orange.png",
+          "energyPerFire": null,
+          "heatPerFire": null
+        }
+      ],
+      "tubes": {
+        "count": 2,
+        "loadTime": 8,
+        "perTube": [
+          {
+            "index": 0,
+            "direction": 0,
+            "loadTime": null,
+            "size": "medium",
+            "exclusiveFor": "HVLI",
+            "allow": [
+              "Homing"
+            ],
+            "disallow": []
+          },
+          {
+            "index": 1,
+            "direction": 180,
+            "loadTime": null,
+            "size": "small",
+            "exclusiveFor": null,
+            "allow": [],
+            "disallow": [
+              "Nuke"
+            ]
+          }
+        ]
+      },
+      "weaponStorage": [
+        {
+          "weapon": "HVLI",
+          "amount": 12
+        },
+        {
+          "weapon": "Homing",
+          "amount": 4
+        }
+      ],
+      "rooms": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1,
+          "system": "maneuver"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "width": 2,
+          "height": 1,
+          "system": "beamweapons"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "system": "frontshield"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "width": 2,
+          "height": 1,
+          "system": "reactor"
+        },
+        {
+          "x": 3,
+          "y": 1,
+          "width": 1,
+          "height": 1,
+          "system": "rearshield"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "width": 2,
+          "height": 1,
+          "system": "impulse"
+        },
+        {
+          "x": 3,
+          "y": 2,
+          "width": 1,
+          "height": 1,
+          "system": "missilesystem"
+        }
+      ],
+      "doors": [
+        {
+          "x": 1,
+          "y": 1,
+          "horizontal": true
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "horizontal": true
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "horizontal": false
+        },
+        {
+          "x": 3,
+          "y": 1,
+          "horizontal": false
+        }
+      ],
+      "longRangeRadarRange": 25000,
+      "shortRangeRadarRange": null,
+      "defaultAI": "default",
+      "dockClasses": [],
+      "externalDockClasses": [],
+      "internalDockClasses": [],
+      "sharesEnergyWithDocked": null,
+      "repairDocked": null,
+      "restocksScanProbes": false,
+      "restocksMissilesDocked": null,
+      "impulseSoundFile": "sfx/engine_fighter.wav",
+      "canScan": null,
+      "canHack": false,
+      "canDock": null,
+      "canCombatManeuver": true,
+      "canSelfDestruct": false,
+      "canLaunchProbe": null,
+      "hidden": false
+    }
+  ],
+  "map": {
+    "groups": [
+      {
+        "id": "core",
+        "label": "Anchorage approach — the system as the crew finds it",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "atlantis",
+            "callsign": "ATLANTIS",
+            "position": {
+              "x": 100,
+              "y": 7600
+            },
+            "description": null,
+            "rotation": 180,
+            "faction": "Human Navy",
+            "type": "PlayerSpaceship",
+            "template": "Atlantis",
+            "variables": []
+          },
+          {
+            "id": "sun",
+            "callsign": "SU-01",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "description": "Anchorage primary",
+            "rotation": null,
+            "type": "Planet",
+            "radius": 4000,
+            "surfaceTexture": "planets/sun.png",
+            "cloudTexture": null,
+            "atmosphereTexture": null,
+            "atmosphereColor": null,
+            "axialRotationTime": null,
+            "distanceFromMovementPlane": null,
+            "orbit": null,
+            "variables": []
+          },
+          {
+            "id": "anchorage",
+            "callsign": "PL-01",
+            "position": {
+              "x": 14000,
+              "y": 0
+            },
+            "description": "Anchorage — habitable, lightly settled",
+            "rotation": null,
+            "type": "Planet",
+            "radius": 2500,
+            "surfaceTexture": "planets/planet-earth.png",
+            "cloudTexture": "planets/clouds-1.png",
+            "atmosphereTexture": "planets/atmosphere.png",
+            "atmosphereColor": [
+              0.35,
+              0.55,
+              1
+            ],
+            "axialRotationTime": 120,
+            "distanceFromMovementPlane": null,
+            "orbit": null,
+            "variables": []
+          },
+          {
+            "id": "anchorage_moon",
+            "callsign": "PL-02",
+            "position": {
+              "x": 18500,
+              "y": 0
+            },
+            "description": null,
+            "rotation": null,
+            "type": "Planet",
+            "radius": 500,
+            "surfaceTexture": "planets/moon-1.png",
+            "cloudTexture": null,
+            "atmosphereTexture": null,
+            "atmosphereColor": null,
+            "axialRotationTime": null,
+            "distanceFromMovementPlane": null,
+            "orbit": {
+              "targetId": "anchorage",
+              "orbitTimeS": 1800
+            },
+            "variables": []
+          },
+          {
+            "id": "station",
+            "callsign": "ST-MI-01",
+            "position": {
+              "x": 11000,
+              "y": -2000
+            },
+            "description": "Anchorage Control",
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "SpaceStation",
+            "template": "Medium Station",
+            "variables": []
+          },
+          {
+            "id": "nebula_veil",
+            "callsign": "NB-SG-01",
+            "position": {
+              "x": -9000,
+              "y": -6000
+            },
+            "description": null,
+            "type": "Nebula",
+            "variables": []
+          },
+          {
+            "id": "belt_01",
+            "callsign": "AS-BE-01",
+            "position": {
+              "x": 6500,
+              "y": 5200
+            },
+            "description": null,
+            "type": "Asteroid",
+            "size": 120,
+            "variables": []
+          },
+          {
+            "id": "belt_02",
+            "callsign": "AS-BE-01",
+            "position": {
+              "x": 7400,
+              "y": 4300
+            },
+            "description": null,
+            "type": "Asteroid",
+            "size": 90,
+            "variables": []
+          },
+          {
+            "id": "belt_03",
+            "callsign": "AS-BE-01",
+            "position": {
+              "x": 8100,
+              "y": 5600
+            },
+            "description": null,
+            "type": "Asteroid",
+            "size": 140,
+            "variables": []
+          },
+          {
+            "id": "belt_04",
+            "callsign": "AS-BE-01",
+            "position": {
+              "x": 5900,
+              "y": 4100
+            },
+            "description": null,
+            "type": "Asteroid",
+            "size": 70,
+            "variables": []
+          },
+          {
+            "id": "approach_zone",
+            "callsign": "ZN-QT-01",
+            "position": {
+              "x": 12000,
+              "y": 3000
+            },
+            "description": null,
+            "type": "Zone",
+            "points": [
+              {
+                "x": 8000,
+                "y": 6000
+              },
+              {
+                "x": 16000,
+                "y": 6000
+              },
+              {
+                "x": 16000,
+                "y": 500
+              },
+              {
+                "x": 8000,
+                "y": 500
+              }
+            ],
+            "color": [
+              220,
+              120,
+              40
+            ],
+            "label": "APPROACH",
+            "variables": []
+          },
+          {
+            "id": "cpuship",
+            "callsign": "SH-01",
+            "position": {
+              "x": 11400,
+              "y": -12200
+            },
+            "description": null,
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "CpuShip",
+            "template": "Phobos T3",
+            "ai": null,
+            "variables": []
+          }
+        ]
+      },
+      {
+        "id": "ambush",
+        "label": "Corsair raiding pair — called by the approach trigger",
+        "when": "on_call",
+        "objects": [
+          {
+            "id": "corsair_a",
+            "callsign": "SH-EN-01",
+            "position": {
+              "x": 15500,
+              "y": 4200
+            },
+            "description": null,
+            "rotation": 200,
+            "faction": "Corsairs",
+            "type": "CpuShip",
+            "template": "Corsair Mk2",
+            "ai": "fighter",
+            "variables": [
+              {
+                "name": "alerted",
+                "initial": false
+              }
+            ]
+          },
+          {
+            "id": "corsair_b",
+            "callsign": "SH-EN-01",
+            "position": {
+              "x": 16200,
+              "y": 2800
+            },
+            "description": null,
+            "rotation": 210,
+            "faction": "Corsairs",
+            "type": "CpuShip",
+            "template": "Corsair Mk1",
+            "ai": "evasion",
+            "variables": [
+              {
+                "name": "alerted",
+                "initial": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logic": {
+    "variables": [
+      {
+        "name": "alarm",
+        "initial": 0
+      },
+      {
+        "name": "briefed",
+        "initial": false
+      }
+    ],
+    "beats": [
+      {
+        "id": "arrival",
+        "label": "Arrival — Anchorage Control hails the ship",
+        "at": 0,
+        "actions": [
+          {
+            "kind": "global_message",
+            "text": "ANCHORAGE CONTROL: Atlantis, you are cleared to the inner approach.",
+            "timeoutS": null
+          },
+          {
+            "kind": "ship_log",
+            "text": "Cleared to inner approach. Corsair activity reported in the belt.",
+            "color": "yellow"
+          },
+          {
+            "kind": "set_variable",
+            "name": "briefed",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "warning",
+        "label": "T+45 — Control repeats the corsair warning",
+        "at": 45,
+        "actions": [
+          {
+            "kind": "banner",
+            "text": "CORSAIR ACTIVITY REPORTED — INNER APPROACH"
+          },
+          {
+            "kind": "gm_message",
+            "text": "Player has been warned about the corsairs."
+          }
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "spring_ambush",
+        "label": "Player enters the approach zone — corsairs decloak from the belt",
+        "when": {
+          "kind": "player_in_zone",
+          "zoneId": "approach_zone"
+        },
+        "conditions": [
+          {
+            "kind": "variable_equals",
+            "name": "briefed",
+            "value": true
+          }
+        ],
+        "once": true,
+        "actions": [
+          {
+            "kind": "spawn_group",
+            "groupId": "ambush"
+          },
+          {
+            "kind": "set_alert_level",
+            "level": "red"
+          },
+          {
+            "kind": "global_message",
+            "text": "Two contacts closing from the belt. Corsairs!",
+            "timeoutS": 8
+          },
+          {
+            "kind": "set_variable",
+            "name": "alarm",
+            "value": 1
+          },
+          {
+            "kind": "order_attack",
+            "target": {
+              "ref": "group",
+              "groupId": "ambush"
+            },
+            "objectId": "atlantis"
+          },
+          {
+            "kind": "order_fly_formation",
+            "target": {
+              "ref": "object",
+              "objectId": "corsair_b"
+            },
+            "leaderId": "corsair_a",
+            "offset": {
+              "x": 900,
+              "y": -600
+            }
+          },
+          {
+            "kind": "set_object_variable",
+            "target": {
+              "ref": "group",
+              "groupId": "ambush"
+            },
+            "name": "alerted",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "ambush_cleared",
+        "label": "Both corsairs destroyed — the approach is clear",
+        "when": {
+          "kind": "group_destroyed",
+          "groupId": "ambush"
+        },
+        "conditions": [
+          {
+            "kind": "variable_at_least",
+            "name": "alarm",
+            "value": 1
+          }
+        ],
+        "once": true,
+        "actions": [
+          {
+            "kind": "global_message",
+            "text": "ANCHORAGE CONTROL: Approach is clear. Well flown, Atlantis.",
+            "timeoutS": null
+          },
+          {
+            "kind": "ship_log",
+            "text": "Corsair pair destroyed.",
+            "color": "green"
+          },
+          {
+            "kind": "victory",
+            "faction": "Human Navy"
+          }
+        ]
+      },
+      {
+        "id": "hull_critical",
+        "label": "Hull below 30% — Control offers the station for repairs",
+        "when": {
+          "kind": "player_hull_below",
+          "fraction": 0.3
+        },
+        "conditions": [],
+        "once": true,
+        "actions": [
+          {
+            "kind": "global_message",
+            "text": "ANCHORAGE CONTROL: Atlantis, dock at Anchorage Control for repairs.",
+            "timeoutS": null
+          },
+          {
+            "kind": "ship_log",
+            "text": "Hull critical. Repair dock offered.",
+            "color": "red"
+          }
+        ]
+      },
+      {
+        "id": "wing_breaks_off",
+        "label": "Alerted wing breaks off when the Atlantis is hurt",
+        "when": {
+          "kind": "player_hull_below",
+          "fraction": 0.4
+        },
+        "conditions": [
+          {
+            "kind": "object_variable_equals",
+            "objectId": "corsair_a",
+            "name": "alerted",
+            "value": true
+          }
+        ],
+        "once": true,
+        "actions": [
+          {
+            "kind": "order_retreat",
+            "target": {
+              "ref": "group",
+              "groupId": "ambush"
+            },
+            "objectId": "anchorage"
+          },
+          {
+            "kind": "global_message",
+            "text": "The corsair wing is breaking off.",
+            "timeoutS": 6
+          }
+        ]
+      }
+    ],
+    "gmButtons": [
+      {
+        "id": "force_ambush",
+        "label": "Spring the corsair ambush now",
+        "actions": [
+          {
+            "kind": "spawn_group",
+            "groupId": "ambush"
+          },
+          {
+            "kind": "set_variable",
+            "name": "alarm",
+            "value": 1
+          },
+          {
+            "kind": "gm_message",
+            "text": "Ambush sprung manually."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1899 @@
+{
+  "BlackHole:default": {
+    "material": null,
+    "model": "blackhole/blackhole.glb",
+    "rotationOffset": [
+      0.15,
+      0,
+      0
+    ],
+    "scale": 18
+  },
+  "CpuShip:ANT 615": {
+    "material": null,
+    "model": "ee-ships/combatsat.glb",
+    "radius": 55,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Adder MK3": {
+    "material": null,
+    "model": "ee-ships/AdlerLongRangeSoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adder MK4": {
+    "material": null,
+    "model": "ee-ships/AdlerLongRangeSoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adder MK5": {
+    "material": null,
+    "model": "ee-ships/AdlerLongRangeSoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adder MK6": {
+    "material": null,
+    "model": "ee-ships/AdlerLongRangeSoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adder MK7": {
+    "material": null,
+    "model": "ee-ships/AdlerLongRangeSoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adder MK8": {
+    "material": null,
+    "model": "ee-ships/AdlerLongRangeSoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adder MK9": {
+    "material": null,
+    "model": "ee-ships/AdlerLongRangeSoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adv. Gunship": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_4_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Adv. Striker": {
+    "material": null,
+    "model": "ee-ships/dark_fighter_6.glb",
+    "radius": 140,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Atlantis X23": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_1_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Battlestation": {
+    "material": null,
+    "model": "ee-ships/Ender_Battlecruiser.glb",
+    "radius": 1000,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Blade": {
+    "material": null,
+    "model": "ee-ships/dark_fighter_6.glb",
+    "radius": 140,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Blockade Runner": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_3_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Buster": {
+    "material": null,
+    "model": "ee-ships/small_frigate_2.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Cruiser": {
+    "material": null,
+    "model": "ee-ships/small_frigate_4.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:CylonBasestar": {
+    "material": null,
+    "model": "ee-ships/basestar.glb",
+    "radius": 1000,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:CylonRaider": {
+    "material": null,
+    "model": "ee-ships/raider.glb",
+    "radius": 40,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Dagger": {
+    "material": null,
+    "model": "ee-ships/small_fighter_1.glb",
+    "radius": 40,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Dash": {
+    "material": null,
+    "model": "ee-ships/small_frigate_5.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ]
+  },
+  "CpuShip:Defense platform": {
+    "material": null,
+    "model": "ee-ships/space_station_4.glb",
+    "radius": 300,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Dreadnought": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_1_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Elara P2": {
+    "material": null,
+    "model": "ee-ships/AtlasHeavyFighterHull.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Jump Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Jump Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Jump Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Jump Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Equipment Jump Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fiend G3": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_4_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fiend G4": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_4_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fiend G5": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_4_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fiend G6": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_4_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fighter": {
+    "material": null,
+    "model": "ee-ships/small_fighter_1.glb",
+    "radius": 40,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Flash": {
+    "material": null,
+    "model": "ee-ships/small_frigate_2.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Flavia": {
+    "material": null,
+    "model": "ee-ships/LightCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Flavia Falcon": {
+    "material": null,
+    "model": "ee-ships/LightCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fortress": {
+    "material": null,
+    "model": "ee-ships/Ender_Battlecruiser.glb",
+    "radius": 1000,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Jump Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Jump Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Jump Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Jump Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Fuel Jump Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Galactica BSG75": {
+    "material": null,
+    "model": "ee-ships/galactica3_ee.glb",
+    "radius": 700,
+    "rotationOffset": [
+      0,
+      3.141592653589793,
+      0
+    ]
+  },
+  "CpuShip:Garbage Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Jump Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Jump Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Jump Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Jump Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Garbage Jump Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Jump Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Jump Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Jump Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Jump Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Goods Jump Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Guard": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Gunner": {
+    "material": null,
+    "model": "ee-ships/small_fighter_1.glb",
+    "radius": 40,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Gunship": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_4_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Hunter": {
+    "material": null,
+    "model": "ee-ships/small_frigate_4.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Jagger": {
+    "material": null,
+    "model": "ee-ships/small_fighter_1.glb",
+    "radius": 40,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Jump Carrier": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_2.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Karnack": {
+    "material": null,
+    "model": "ee-ships/small_frigate_4.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Breaker": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_2.glb",
+    "radius": 180,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Destroyer": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_7.glb",
+    "radius": 330,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Drone": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Feeder": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Fighter": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_1.glb",
+    "radius": 180,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Queen": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_8.glb",
+    "radius": 350,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Scout": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_6.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ktlitan Worker": {
+    "material": null,
+    "model": "ee-ships/sci_fi_alien_ship_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:MT52 Hornet": {
+    "material": null,
+    "model": "ee-ships/WespeScoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:MU52 Hornet": {
+    "material": null,
+    "model": "ee-ships/WespeScoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Missile Cruiser": {
+    "material": null,
+    "model": "ee-ships/space_cruiser_4.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Nirvana R3": {
+    "material": null,
+    "model": "ee-ships/small_frigate_5.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Nirvana R5": {
+    "material": null,
+    "model": "ee-ships/small_frigate_5.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Nirvana R5A": {
+    "material": null,
+    "model": "ee-ships/small_frigate_5.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Odin": {
+    "material": null,
+    "model": "ee-ships/space_station_2.glb",
+    "radius": 1300,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Jump Freighter 1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Jump Freighter 2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Jump Freighter 3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Jump Freighter 4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Personnel Jump Freighter 5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Phobos M3": {
+    "material": null,
+    "model": "ee-ships/AtlasHeavyFighterHull.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Phobos T3": {
+    "material": null,
+    "model": "ee-ships/AtlasHeavyFighterHull.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Piranha F12": {
+    "material": null,
+    "model": "ee-ships/HeavyCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Piranha F12.M": {
+    "material": null,
+    "model": "ee-ships/HeavyCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Piranha F8": {
+    "material": null,
+    "model": "ee-ships/HeavyCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Racer": {
+    "material": null,
+    "model": "ee-ships/small_frigate_1.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ranger": {
+    "material": null,
+    "model": "ee-ships/small_frigate_2.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ranus U": {
+    "material": null,
+    "model": "ee-ships/MissileCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Ryder": {
+    "material": null,
+    "model": "ee-ships/Ender_Battlecruiser.glb",
+    "radius": 1000,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Sentinel": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Shooter": {
+    "material": null,
+    "model": "ee-ships/small_fighter_1.glb",
+    "radius": 40,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Stalker Q5": {
+    "material": null,
+    "model": "ee-ships/small_frigate_3.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Stalker Q7": {
+    "material": null,
+    "model": "ee-ships/small_frigate_3.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Stalker R5": {
+    "material": null,
+    "model": "ee-ships/small_frigate_3.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Stalker R7": {
+    "material": null,
+    "model": "ee-ships/small_frigate_3.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Starhammer II": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_4_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Storm": {
+    "material": null,
+    "model": "ee-ships/HeavyCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Strike": {
+    "material": null,
+    "model": "ee-ships/small_frigate_3.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Strikeship": {
+    "material": null,
+    "model": "ee-ships/small_frigate_3.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport1x1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport1x2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport1x3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport1x4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport1x5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_1_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport2x1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport2x2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport2x3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport2x4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport2x5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_2_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport3x1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport3x2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport3x3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport3x4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport3x5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_3_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport4x1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport4x2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport4x3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport4x4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport4x5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport5x1": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport5x2": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_2.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport5x3": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_3.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport5x4": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_4.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Transport5x5": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_5_cargo_5.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Tug": {
+    "material": null,
+    "model": "ee-ships/space_tug.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:WX-Lindworm": {
+    "material": null,
+    "model": "ee-ships/LindwurmFighterHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Warden": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_1.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "CpuShip:Weapons platform": {
+    "material": null,
+    "model": "ee-ships/space_cruiser_4.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "EMPMissile:default": {
+    "material": null,
+    "model": "EMP/EMP.glb",
+    "radius": 20,
+    "rotationOffset": [
+      0,
+      1.5,
+      1.5
+    ]
+  },
+  "HVLI:default": {
+    "material": null,
+    "model": "HVLI/HVLI.glb",
+    "radius": 20,
+    "rotationOffset": [
+      0,
+      0.5,
+      -1.5
+    ]
+  },
+  "HomingMissile:default": {
+    "material": null,
+    "model": "HOMING/homing.glb",
+    "radius": 20,
+    "rotationOffset": [
+      -1.5,
+      0,
+      -1.4
+    ]
+  },
+  "Mine:default": {
+    "material": null,
+    "model": "mine/mine2.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "Nuke:default": {
+    "material": null,
+    "model": "NUKE/nuke.glb",
+    "radius": 20,
+    "rotationOffset": [
+      0,
+      0,
+      -3.15
+    ]
+  },
+  "PlayerSpaceship:Atlantis": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_1_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      3.15
+    ],
+    "engineEmitters": [
+      [
+        -120,
+        0,
+        -12
+      ],
+      [
+        -132,
+        48,
+        -4
+      ],
+      [
+        -132,
+        -48,
+        -4
+      ],
+      [
+        -132,
+        88,
+        -4
+      ],
+      [
+        -132,
+        -88,
+        -4
+      ]
+    ]
+  },
+  "PlayerSpaceship:Benedict": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_2.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Crucible": {
+    "material": null,
+    "model": "ee-ships/LaserCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:CylonBasestar": {
+    "material": null,
+    "model": "ee-ships/basestar.glb",
+    "radius": 1000,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Ender": {
+    "material": null,
+    "model": "ee-ships/Ender_Battlecruiser.glb",
+    "radius": 1000,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Flavia P.Falcon": {
+    "material": null,
+    "model": "ee-ships/LightCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Galactica BSG75": {
+    "material": null,
+    "model": "ee-ships/galactica3_ee.glb",
+    "radius": 700,
+    "rotationOffset": [
+      0,
+      3.141592653589793,
+      0
+    ]
+  },
+  "PlayerSpaceship:Hathcock": {
+    "material": null,
+    "model": "ee-ships/HeavyCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Kiriya": {
+    "material": null,
+    "model": "ee-ships/transport_space_ship_4_cargo_2.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:MP52 Hornet": {
+    "material": null,
+    "model": "ee-ships/WespeScoutHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Maverick": {
+    "material": null,
+    "model": "ee-ships/LaserCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Nautilus": {
+    "material": null,
+    "model": "ee-ships/space_tug.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Phobos M3P": {
+    "material": null,
+    "model": "ee-ships/AtlasHeavyFighterHull.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Piranha": {
+    "material": null,
+    "model": "ee-ships/HeavyCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Player Cruiser": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_5_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Player Fighter": {
+    "material": null,
+    "model": "ee-ships/small_fighter_1.glb",
+    "radius": 40,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Player Missile Cr.": {
+    "material": null,
+    "model": "ee-ships/space_cruiser_4.glb",
+    "radius": 100,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Repulse": {
+    "material": null,
+    "model": "ee-ships/LightCorvette.glb",
+    "radius": 80,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Saipan": {
+    "material": null,
+    "model": "ee-ships/battleship_destroyer_5_upgraded.glb",
+    "radius": 200,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:Striker": {
+    "material": null,
+    "model": "ee-ships/dark_fighter_6.glb",
+    "radius": 140,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "PlayerSpaceship:ZX-Lindworm": {
+    "material": null,
+    "model": "ee-ships/LindwurmFighterHull.glb",
+    "radius": 30,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "SpaceStation:Huge Station": {
+    "material": null,
+    "model": "ee-ships/space_station_1.glb",
+    "radius": 1500,
+    "rotationOffset": [
+      3.15,
+      0,
+      3.15
+    ]
+  },
+  "SpaceStation:Large Station": {
+    "material": null,
+    "model": "ee-ships/space_station_2.glb",
+    "radius": 1300,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "SpaceStation:Medium Station": {
+    "material": null,
+    "model": "ee-ships/space_station_3.glb",
+    "radius": 1000,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "SpaceStation:Small Station": {
+    "material": null,
+    "model": "ee-ships/space_station_4.glb",
+    "radius": 300,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "SupplyDrop:default": {
+    "material": null,
+    "model": "ee-ships/ammo_box.glb",
+    "radius": 50,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "WarpJammer:default": {
+    "material": null,
+    "model": "ee-ships/Shield_bubble_generator.glb",
+    "radius": 150,
+    "rotationOffset": [
+      0,
+      0,
+      0
+    ]
+  },
+  "WormHole:default": {
+    "material": null,
+    "model": "wormhole/spacevortex.glb",
+    "rotationOffset": [
+      0,
+      0,
+      1.5
+    ],
+    "scale": 30
+  }
+}
