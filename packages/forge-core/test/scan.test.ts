@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import { scanInstall } from "../src/scan/install.js";
 import {
   parseDataScript,
@@ -176,7 +176,11 @@ end
 });
 
 describe.skipIf(!hasInstall)("scan of the pinned EE install", () => {
-  const library = scanInstall({ eeInstall: EE_INSTALL, eeVersion: "EE-2026.09.22PR" });
+  // scanned in beforeAll, not while collecting: a skipped suite still runs its body, and there is no install on a CI machine
+  let library: ReturnType<typeof scanInstall>;
+  beforeAll(() => {
+    library = scanInstall({ eeInstall: EE_INSTALL, eeVersion: "EE-2026.09.22PR" });
+  });
 
   it("indexes the stock ship templates", () => {
     expect(library.templates.length).toBeGreaterThanOrEqual(164);
