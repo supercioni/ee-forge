@@ -13,6 +13,15 @@ A visual scenario editor for [EmptyEpsilon](https://github.com/daid/EmptyEpsilon
 
 **📖 Manual:** [User guide (PDF)](community/forge-community-pack-1.0/manual/Forge-User-Guide.pdf) · [Markdown](community/forge-community-pack-1.0/manual/Forge-User-Guide.md) · [HTML](community/forge-community-pack-1.0/manual/Forge-User-Guide.html)
 
+## Screenshots
+
+<p align="center"><img src="docs/screenshots/map.png" alt="Map editor: sectors, groups, planets and nebulae" width="100%"></p>
+
+| | |
+|---|---|
+| ![Mission rules](docs/screenshots/mission-rules.png)<br>**Rules** — *When / If / Then*, readable at a glance | ![Mission diagram](docs/screenshots/mission-diagram.png)<br>**Diagram** — how groups, rules, variables and dialogues connect |
+| ![Fleet](docs/screenshots/fleet.png)<br>**Fleet** — every stock ship from your install, with firing arcs and deck plan | **Map** (above) — place and edit ships, stations, planets, nebulae and zones, split into sectors |
+
 ## Download
 
 Get the Windows installer from the [**Releases**](../../releases/latest) page (`EE-FORGE-Setup-<version>-x64.exe`, with a `SHA256SUMS.txt` to check it).
