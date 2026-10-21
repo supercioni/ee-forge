@@ -25,6 +25,9 @@ export function RetargetOffer(): JSX.Element | null {
   const openInstance = useEditor((s) => s.openInstance);
 
   if (pending === null || project === null) return null;
+  // By id: the copy may have been renamed since the offer was made, and the offer shows (and applies) its current name.
+  const to = project.templates.find((t) => t.id === pending.toId)?.name;
+  if (to === undefined) return null;
 
   const instances = instancesOfTemplate(project, pending.from);
   if (instances.length === 0) return null;
@@ -33,7 +36,7 @@ export function RetargetOffer(): JSX.Element | null {
     <div className="banner warn retarget-offer" role="region" aria-label="Move map objects to the copy?">
       <p>
         <strong>Nothing has been moved.</strong> {instances.length} map object(s) still spawn <strong>{pending.from}</strong>, not your
-        copy <strong>{pending.to}</strong>:
+        copy <strong>{to}</strong>:
       </p>
       <ul className="used-by-list" aria-label="Objects that would move">
         {instances.slice(0, SHOWN).map((i) => (
@@ -56,7 +59,7 @@ export function RetargetOffer(): JSX.Element | null {
       </ul>
       <p>
         <button type="button" className="small" onClick={applyRetarget}>
-          Move these {instances.length} to &ldquo;{pending.to}&rdquo;
+          Move these {instances.length} to &ldquo;{to}&rdquo;
         </button>{" "}
         <button type="button" className="small" onClick={dismissRetarget}>
           Leave them on &ldquo;{pending.from}&rdquo;

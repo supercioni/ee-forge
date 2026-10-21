@@ -1,4 +1,4 @@
-import type { EEObject, EEProject } from "@forge/contracts";
+import type { EELibrary, EEObject, EEProject } from "@forge/contracts";
 
 /**
  * Moving map objects from one ship template to another.
@@ -87,4 +87,41 @@ export function retargetTemplate(project: EEProject, from: string, to: string): 
       })),
     },
   };
+}
+
+/** A map object whose `setTemplate(...)` names a template that will not exist when the scenario runs. */
+export interface UnknownTemplateReference {
+  readonly objectId: string;
+  readonly callsign: string | null;
+  readonly type: string;
+  readonly template: string;
+}
+
+/**
+ * Map objects naming a template that is neither defined by the project nor an original of the scanned install.
+ *
+ * Why this is an error and not a note: `setTemplate` with a name the engine does not know leaves a ship with no hull,
+ * no engines and no shields (EE 2026) or no ship at all (EE 2024), and in 2026 it stops the map from being built — the
+ * ships listed after it never appear. Nothing is written to the log. A scan that was made is what makes the claim
+ * safe; without one the reference is only "unverified", and this returns nothing.
+ *
+ * The templates file Forge installed for **this project** is not evidence: it is the very thing the next install
+ * replaces, so a name that survives only there (a copy renamed since, a template deleted) would pass today and be gone
+ * after the restart. Its entries are left out of the list of known names.
+ */
+export function unknownTemplateReferences(project: EEProject, library: EELibrary | null | undefined): readonly UnknownTemplateReference[] {
+  // A scan that found no template at all is a scan of something that is not an EmptyEpsilon install: it proves nothing.
+  if (library === null || library === undefined || library.templates.length === 0) return [];
+  const own = `shiptemplates/${project.id}_templates.lua`;
+  const known = new Set(project.templates.map((t) => t.name));
+  for (const t of library.templates) if (!t.sourceFile.replace(/\\/g, "/").endsWith(own)) known.add(t.name);
+  const found: UnknownTemplateReference[] = [];
+  for (const group of project.map.groups) {
+    for (const object of group.objects) {
+      if (isTemplated(object) && !known.has(object.template)) {
+        found.push({ objectId: object.id, callsign: object.callsign ?? null, type: object.type, template: object.template });
+      }
+    }
+  }
+  return found;
 }

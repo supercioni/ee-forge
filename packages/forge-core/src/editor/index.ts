@@ -134,7 +134,7 @@ export {
   type IdProblem,
 } from "./rename.js";
 
-export { instancesOfTemplate, objectsUsingTemplate, retargetTemplate, type TemplateInstance } from "./retarget.js";
+export { instancesOfTemplate, objectsUsingTemplate, retargetTemplate, unknownTemplateReferences, type TemplateInstance, type UnknownTemplateReference } from "./retarget.js";
 
 export {
   previewClassFor,

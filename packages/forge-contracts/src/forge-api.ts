@@ -201,6 +201,8 @@ export type ForgeInstallOutcome = z.infer<typeof ForgeInstallOutcomeSchema>;
 export const ForgeLaunchItemsSchema = z.object({
   templates: z.array(z.string()),
   models: z.array(z.string()),
+  /** The line `shipTemplates.lua` needs for the project's templates file; null when there is none. */
+  requireLine: z.string().nullable().default(null),
 });
 export type ForgeLaunchItems = z.infer<typeof ForgeLaunchItemsSchema>;
 
@@ -359,6 +361,8 @@ export const ForgeExportTargetResultSchema = z.object({
   error: z.string().nullable(),
   needsLaunchInstall: z.boolean(),
   launchItems: ForgeLaunchItemsSchema,
+  /** The written steps for copying this folder into an install by hand (`INSTALL.txt` in `outDir`); null when nothing was exported. */
+  instructionsFile: z.string().nullable().default(null),
   compatibility: z.object({ vanilla: ForgeCompatEntrySchema, extensions: z.array(z.object({ id: z.string(), level: ForgeCompatLevelSchema, note: z.string() })) }),
 });
 export type ForgeExportTargetResult = z.infer<typeof ForgeExportTargetResultSchema>;

@@ -82,7 +82,8 @@ describe("confirmUnsaved", () => {
 describe("what a build says about an install", () => {
   const base = {
     mode: "vanilla" as const, files: [{ name: "a.lua", install: "scripts" as const, bytes: 1 }], warnings: [], outDir: "x", needsLaunchInstall: true,
-    launchItems: { templates: ["Hull A"], models: ["Mesh A"] },
+    launchItems: { templates: ["Hull A"], models: ["Mesh A"], requireLine: null },
+    instructionsFile: null,
   };
   const install = (over: Partial<NonNullable<import("@forge/contracts").ForgeBuildResult["install"]>>) => ({
     status: "installed" as const, ok: true, installed: ["a"], unchanged: [], locked: [], collisions: [], backupDir: null,

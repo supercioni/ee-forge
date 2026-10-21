@@ -1,0 +1,469 @@
+{
+  "schemaVersion": 5,
+  "id": "ship_test_2026",
+  "name": "Ship Test 2026",
+  "description": "A scenario made with EE FORGE.",
+  "eeVersion": "EE-2026.09.22PR",
+  "requires": [],
+  "factions": [],
+  "models": [],
+  "templates": [
+    {
+      "id": "atlantis_ship_test_2026",
+      "copyOf": null,
+      "name": "Atlantis Forge A",
+      "localeName": "Atlantis",
+      "kind": "playership",
+      "className": "Corvette",
+      "subclassName": "Destroyer",
+      "description": "A refitted Atlantis X23 for more general tasks. The large shield system has been replaced with an advanced combat maneuvering systems and improved impulse engines. Its missile loadout is also more diverse. Mistaking the modified Atlantis for an Atlantis X23 would be a deadly mistake.",
+      "model": "battleship_destroyer_1_upgraded",
+      "radarTrace": "dread.png",
+      "hull": 888,
+      "shields": [
+        200,
+        200
+      ],
+      "speed": {
+        "impulse": 123,
+        "turn": 44,
+        "acceleration": 20,
+        "reverseSpeed": null,
+        "reverseAcceleration": null
+      },
+      "combatManeuver": {
+        "boost": 400,
+        "strafe": 250
+      },
+      "warpSpeed": null,
+      "jumpDrive": {
+        "enabled": true,
+        "minRange": null,
+        "maxRange": null
+      },
+      "cloaking": null,
+      "energyStorage": null,
+      "repairCrewCount": null,
+      "beams": [
+        {
+          "index": 0,
+          "arc": 100,
+          "direction": -20,
+          "range": 2222,
+          "cycleTime": 6,
+          "damage": 31,
+          "turret": null,
+          "texture": null,
+          "energyPerFire": null,
+          "heatPerFire": null
+        },
+        {
+          "index": 1,
+          "arc": 100,
+          "direction": 20,
+          "range": 1500,
+          "cycleTime": 6,
+          "damage": 8,
+          "turret": null,
+          "texture": null,
+          "energyPerFire": null,
+          "heatPerFire": null
+        },
+        {
+          "index": 2,
+          "arc": 0,
+          "direction": 0,
+          "range": 0,
+          "cycleTime": 0,
+          "damage": 0,
+          "turret": null,
+          "texture": null,
+          "energyPerFire": null,
+          "heatPerFire": null
+        }
+      ],
+      "tubes": {
+        "count": 5,
+        "loadTime": 8,
+        "perTube": [
+          {
+            "index": 0,
+            "direction": -90,
+            "loadTime": null,
+            "size": null,
+            "exclusiveFor": null,
+            "allow": [],
+            "disallow": [
+              "Mine"
+            ]
+          },
+          {
+            "index": 1,
+            "direction": -90,
+            "loadTime": null,
+            "size": null,
+            "exclusiveFor": null,
+            "allow": [],
+            "disallow": [
+              "Mine"
+            ]
+          },
+          {
+            "index": 2,
+            "direction": 90,
+            "loadTime": null,
+            "size": null,
+            "exclusiveFor": null,
+            "allow": [],
+            "disallow": [
+              "Mine"
+            ]
+          },
+          {
+            "index": 3,
+            "direction": 90,
+            "loadTime": null,
+            "size": null,
+            "exclusiveFor": null,
+            "allow": [],
+            "disallow": [
+              "Mine"
+            ]
+          },
+          {
+            "index": 4,
+            "direction": 180,
+            "loadTime": null,
+            "size": null,
+            "exclusiveFor": "Mine",
+            "allow": [],
+            "disallow": []
+          }
+        ]
+      },
+      "weaponStorage": [
+        {
+          "weapon": "HVLI",
+          "amount": 20
+        },
+        {
+          "weapon": "Homing",
+          "amount": 12
+        },
+        {
+          "weapon": "Nuke",
+          "amount": 4
+        },
+        {
+          "weapon": "Mine",
+          "amount": 8
+        },
+        {
+          "weapon": "EMP",
+          "amount": 6
+        }
+      ],
+      "rooms": [
+        {
+          "x": 1,
+          "y": 0,
+          "width": 2,
+          "height": 1,
+          "system": "maneuver"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "width": 2,
+          "height": 1,
+          "system": "beamweapons"
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "width": 2,
+          "height": 1,
+          "system": null
+        },
+        {
+          "x": 0,
+          "y": 3,
+          "width": 1,
+          "height": 2,
+          "system": "rearshield"
+        },
+        {
+          "x": 1,
+          "y": 3,
+          "width": 2,
+          "height": 2,
+          "system": "reactor"
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "width": 2,
+          "height": 2,
+          "system": "warp"
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "width": 1,
+          "height": 2,
+          "system": "jumpdrive"
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "width": 2,
+          "height": 1,
+          "system": null
+        },
+        {
+          "x": 6,
+          "y": 4,
+          "width": 2,
+          "height": 1,
+          "system": null
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "width": 1,
+          "height": 2,
+          "system": "frontshield"
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "width": 2,
+          "height": 1,
+          "system": null
+        },
+        {
+          "x": 1,
+          "y": 6,
+          "width": 2,
+          "height": 1,
+          "system": "missilesystem"
+        },
+        {
+          "x": 1,
+          "y": 7,
+          "width": 2,
+          "height": 1,
+          "system": "impulse"
+        }
+      ],
+      "doors": [
+        {
+          "x": 1,
+          "y": 1,
+          "horizontal": true
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "horizontal": true
+        },
+        {
+          "x": 3,
+          "y": 3,
+          "horizontal": true
+        },
+        {
+          "x": 1,
+          "y": 3,
+          "horizontal": false
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "horizontal": false
+        },
+        {
+          "x": 3,
+          "y": 5,
+          "horizontal": true
+        },
+        {
+          "x": 2,
+          "y": 6,
+          "horizontal": true
+        },
+        {
+          "x": 1,
+          "y": 7,
+          "horizontal": true
+        },
+        {
+          "x": 5,
+          "y": 3,
+          "horizontal": false
+        },
+        {
+          "x": 6,
+          "y": 3,
+          "horizontal": false
+        },
+        {
+          "x": 6,
+          "y": 4,
+          "horizontal": false
+        },
+        {
+          "x": 8,
+          "y": 3,
+          "horizontal": false
+        },
+        {
+          "x": 8,
+          "y": 4,
+          "horizontal": false
+        }
+      ],
+      "longRangeRadarRange": null,
+      "shortRangeRadarRange": null,
+      "defaultAI": null,
+      "externalDockClasses": [],
+      "internalDockClasses": [],
+      "sharesEnergyWithDocked": null,
+      "repairDocked": null,
+      "restocksScanProbes": null,
+      "restocksMissilesDocked": null,
+      "impulseSoundFile": null,
+      "canScan": null,
+      "canHack": null,
+      "canDock": null,
+      "canCombatManeuver": null,
+      "canSelfDestruct": null,
+      "canLaunchProbe": null,
+      "hidden": false
+    },
+    {
+      "id": "new_hull",
+      "copyOf": null,
+      "name": "Scout Forge B",
+      "localeName": null,
+      "kind": "ship",
+      "className": null,
+      "subclassName": null,
+      "description": null,
+      "model": "small_frigate_1",
+      "radarTrace": null,
+      "hull": 321,
+      "shields": [
+        111
+      ],
+      "speed": {
+        "impulse": 140,
+        "turn": 33,
+        "acceleration": 20,
+        "reverseSpeed": null,
+        "reverseAcceleration": null
+      },
+      "combatManeuver": null,
+      "warpSpeed": null,
+      "jumpDrive": null,
+      "cloaking": null,
+      "energyStorage": null,
+      "repairCrewCount": null,
+      "beams": [
+        {
+          "index": 0,
+          "arc": 90,
+          "direction": 0,
+          "range": 3000,
+          "cycleTime": 6,
+          "damage": 14,
+          "turret": null,
+          "texture": null,
+          "energyPerFire": null,
+          "heatPerFire": null
+        }
+      ],
+      "tubes": null,
+      "weaponStorage": [],
+      "rooms": [],
+      "doors": [],
+      "longRangeRadarRange": null,
+      "shortRangeRadarRange": null,
+      "defaultAI": null,
+      "externalDockClasses": [],
+      "internalDockClasses": [],
+      "sharesEnergyWithDocked": null,
+      "repairDocked": null,
+      "restocksScanProbes": null,
+      "restocksMissilesDocked": null,
+      "impulseSoundFile": null,
+      "canScan": null,
+      "canHack": null,
+      "canDock": null,
+      "canCombatManeuver": null,
+      "canSelfDestruct": null,
+      "canLaunchProbe": null,
+      "hidden": false
+    }
+  ],
+  "map": {
+    "sectors": [
+      {
+        "id": "sector-1",
+        "label": "Sector 1"
+      }
+    ],
+    "startSector": null,
+    "groups": [
+      {
+        "id": "core",
+        "label": "Core",
+        "when": "on_start",
+        "objects": [
+          {
+            "id": "player",
+            "callsign": "FA-01",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "PlayerSpaceship",
+            "template": "Atlantis Forge A"
+          },
+          {
+            "id": "playerspaceship",
+            "callsign": "FB-01",
+            "position": {
+              "x": 10200,
+              "y": 600
+            },
+            "description": null,
+            "variables": [],
+            "rotation": null,
+            "faction": "Human Navy",
+            "type": "PlayerSpaceship",
+            "template": "Scout Forge B"
+          }
+        ],
+        "sector": "sector-1"
+      }
+    ],
+    "markers": []
+  },
+  "logic": {
+    "variables": [],
+    "beats": [],
+    "rules": [],
+    "gmButtons": [],
+    "dialogues": [],
+    "exodusSteps": []
+  },
+  "campaign": {
+    "persistence": false
+  },
+  "unmodelled": {}
+}

@@ -425,7 +425,12 @@ Two things follow that are easy to miss:
 
 - **Map objects keep the original.** A `CpuShip` spawning `"Atlantis"` goes
   on spawning EE's Atlantis; the editor offers to move them and the offer
-  survives switching views.
+  survives switching views. The offer holds your copy **by id**, so renaming
+  it first is safe: the button names the copy as it is called when you press it.
+  A ship that names a template nobody defines is a **blocking problem**
+  (*A ship spawns a template that does not exist*) — in the game it would be a
+  ship with no hull and no engines, and in EE 2026 it stops the map from being
+  built ([ADR-0059](../adr/0059-a-ship-must-spawn-a-template-that-exists.md)).
 - **Naming your copy after the stock ship redefines it.** EE accepts that —
   the last definition wins, so every scenario spawning the name gets your
   values — and logs `ERROR: Duplicate ship template definition` at launch.
@@ -435,6 +440,24 @@ Templates load only when EmptyEpsilon starts. **Install scenario** (in the
 toolbar's `Install…` disclosure) copies the bundle into the install and
 adds the `require` line `shipTemplates.lua` needs, then says a restart is
 due — which it always is, for a hull.
+
+#### From a new ship to a ship in the game (both engines)
+
+1. **Fleet → Original ships**, pick the hull, **Copy into project**. (Or **+ Template** for one from nothing: it starts with a stock
+   mesh so it always loads.) Rename the copy and change its Hull, Movement, Weapons.
+2. **Put it on the map.** Answer the banner *Move these N to “…”* for the ships that flew the original, or select a ship on the map
+   and choose the template in the inspector (**Template**). The Template box must not say *(not in this list)*.
+3. **Save**, then **Verify**. A ship that names a template nobody defines is an error here, not a note.
+4. Choose the installation **of the project's engine** in the view bar (EE 2024 and EE 2026 are different folders; Forge refuses a
+   mismatch) and press **Install scenario → Check the install → Install**. The result lists the files written, the backup, the `require`
+   line and **Restart EmptyEpsilon: Yes**.
+5. **Close EmptyEpsilon completely and start it again** (the templates file is read only while the engine starts, and a running game
+   holds the files open: Forge then refuses the install and changes nothing). Choose the scenario; the ship exists.
+
+Installing again with nothing changed writes nothing and asks for no restart; after editing a template it replaces the templates file
+(the previous one goes to the backup) and the `require` line stays single. A scenario without templates or models is three files
+and needs no restart. **Export…** (for copying by hand) writes `INSTALL.txt` beside each engine's folder: the three scenario files
+and, when there are templates, the one extra file in `scripts/shiptemplates/` with the exact line to add to `shipTemplates.lua`.
 
 Notes that matter in practice:
 

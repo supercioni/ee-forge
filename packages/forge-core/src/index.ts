@@ -76,6 +76,7 @@ export {
   num,
   type LuaValue,
 } from "./codegen/lua.js";
+export { manualInstallNotes, requireLineFor, INSTALL_NOTES_FILE } from "./install-notes.js";
 export { emitMap } from "./codegen/map.js";
 export { emitContent, emitTemplates } from "./codegen/content.js";
 export {

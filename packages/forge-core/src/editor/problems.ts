@@ -2,6 +2,7 @@ import type { EELibrary, EEProject, EETemplateDef } from "@forge/contracts";
 import { danglingMarkerIds } from "../points.js";
 import { danglingSectors, duplicateSectorIds } from "./sectors.js";
 import { sectorIssues } from "../sector-runtime.js";
+import { unknownTemplateReferences } from "./retarget.js";
 import { persistenceIssues } from "../persistence.js";
 import type { ReferenceOwner } from "./references.js";
 
@@ -138,6 +139,11 @@ export function diagnose(project: EEProject, options: DiagnoseOptions = {}): rea
     if (model === null) {
       add({ severity: "error", code: "template-no-model", subject: `Template ${q(template.name)}`, key: template.name, title: "A ship template has no model", message: "EmptyEpsilon quits while loading its ship templates when one never sets a model — with no error and nothing in the log.", action: "Choose a model in Fleet → Hull, or copy a template that has one.", where: { kind: "template", name: template.name, field: "model" } });
     }
+  }
+
+  for (const u of unknownTemplateReferences(project, library)) {
+    const label = u.callsign ?? u.objectId;
+    add({ severity: "error", code: "object-unknown-template", subject: `Object ${q(label)}`, key: u.objectId, title: "A ship spawns a template that does not exist", message: `${q(label)} spawns the template ${q(u.template)}, which this project does not define and the scanned install does not have. In the game it would be a ship with no hull and no engines, or no ship at all.`, action: "Choose a template for it in the inspector (Template): one of this project's, or an original.", where: { kind: "object", id: u.objectId } });
   }
 
   // --- dialogues

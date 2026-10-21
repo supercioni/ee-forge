@@ -1,0 +1,41 @@
+{
+  "A": {
+    "name": "Atlantis Forge A",
+    "callsign": "FA-01",
+    "from": "Atlantis",
+    "hull": 777,
+    "impulse": 123,
+    "turn": 44,
+    "beamDamage": 25,
+    "beamRange": 2222,
+    "model": "battleship_destroyer_1_upgraded"
+  },
+  "B": {
+    "name": "Scout Forge B",
+    "callsign": "FB-01",
+    "from": null,
+    "hull": 321,
+    "shield1": 111,
+    "impulse": 140,
+    "turn": 33,
+    "beamDamage": 14,
+    "beamRange": 3000,
+    "model": "small_frigate_1"
+  },
+  "C": {
+    "ship": "A",
+    "hull": 888,
+    "beamDamage": 31
+  },
+  "P": {
+    "name": "Atlantis",
+    "callsign": "PS-01",
+    "from": null,
+    "hull": 250,
+    "impulse": 90,
+    "turn": 10,
+    "beamDamage": 8,
+    "beamRange": 1500,
+    "model": "battleship_destroyer_1_upgraded"
+  }
+}

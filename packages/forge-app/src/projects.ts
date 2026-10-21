@@ -22,6 +22,9 @@ import {
   buildProject,
   detectInstallTarget,
   extensionCompatibility,
+  INSTALL_NOTES_FILE,
+  manualInstallNotes,
+  requireLineFor,
   requireTarget,
   vanillaCompatibility,
   type ForgeExtension,
@@ -64,9 +67,10 @@ export interface BuildRequest {
   readonly libraryInstall?: string | null;
 }
 
-const launchItemsOf = (project: EEProject): { templates: string[]; models: string[] } => ({
+const launchItemsOf = (project: EEProject): { templates: string[]; models: string[]; requireLine: string | null } => ({
   templates: project.templates.map((t) => t.name),
   models: project.models.map((m) => m.name),
+  requireLine: project.templates.length > 0 || project.models.length > 0 ? requireLineFor(`${project.id}_templates.lua`) : null,
 });
 
 /** Projects: create, list, open, save, build, and put a build into an install. */
@@ -352,10 +356,13 @@ export class ProjectService {
           mkdirSync(join(dest, ".."), { recursive: true });
           writeFileSync(dest, file.contents, "utf8");
         }
+        const instructionsFile = join(outDir, INSTALL_NOTES_FILE);
+        writeFileSync(instructionsFile, manualInstallNotes({ projectId: project.id, target, files: built.files }), "utf8");
         return {
           target,
           library: built.source,
           ok: true,
+          instructionsFile,
           outDir,
           mode: built.mode,
           files: built.files.map((f) => ({ name: f.name, install: f.install, bytes: Buffer.byteLength(f.contents, "utf8") })),
@@ -376,7 +383,8 @@ export class ProjectService {
           warnings: [],
           error: error instanceof Error ? error.message : String(error),
           needsLaunchInstall: false,
-          launchItems: { templates: [], models: [] },
+          launchItems: { templates: [], models: [], requireLine: null },
+          instructionsFile: null,
           compatibility,
         };
       }

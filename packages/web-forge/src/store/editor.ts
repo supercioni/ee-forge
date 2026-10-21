@@ -413,7 +413,7 @@ export interface EditorState {
    * panel so it survives switching views — an author who copies a hull and
    * goes back to the map should still be told.
    */
-  pendingRetarget: { readonly from: string; readonly to: string } | null;
+  pendingRetarget: { readonly from: string; readonly toId: string } | null;
   selectTemplate: (id: string | null) => void;
   selectStockTemplate: (name: string | null) => void;
   addTemplate: (name: string) => void;
@@ -1967,7 +1967,9 @@ export const useEditor = create<EditorState>((set, get) => ({
         flying.length === 0
           ? `Copied ${stock.name} into the project as "${name}".`
           : `Copied ${stock.name} as "${name}" — ${flying.length} object(s) still use "${stock.name}".`,
-      pendingRetarget: flying.length === 0 ? null : { from: stock.name, to: name },
+      // The copy is held by its id, not its name: the author may rename it before answering, and the offer must
+      // still move the ships onto the template that exists, never onto the name it had a minute ago.
+      pendingRetarget: flying.length === 0 ? null : { from: stock.name, toId: id },
     });
   },
 
@@ -1975,7 +1977,13 @@ export const useEditor = create<EditorState>((set, get) => ({
   applyRetarget: () => {
     const { project, pendingRetarget } = get();
     if (project === null || pendingRetarget === null) return;
-    const { from, to } = pendingRetarget;
+    const { from, toId } = pendingRetarget;
+    const to = project.templates.find((t) => t.id === toId)?.name;
+    if (to === undefined) {
+      // The copy was deleted meanwhile: moving ships onto a name nobody defines would leave them hollow in the game.
+      set({ pendingRetarget: null, error: `The copy of "${from}" no longer exists, so no object was moved.` });
+      return;
+    }
     const moved = objectsUsingTemplate(project, from).length;
     set({
       project: retargetTemplate(project, from, to),

@@ -14,6 +14,7 @@ import { stationServicesPrelude, usesStationServices } from "./dialogue.js";
 import { emitMap } from "./map.js";
 import { CodegenError } from "./lua.js";
 import { danglingMarkerIds } from "../points.js";
+import { unknownTemplateReferences } from "../editor/retarget.js";
 import { sectorIssues, usesSectorJumps } from "../sector-runtime.js";
 import { persistenceIssues, usesPersistence } from "../persistence.js";
 import { requireTarget } from "../targets.js";
@@ -316,14 +317,21 @@ export function validateProject(
             : `object "${object.id}" uses faction "${object.faction}", which is neither defined by this project nor present in the scanned install`,
         );
       }
-      if ("template" in object && !knownTemplate(object.template)) {
-        warnings.push(
-          library === undefined
-            ? `object "${object.id}" uses template "${object.template}" — unverified (no install scan available)`
-            : `object "${object.id}" uses template "${object.template}", which is neither defined by this project nor present in the scanned install`,
-        );
+      if ("template" in object && library === undefined && !knownTemplate(object.template)) {
+        warnings.push(`object "${object.id}" uses template "${object.template}" — unverified (no install scan available)`);
       }
     }
+  }
+
+  // A scanned install is evidence: a name found nowhere makes a ship that does not work in the game (and, in EE 2026,
+  // stops the map from being built), with nothing in the log. That is an error to fix, not a note to read.
+  const unknown = unknownTemplateReferences(project, library);
+  if (unknown.length > 0) {
+    throw new CodegenError(
+      unknown
+        .map((u) => `${u.type} "${u.callsign ?? u.objectId}" spawns the template "${u.template}", which neither this project defines nor the scanned install has. In the game it would be a ship with no hull and no engines, or no ship at all. Choose a template for it in the inspector (Template).`)
+        .join("\n"),
+    );
   }
 
   for (const template of project.templates) {

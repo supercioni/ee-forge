@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { closeSync, copyFileSync, existsSync, mkdirSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, sep } from "node:path";
 import type { BuildFile } from "./codegen/build.js";
+import { requireLineFor } from "./install-notes.js";
 
 /**
  * Putting a built project where EmptyEpsilon will find it.
@@ -432,7 +433,7 @@ interface RequirePlan {
 
 function planRequire(scriptsDir: string, fileName: string, patch: boolean): RequirePlan {
   const indexPath = join(scriptsDir, "shipTemplates.lua");
-  const requireLine = `require("shiptemplates/${fileName}")`;
+  const requireLine = requireLineFor(fileName);
 
   if (!existsSync(indexPath)) {
     return { requireLine, present: false, newText: null, warnings: [`${indexPath} not found — add ${requireLine} wherever templates load`] };

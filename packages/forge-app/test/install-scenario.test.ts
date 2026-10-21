@@ -94,4 +94,51 @@ describe.skipIf(!haveReferences)("installing a scenario into an EE install", () 
     expect(readFileSync(join(install, "scripts", "shipTemplates.lua"), "utf8")).toContain("\r\nrequire(\"shiptemplates/"); // CRLF kept
     expect(done.backupDir).not.toBeNull();
   });
+
+  it("changing the template and installing again replaces the templates file, never adds a second require line", () => {
+    const { sb, id } = projectWithHull();
+    const install = fakeInstall(T26, "x");
+    writeFileSync(join(install, "scripts", "shipTemplates.lua"), 'require("shiptemplates/stock.lua")\n');
+    expect(sb.services.projects.build(id, { install, patchShipTemplates: true }).install!.status).toBe("installed");
+    const again = sb.services.projects.build(id, { install, patchShipTemplates: true }).install!;
+    expect(again.status).toBe("installed");
+    expect(again.needsRestart).toBe(false); // nothing changed: no restart asked
+    // the author edits the template; the file Forge wrote is replaced (it is Forge's own, per the ledger), the line stays single
+    const edited = sb.services.projects.get(id);
+    writeFileSync(join(sb.projectsDir, id, "project.json"), `${JSON.stringify({ ...edited, templates: [{ ...edited.templates[0]!, hull: 4242 }] }, null, 2)}\n`, "utf8");
+    const changed = sb.services.projects.build(id, { install, patchShipTemplates: true }).install!;
+    expect(changed.status).toBe("installed");
+    expect(changed.needsRestart).toBe(true);
+    expect(changed.restartFiles.map((f) => f.split(/[\\/]/).pop())).toEqual([`${id}_templates.lua`]);
+    const index = readFileSync(join(install, "scripts", "shipTemplates.lua"), "utf8");
+    expect(index.split(`require("shiptemplates/${id}_templates.lua")`).length - 1).toBe(1);
+    expect(readFileSync(join(install, "scripts", "shiptemplates", `${id}_templates.lua`), "utf8")).toContain("setHull(4242)");
+  });
+
+  it("an export says which files are the scenario and which one loads only at launch, with the exact line to add", () => {
+    const { sb, id } = projectWithHull();
+    const out = tmp("export-notes-");
+    const result = sb.services.projects.exportBundle(id, { targets: [T26], mode: "vanilla", outRoot: out });
+    const t = result.targets[0]!;
+    expect(t.ok).toBe(true);
+    expect(t.launchItems.requireLine).toBe(`require("shiptemplates/${id}_templates.lua")`);
+    const notes = readFileSync(t.instructionsFile!, "utf8");
+    expect(notes).toContain(`scripts/shiptemplates/`);
+    expect(notes).toContain(`require("shiptemplates/${id}_templates.lua")`);
+    expect(notes).toMatch(/Close EmptyEpsilon completely/);
+    expect(notes).toMatch(/restart|start EmptyEpsilon again/i);
+    expect(existsSync(join(t.outDir, "scripts", "shiptemplates", `${id}_templates.lua`))).toBe(true);
+  });
+
+  it("an export of a scenario without templates is told apart: copy the files, nothing else, no restart", () => {
+    const { sb, id } = projectWithTemplate();
+    const edited = sb.services.projects.get(id);
+    writeFileSync(join(sb.projectsDir, id, "project.json"), `${JSON.stringify({ ...edited, templates: [], models: [] }, null, 2)}\n`, "utf8");
+    const t = sb.services.projects.exportBundle(id, { targets: [T24], mode: "vanilla", outRoot: tmp("export-notes-") }).targets[0]!;
+    expect(t.needsLaunchInstall).toBe(false);
+    expect(t.launchItems.requireLine).toBeNull();
+    const notes = readFileSync(t.instructionsFile!, "utf8");
+    expect(notes).toMatch(/does not need a restart/);
+    expect(notes).not.toContain("require(");
+  });
 });

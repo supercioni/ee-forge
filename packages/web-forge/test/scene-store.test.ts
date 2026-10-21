@@ -221,3 +221,37 @@ describe("revisions, results and problems", () => {
     expect(useEditor.getState()).toMatchObject({ view: "narrative", missionTab: "variables" });
   });
 });
+
+describe("the offer to move ships onto a copied hull", () => {
+  const stock = (): never => ({ eeVersion: "EE-2026.09.22PR", installPath: "/x", scannedAt: "2026-10-21", templates: [{ ...createTemplate("a", "Atlantis"), sourceFile: "scripts/shiptemplates/corvette.lua", copiedFrom: null }], models: [], factions: [], resources: { radarTraces: [], planetTextures: [], meshes: [], textures: [], sounds: [], packs: [] }, warnings: [] }) as never;
+  const flying = (): EEProject => {
+    const base = project();
+    return { ...base, map: { ...base.map, groups: [{ id: "g", label: "G", when: "on_start", objects: [{ ...createObject("PlayerSpaceship", "ps", { x: 0, y: 0 }, { callsign: "PS-01" }), template: "Atlantis" } as never] }] } };
+  };
+
+  // Found by playing the result (docs/verification/template-ship/before-fix): the offer remembered the copy's NAME, so a rename
+  // between "Copy into project" and "Move these" sent the ship to a template that no longer existed — Verify passed, the engine
+  // built a ship with no hull.
+  it("follows the copy when it is renamed before the author answers", () => {
+    useEditor.setState({ project: flying(), library: stock(), pendingRetarget: null });
+    useEditor.getState().copyStockTemplate("Atlantis");
+    const copy = useEditor.getState().project!.templates[0]!;
+    useEditor.getState().updateTemplate(copy.id, { name: "Atlantis Forge A" });
+    useEditor.getState().applyRetarget();
+    const s = useEditor.getState();
+    expect(s.project!.templates.map((t) => t.name)).toEqual(["Atlantis Forge A"]);
+    expect((s.project!.map.groups[0]!.objects[0] as unknown as { template: string }).template).toBe("Atlantis Forge A");
+    expect(s.pendingRetarget).toBeNull();
+  });
+
+  it("moves nothing, and says so, when the copy was deleted meanwhile", () => {
+    useEditor.setState({ project: flying(), library: stock(), pendingRetarget: null, error: null });
+    useEditor.getState().copyStockTemplate("Atlantis");
+    useEditor.getState().deleteTemplate(useEditor.getState().project!.templates[0]!.id);
+    useEditor.getState().applyRetarget();
+    const s = useEditor.getState();
+    expect((s.project!.map.groups[0]!.objects[0] as unknown as { template: string }).template).toBe("Atlantis");
+    expect(s.error).toMatch(/no longer exists, so no object was moved/);
+    expect(s.pendingRetarget).toBeNull();
+  });
+});

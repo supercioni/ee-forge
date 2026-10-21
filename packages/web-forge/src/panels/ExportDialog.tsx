@@ -288,7 +288,20 @@ export function ExportDialog(): JSX.Element {
               ))}
               {t.needsLaunchInstall && (
                 <div className="warn-line" data-testid="launch-items">
-                  Loads only at EE launch — templates: {t.launchItems.templates.join(", ") || "none"}; models: {t.launchItems.models.join(", ") || "none"}. Copy scripts/, add the require line, restart EE. (The model files named by a model must already exist in the install.)
+                  <strong>This is more than a scenario.</strong> Ship templates load only while EmptyEpsilon starts — templates: {t.launchItems.templates.join(", ") || "none"}; models: {t.launchItems.models.join(", ") || "none"}.
+                  <ol>
+                    <li>Close EmptyEpsilon.</li>
+                    <li>Copy the scenario files from <code>scripts/</code> into the install&rsquo;s <code>scripts/</code>.</li>
+                    <li>Copy the templates file from <code>scripts/shiptemplates/</code> into the install&rsquo;s <code>scripts/shiptemplates/</code>.</li>
+                    <li>Add <code>{t.launchItems.requireLine ?? ""}</code> once, at the end of the install&rsquo;s <code>scripts/shipTemplates.lua</code>.</li>
+                    <li>Start EmptyEpsilon again.</li>
+                  </ol>
+                  {t.instructionsFile !== null && <>The same steps are written in <code>{t.instructionsFile}</code>. </>}(The model files named by a model must already exist in the install.)
+                </div>
+              )}
+              {t.ok && !t.needsLaunchInstall && (
+                <div className="hint" data-testid="scenario-only">
+                  A scenario only: copy the {t.files.length} files from <code>scripts/</code> into the install&rsquo;s <code>scripts/</code>. Nothing else to edit, no restart.{t.instructionsFile !== null && <> Steps in <code>{t.instructionsFile}</code>.</>}
                 </div>
               )}
             </div>
