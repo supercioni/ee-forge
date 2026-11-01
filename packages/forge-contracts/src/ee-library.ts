@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EE_SHIP_TEMPLATE_FIELDS } from "./ee-project.js";
+import { EEModelDefSchema, EE_SHIP_TEMPLATE_FIELDS } from "./ee-project.js";
 
 /**
  * Index of what a given EmptyEpsilon install already contains: ship
@@ -65,6 +65,9 @@ export const EEModelRefSchema = z.object({
    */
   radius: z.number().nullable(),
   sourceFile: z.string(),
+  /** Complete model definition from a recent scan; absent in older cached libraries. */
+  definition: EEModelDefSchema.optional(),
+  definitionWarnings: z.array(z.string()).optional(),
 });
 export type EEModelRef = z.infer<typeof EEModelRefSchema>;
 

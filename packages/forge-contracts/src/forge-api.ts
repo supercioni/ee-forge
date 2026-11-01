@@ -53,6 +53,30 @@ export const ForgeInstallationSchema = z.object({
 });
 export type ForgeInstallation = z.infer<typeof ForgeInstallationSchema>;
 
+/**
+ * What one installation provides for the model workshop (ADR-0061): read live from its `resources/` and `packs/`,
+ * never from a copy, so a resource that has gone is reported as gone.
+ */
+export const ForgeModelResourceStatusSchema = z.object({
+  path: z.string(),
+  state: z.enum(["ok", "missing", "unsupported-format", "refused", "archive-unreadable"]),
+  origin: z.union([
+    z.object({ kind: z.literal("file"), file: z.string() }),
+    z.object({ kind: z.literal("pack"), pack: z.string(), offset: z.number(), length: z.number() }),
+  ]).nullable(),
+  bytes: z.number().nullable(),
+  detail: z.string().nullable(),
+});
+export type ForgeModelResourceStatus = z.infer<typeof ForgeModelResourceStatusSchema>;
+export const ForgeModelSourceReportSchema = z.object({
+  installation: z.object({ id: z.string(), label: z.string(), target: z.string(), verified: z.boolean() }),
+  /** False when the installation's folder is gone or no longer identifies as the registered build. */
+  available: z.boolean(),
+  problem: z.string().nullable(),
+  resources: z.array(ForgeModelResourceStatusSchema),
+});
+export type ForgeModelSourceReport = z.infer<typeof ForgeModelSourceReportSchema>;
+
 export const ForgeInstallationListSchema = z.object({
   installations: z.array(ForgeInstallationSchema),
 });
@@ -128,7 +152,7 @@ export type ForgeSaveResult = z.infer<typeof ForgeSaveResultSchema>;
 export const ForgeBuildFileSchema = z.object({
   name: z.string(),
   /** Where the file belongs in the EE install. See ADR-0034 §3. */
-  install: z.enum(["scripts", "shiptemplates"]),
+  install: z.enum(["scripts", "shiptemplates", "resources"]),
   bytes: z.number().int().nonnegative(),
 });
 export type ForgeBuildFile = z.infer<typeof ForgeBuildFileSchema>;
@@ -259,7 +283,7 @@ export const ForgeInstallPreviewSchema = z.object({
   target: z.string(),
   mode: ForgeBuildModeSchema,
   installation: z.object({ id: z.string().nullable(), label: z.string(), path: z.string(), target: z.string().nullable(), verified: z.boolean() }),
-  files: z.array(z.object({ name: z.string(), path: z.string(), kind: z.enum(["scripts", "shiptemplates"]), action: z.enum(["create", "replace", "unchanged", "collision", "locked"]) })),
+  files: z.array(z.object({ name: z.string(), path: z.string(), kind: z.enum(["scripts", "shiptemplates", "resources"]), action: z.enum(["create", "replace", "unchanged", "collision", "locked"]) })),
   collisions: z.array(z.string()),
   locked: z.array(z.string()),
   wouldBackUp: z.array(z.string()),

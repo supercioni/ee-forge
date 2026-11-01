@@ -30,7 +30,7 @@ const transport = {
   async send(method: string, path: string, body?: unknown): Promise<{ status: number; body: unknown }> {
     const url = new URL(path, "http://forge.local");
     // Images, models and the asset manifest are read through the app protocol, not this channel.
-    if (method === "GET" && url.pathname.startsWith("/forge/assets/")) {
+    if (method === "GET" && (url.pathname.startsWith("/forge/assets/") || /^\/forge\/model-source\/[^/]+\/file\//.test(url.pathname))) {
       const response = await fetch(`${APP_ORIGIN}${url.pathname}${url.search}`);
       return { status: response.status, body: await response.json().catch(() => null) };
     }
@@ -45,6 +45,9 @@ const transport = {
     const encoded = path.split("/").map(encodeURIComponent).join("/");
     const query = [target === null ? "" : `target=${encodeURIComponent(target)}`, install === null ? "" : `install=${encodeURIComponent(install)}`].filter((q) => q !== "");
     return `${APP_ORIGIN}/forge/assets/${encoded}${query.length === 0 ? "" : `?${query.join("&")}`}`;
+  },
+  modelFileUrl(install: string, path: string): string {
+    return `${APP_ORIGIN}/forge/model-source/${encodeURIComponent(install)}/file/${path.split("/").map(encodeURIComponent).join("/")}`;
   },
 };
 

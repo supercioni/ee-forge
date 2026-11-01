@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-21T22:53:24.894Z",
+  "results": [
+    {
+      "name": "browser: with two 2026 installations nothing is chosen for the author",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "browser: pack-only 2026 model previews, origin is msgamedev-2.pack",
+      "ok": true,
+      "detail": "EE_2026/EmptyEpsilon · packs/msgamedev-2.pack → LindwurmFighter/LindwurmFighterHull.model (offset 3223, 100228 bytes)"
+    },
+    {
+      "name": "browser: switch to 2024 reads 2024's archive (msgamedev.pack)",
+      "ok": true,
+      "detail": "Win32_EmptyEpsilon_EE-2024.12.08/EmptyEpsilon · packs/msgamedev.pack → LindwurmFighter/LindwurmFighterHull.model (offset 49784489, 100228 bytes)"
+    },
+    {
+      "name": "browser: switching source leaves the document unchanged and not dirty",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "browser: back to 2026 reads 2026 again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "browser: same-version twin shows its own bytes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "browser: the chosen source is remembered after reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "browser: vanished source is reported and stays chosen (no fallback)",
+      "ok": true,
+      "detail": "Twin RED (EE 2026 stand-in) cannot be read: installation EE-2026.09.22PR-e2251a29 is gone: /tmp/forge-browser-Rv7bBd/fx/twin-red. Choose another model source; n"
+    },
+    {
+      "name": "browser: no page errors",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

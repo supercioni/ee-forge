@@ -40,6 +40,17 @@ export {
   type ScanOptions,
 } from "./scan/install.js";
 export { mirrorInstallAssets, type MirrorResult } from "./scan/assets.js";
+export {
+  MAX_MODEL_RESOURCE_BYTES,
+  modelResourceReader,
+  packResourceRanges,
+  type ModelResourceOrigin,
+  type ModelResourceReader,
+  type ModelResourceState,
+  type ModelResourceStatus,
+} from "./scan/model-resources.js";
+export { readModelDefinitions, type ScannedModelDefinition } from "./scan/model-definitions.js";
+export { checkModelDependencies, modelDependencies, type ModelCompatIssue, type ModelCompatReport, type ModelDependency } from "./model-compat.js";
 
 // Putting a build where EE will find it. Node-only, like the scanner: the
 // editor reaches it through the bridge, never from the browser.
@@ -231,3 +242,5 @@ export {
   extensionCompatibility,
   vanillaCompatibility,
 } from "./compatibility.js";
+
+export { buildFileBytes, installFilePath, buildOutputPath } from "./model-assets.js";

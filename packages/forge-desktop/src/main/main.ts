@@ -92,7 +92,8 @@ function registerAppProtocol(runtime: () => Runtime): void {
     const pathname = decodeURIComponent(url.pathname);
 
     // Images and models: the one Forge route the page may read through the protocol.
-    if (pathname.startsWith("/forge/assets/")) {
+    // Model meshes and textures of a registered installation, read live (resources/ then packs/): same read-only route.
+    if (pathname.startsWith("/forge/assets/") || /^\/forge\/model-source\/[^/]+\/file\/./.test(pathname)) {
       const response = await runtime().router.handle({ method: "GET", path: pathname, query: Object.fromEntries(url.searchParams) });
       if (response.bytes !== undefined) return respond(response.status, response.contentType ?? "application/octet-stream", response.bytes);
       return respond(response.status, "application/json", JSON.stringify(response.body));

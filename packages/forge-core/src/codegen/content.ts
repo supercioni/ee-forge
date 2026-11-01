@@ -122,6 +122,7 @@ function emitModel(catalog: EECatalog, model: EEModelDef): string {
   if (model.illumination !== null) {
     calls.push({ method: "setIllumination", args: [str(model.illumination)] });
   }
+  if (model.normalMap != null) calls.push({ method: "setNormalMap", args: [str(model.normalMap)] });
   if (model.scale !== null) calls.push({ method: "setScale", args: [num(model.scale)] });
   if (model.radius !== null) calls.push({ method: "setRadius", args: [num(model.radius)] });
   if (model.collisionBox !== null) {

@@ -69,3 +69,7 @@ attaches it, with its SHA-256, to a GitHub Release.
 
 [GPL-3.0-only](LICENSE). Third-party notices ship with the installer (`THIRD-PARTY-NOTICES.txt`). EmptyEpsilon is a separate project by Daid and contributors
 (GPL-2.0-or-later); the API catalogs in this repository are derived from its public script reference. No EmptyEpsilon game files or models are distributed here.
+
+### Ship models
+
+Fleet → Hull includes the **Model workshop**: choose and customise installed models, import OBJ + PNG/JPG, edit scale, collision shape and engine/weapon origins, and export the required resources. See the [step-by-step guide](docs/authoring/ship-model-workshop.md). Restart EE after installing model changes.

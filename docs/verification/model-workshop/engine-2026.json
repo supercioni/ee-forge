@@ -1,0 +1,9 @@
+{
+    "ship":  "MODEL-TRIAL|Model Workshop Ship|250.0|90.0",
+    "position":  "1190.8656005859|0.0|time=15.728031158447|health=1.0",
+    "started":  "2026-10-21T18:29:05.6062755+02:00",
+    "port":  19826,
+    "pid":  2440,
+    "log":  "[INFO    ]: Starting...\n[INFO    ]: Crash Reporter ON\n[INFO    ]: Using . as configuration path\n[INFO    ]: Keybindings loaded from ./keybindings.json",
+    "clone":  "e26"
+}

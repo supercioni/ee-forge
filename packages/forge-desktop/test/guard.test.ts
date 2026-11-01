@@ -70,4 +70,14 @@ describe("the request guard", () => {
     const big = "x".repeat(33 * 1024 * 1024);
     expect(ask("PUT", "/forge/projects/m", { big })).toMatchObject({ ok: false, status: 413 });
   });
+
+  it("answers the model-source report only for a registered installation, and leaves the bytes to the app protocol", () => {
+    expect(ask("GET", "/forge/model-source/EE-2026.09.22PR-abc12345/report", undefined, { paths: "[]" }).ok).toBe(true);
+    expect(ask("GET", "/forge/model-source/C%3A%5CEE/report").ok).toBe(false);
+    expect(ask("GET", "/forge/model-source/other-id/report").ok).toBe(false);
+    expect(ask("GET", "/forge/model-source/EE-2026.09.22PR-abc12345/file/mesh/x.model").ok).toBe(false);
+    expect(ask("POST", "/forge/model-source/EE-2026.09.22PR-abc12345/report", {}).ok).toBe(false);
+    expect(ask("POST", "/forge/projects/p/build", { modelSource: "C:\\EE" }).ok).toBe(false);
+    expect(ask("POST", "/forge/projects/p/install-preview", { install: "EE-2026.09.22PR-abc12345", modelSource: "EE-2026.09.22PR-abc12345" }).ok).toBe(true);
+  });
 });

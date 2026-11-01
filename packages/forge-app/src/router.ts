@@ -112,6 +112,19 @@ export function createForgeRouter(services: ForgeServices, options: ForgeRouterO
       return { status: 200, body: null, bytes: asset.bytes, contentType: asset.contentType };
     }
 
+    if (area === "model-source" && method === "GET" && a !== undefined) {
+      if (b === "report" && seg.length === 4) {
+        let paths: unknown;
+        try { paths = JSON.parse(query["paths"] ?? "[]"); } catch { throw badRequest("paths must be a JSON array of resource paths", "paths"); }
+        if (!Array.isArray(paths) || paths.some((p) => typeof p !== "string")) throw badRequest("paths must be a JSON array of resource paths", "paths");
+        return ok(services.modelSource.report(a, paths as string[]));
+      }
+      if (b === "file" && seg.length > 4) {
+        const asset = services.modelSource.file(a, seg.slice(4).join("/"));
+        return { status: 200, body: null, bytes: asset.bytes, contentType: asset.contentType };
+      }
+    }
+
     if (area === "extensions" && seg.length === 2 && method === "GET") {
       return ok({
         extensions: services.extensions.map((extension) => ({
@@ -160,6 +173,7 @@ export function createForgeRouter(services: ForgeServices, options: ForgeRouterO
             overwrite: body["overwrite"] === true,
             ...(body["mode"] === "vanilla" || body["mode"] === "integrated" ? { mode: body["mode"] } : {}),
             ...(text(body["libraryInstall"]) !== undefined ? { libraryInstall: text(body["libraryInstall"])! } : {}),
+            ...(text(body["modelSource"]) !== undefined ? { modelSource: text(body["modelSource"])! } : {}),
           }),
         );
       }
@@ -169,6 +183,7 @@ export function createForgeRouter(services: ForgeServices, options: ForgeRouterO
             install: text(body["install"]) ?? "",
             ...(body["mode"] === "vanilla" || body["mode"] === "integrated" ? { mode: body["mode"] } : {}),
             ...(text(body["libraryInstall"]) !== undefined ? { libraryInstall: text(body["libraryInstall"])! } : {}),
+            ...(text(body["modelSource"]) !== undefined ? { modelSource: text(body["modelSource"])! } : {}),
           }),
         );
       }

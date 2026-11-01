@@ -1,0 +1,10 @@
+{
+    "clone":  "e26",
+    "pid":  24448,
+    "port":  19826,
+    "scenario":  "scenario_archive_trial.lua",
+    "started":  "2026-10-22T00:47:07.3149686+02:00",
+    "ship":  "ARCHIVE-TRIAL|Archive Ship|hull=250.0|impulse=90.0",
+    "position":  "718.97491455078|0.0|time=10.363012313843",
+    "log":  "[INFO    ]: Starting...\n[INFO    ]: Crash Reporter ON\n[INFO    ]: Using . as configuration path\n[INFO    ]: Keybindings loaded from ./keybindings.json"
+}

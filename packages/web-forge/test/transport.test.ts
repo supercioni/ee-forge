@@ -28,6 +28,7 @@ function scripted(answers: Record<string, { status: number; body: unknown }>): F
       return answer;
     },
     assetUrl: (path, target, install) => `mem://${target ?? "-"}${install === undefined || install === null ? "" : `@${install}`}/${path}`,
+    modelFileUrl: (install, path) => `mem://model/${install}/${path}`,
   };
 }
 

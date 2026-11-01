@@ -1,3 +1,4 @@
+import { readModelDefinitions } from "./model-definitions.js";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import {
@@ -18,7 +19,6 @@ import {
 } from "@forge/contracts";
 import { inheritByCopy } from "../template-copy.js";
 import {
-  firstNumber,
   firstString,
   parseDataScript,
   parseStatements,
@@ -819,74 +819,12 @@ function scanModels(eeInstall: string, warnings: string[]): EEModelRef[] {
     return [];
   }
 
-  const models: EEModelRef[] = [];
-  const byVar = new Map<string, EEModelRef>();
   const relPath = "scripts/model_data.lua";
-
-  const apply = (model: EEModelRef, statement: LuaStatement): EEModelRef => {
-    let next = model;
-    for (const call of statement.calls) {
-      switch (call.method) {
-        case "setName":
-          next = { ...next, name: firstString(call) ?? next.name };
-          break;
-        case "setMesh":
-          next = { ...next, mesh: firstString(call) };
-          break;
-        case "setTexture":
-          next = { ...next, texture: firstString(call) };
-          break;
-        case "setSpecular":
-          next = { ...next, specular: firstString(call) };
-          break;
-        case "setIllumination":
-          next = { ...next, illumination: firstString(call) };
-          break;
-        case "setScale":
-          next = { ...next, scale: firstNumber(call) };
-          break;
-        case "setRadius":
-          next = { ...next, radius: firstNumber(call) };
-          break;
-        default:
-          break;
-      }
-    }
-    return next;
-  };
-
-  for (const statement of parseStatements(source)) {
-    if (statement.constructs === "ModelData") {
-      const blank: EEModelRef = {
-        name: "",
-        mesh: null,
-        texture: null,
-        specular: null,
-        illumination: null,
-        scale: null,
-        radius: null,
-        sourceFile: relPath,
-      };
-      const created = apply(blank, statement);
-      models.push(created);
-      if (statement.assignsTo !== null) byVar.set(statement.assignsTo, created);
-      continue;
-    }
-    if (statement.subject !== null && statement.assignsTo === null) {
-      const current = byVar.get(statement.subject);
-      if (current === undefined) continue;
-      const updated = apply(current, statement);
-      const index = models.indexOf(current);
-      if (index >= 0) models[index] = updated;
-      byVar.set(statement.subject, updated);
-    }
-  }
-
-  const named = models.filter((m) => m.name !== "");
-  if (named.length < models.length) {
-    warnings.push(`${relPath}: ${models.length - named.length} model(s) had no setName`);
-  }
-  return named;
+  return [...readModelDefinitions(source).values()].map(({ definition: d, warnings: issues }) => {
+    for (const issue of issues) warnings.push(`${relPath}: ${d.name}: ${issue}`);
+    return { name: d.name, mesh: d.mesh, texture: d.texture, specular: d.specular, illumination: d.illumination,
+      scale: d.scale, radius: d.radius, sourceFile: relPath, definition: d, definitionWarnings: [...issues] };
+  });
 }
 
 // ---------------------------------------------------------------------------

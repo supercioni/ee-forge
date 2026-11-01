@@ -14,7 +14,11 @@ export const INSTALL_NOTES_FILE = "INSTALL.txt";
 /** The line `shipTemplates.lua` needs for a templates file. The one definition: the installer writes the same text. */
 export const requireLineFor = (fileName: string): string => `require("shiptemplates/${fileName}")`;
 
-export function manualInstallNotes(options: { readonly projectId: string; readonly target: string; readonly files: readonly Pick<BuildFile, "name" | "install">[] }): string {
+export function manualInstallNotes(options: { readonly projectId: string; readonly target: string; readonly files: readonly Pick<BuildFile, "name" | "install">[];
+  /** Stock models/resources the bundle relies on that no installation was available to check (never presented as compatible). */
+  readonly unverifiedRequirements?: readonly string[];
+  /** Messages about requirements that were checked and are met or differ, so the notes do not overstate. */
+  readonly checkedRequirements?: readonly string[] }): string {
   const scripts = options.files.filter((f) => f.install === "scripts").map((f) => f.name);
   const launch = options.files.filter((f) => f.install === "shiptemplates").map((f) => f.name);
   const lines: string[] = [`EE FORGE — installing "${options.projectId}" into ${options.target} by hand`, ""];
@@ -23,6 +27,8 @@ export function manualInstallNotes(options: { readonly projectId: string; readon
     lines.push(`1. Copy these ${scripts.length} files from scripts/ into <EmptyEpsilon>/scripts/:`, ...scripts.map((n) => `     ${n}`), "", `2. Nothing else. This scenario defines no ship templates or models, so no other file has to be edited and EmptyEpsilon does not need a restart: "${options.projectId}" is in the scenario list the next time it is opened.`);
     return `${lines.join("\n")}\n`;
   }
+  const resources = options.files.filter((f) => f.install === "resources");
+  if (resources.length > 0) lines.push("Copy the entire resources/ folder into <EmptyEpsilon>/resources/, preserving its forge-models/ subfolders. These imported meshes and textures are required.", "");
   const entry = launch[0] ?? "";
   lines.push(
     `This project defines ship templates or models, so it is NOT just a scenario: EmptyEpsilon reads those only while it starts.`,
@@ -44,5 +50,11 @@ export function manualInstallNotes(options: { readonly projectId: string; readon
     `Never add the require line to a scenario file or to a running game: it ends the process with no error.`,
     `Using Install scenario in EE FORGE does steps 2-4 for you (with a backup of shipTemplates.lua); step 1 and 5 stay yours.`,
   );
+  const unverified = options.unverifiedRequirements ?? [], checked = options.checkedRequirements ?? [];
+  if (unverified.length > 0) {
+    lines.push("", `REQUIREMENTS NOT VERIFIED — EE FORGE did not check these against a ${options.target} installation. Compatibility is NOT claimed:`, ...unverified.map((r) => `  - ${r}`),
+      `Before playing, make sure the target EmptyEpsilon (${options.target}) has these files in its resources/ folder or packs/*.pack; a model whose mesh or texture is missing keeps the ship from loading.`);
+  }
+  if (checked.length > 0) lines.push("", "Checked against an installation:", ...checked.map((r) => `  - ${r}`));
   return `${lines.join("\n")}\n`;
 }

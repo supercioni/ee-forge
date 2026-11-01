@@ -1,0 +1,28 @@
+Final checks — 2026-10-21
+
+pnpm build: PASS (existing bundle-size warnings remain)
+pnpm typecheck: PASS
+git diff --check: PASS
+
+pnpm test: PASS
+  forge-core: 662 passed, 12 skipped (temporary EE fixture was absent)
+  web-forge: 223 passed
+  forge-app: 55 passed
+  forge-desktop: 39 passed
+
+Recreated the isolated stock-script fixture and repeated core tests:
+EE_DIR=/tmp/forge-stock-2026 pnpm --filter @forge/core test: PASS
+  30 files, 673 passed, 1 skipped (DMX hardware.ini absent)
+Final combined result: 990 passed, 1 skipped.
+
+New regressions: core model-workshop 9, web model-workshop 5,
+application model-export 1 (included in counts above).
+
+Fixture project: schema validation and build for EE-2024.12.08 and
+EE-2026.09.22PR passed, six files each. Custom model bytes recovered
+from the isolated engine trial installation; original GUI values preserved.
+node --check docs/verification/model-workshop/prepare-trial.mjs: PASS
+
+Browser and Electron evidence and limitations: README.md in this directory.
+No test processes matching the isolated workshop profiles/ports remained
+at final cleanup. Original installations and user application unchanged.

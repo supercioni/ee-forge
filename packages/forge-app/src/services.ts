@@ -4,6 +4,7 @@ import { createContext, type ForgeContext, type ForgeOptions } from "./context.j
 import { DmxService, type DmxTelemetrySource } from "./dmx.js";
 import { InstallationService } from "./installations.js";
 import { LibraryService } from "./libraries.js";
+import { ModelSourceService } from "./model-source.js";
 import { ProjectService } from "./projects.js";
 
 export interface ForgeServices {
@@ -12,6 +13,7 @@ export interface ForgeServices {
   readonly installations: InstallationService;
   readonly libraries: LibraryService;
   readonly assets: AssetService;
+  readonly modelSource: ModelSourceService;
   readonly dmx: DmxService;
   readonly extensions: readonly ForgeExtension[];
 }
@@ -39,6 +41,7 @@ export function createForgeServices(options: ForgeServiceOptions): ForgeServices
     extensions: options.extensions ?? [],
     projects: new ProjectService(context, installations, libraries, options.extensions ?? []),
     assets: new AssetService(context, installations, libraries),
+    modelSource: new ModelSourceService(installations),
     dmx: new DmxService(context, installations, options.dmxTelemetry ?? []),
   };
 }

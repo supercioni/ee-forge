@@ -1,0 +1,14 @@
+Final commands (22 October 2026, development build; no commit, no installer, installed application untouched)
+
+pnpm typecheck                                   -> contracts, core, app, web, desktop: no errors
+pnpm build                                       -> all five packages built
+EE_DIR=/tmp/forge-stock-2026 pnpm -r --no-bail run test
+  forge-core    31 files  681 passed | 1 skipped   (real-archive tests run against both installations)
+  web-forge     24 files  230 passed
+  forge-app      9 files   59 passed
+  forge-desktop  6 files   40 passed
+  (Without EE_DIR, scan.test.ts "reports the fields it could not read" fails on the user's personal serata_spazio template —
+   a pre-existing difference documented in docs/verification/model-workshop/README.md, unrelated to models.)
+node docs/verification/model-source/run-electron.mjs   -> 47/47  (real Electron app, isolated userData)
+node docs/verification/model-source/run-browser.mjs    ->  9/9   (Chrome 148 against Forge's HTTP server)
+node docs/verification/model-source/prepare-engine-trial.mjs + run-engine-trial.ps1 (e24, e26) -> ship loaded, moved, see README

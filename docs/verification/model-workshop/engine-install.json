@@ -1,0 +1,120 @@
+[
+  {
+    "version": "EE-2024.12.08",
+    "clone": "e24",
+    "files": [
+      {
+        "name": "model_workshop_trial_content.lua",
+        "install": "scripts"
+      },
+      {
+        "name": "model_workshop_trial_map.lua",
+        "install": "scripts"
+      },
+      {
+        "name": "scenario_model_workshop_trial.lua",
+        "install": "scripts"
+      },
+      {
+        "name": "model_workshop_trial_templates.lua",
+        "install": "shiptemplates"
+      },
+      {
+        "name": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-fixture.obj",
+        "install": "resources"
+      },
+      {
+        "name": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-texture.png",
+        "install": "resources"
+      }
+    ],
+    "installed": {
+      "status": "installed",
+      "ok": true,
+      "installed": [
+        "/mnt/c/ForgeCollaudo/T/e24/scripts/model_workshop_trial_content.lua",
+        "/mnt/c/ForgeCollaudo/T/e24/scripts/model_workshop_trial_map.lua",
+        "/mnt/c/ForgeCollaudo/T/e24/scripts/scenario_model_workshop_trial.lua",
+        "/mnt/c/ForgeCollaudo/T/e24/scripts/shiptemplates/model_workshop_trial_templates.lua"
+      ],
+      "unchanged": [
+        "/mnt/c/ForgeCollaudo/T/e24/resources/forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-fixture.obj",
+        "/mnt/c/ForgeCollaudo/T/e24/resources/forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-texture.png"
+      ],
+      "locked": [],
+      "collisions": [],
+      "backupDir": "/mnt/c/ForgeCollaudo/T/e24/.ee-forge-backups/2026-10-21T16-28-58-931Z",
+      "restore": {
+        "restored": [],
+        "unrestored": []
+      },
+      "error": null,
+      "needsRestart": true,
+      "restartFiles": [
+        "/mnt/c/ForgeCollaudo/T/e24/scripts/shiptemplates/model_workshop_trial_templates.lua"
+      ],
+      "requireLine": "require(\"shiptemplates/model_workshop_trial_templates.lua\")",
+      "required": true,
+      "warnings": []
+    }
+  },
+  {
+    "version": "EE-2026.09.22PR",
+    "clone": "e26",
+    "files": [
+      {
+        "name": "model_workshop_trial_content.lua",
+        "install": "scripts"
+      },
+      {
+        "name": "model_workshop_trial_map.lua",
+        "install": "scripts"
+      },
+      {
+        "name": "scenario_model_workshop_trial.lua",
+        "install": "scripts"
+      },
+      {
+        "name": "model_workshop_trial_templates.lua",
+        "install": "shiptemplates"
+      },
+      {
+        "name": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-fixture.obj",
+        "install": "resources"
+      },
+      {
+        "name": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-texture.png",
+        "install": "resources"
+      }
+    ],
+    "installed": {
+      "status": "installed",
+      "ok": true,
+      "installed": [
+        "/mnt/c/ForgeCollaudo/T/e26/scripts/model_workshop_trial_content.lua",
+        "/mnt/c/ForgeCollaudo/T/e26/scripts/model_workshop_trial_map.lua",
+        "/mnt/c/ForgeCollaudo/T/e26/scripts/scenario_model_workshop_trial.lua",
+        "/mnt/c/ForgeCollaudo/T/e26/scripts/shiptemplates/model_workshop_trial_templates.lua"
+      ],
+      "unchanged": [
+        "/mnt/c/ForgeCollaudo/T/e26/resources/forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-fixture.obj",
+        "/mnt/c/ForgeCollaudo/T/e26/resources/forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-texture.png"
+      ],
+      "locked": [],
+      "collisions": [],
+      "backupDir": "/mnt/c/ForgeCollaudo/T/e26/.ee-forge-backups/2026-10-21T16-29-04-505Z",
+      "restore": {
+        "restored": [],
+        "unrestored": []
+      },
+      "error": null,
+      "needsRestart": true,
+      "restartFiles": [
+        "/mnt/c/ForgeCollaudo/T/e26/scripts/shiptemplates/model_workshop_trial_templates.lua"
+      ],
+      "requireLine": "require(\"shiptemplates/model_workshop_trial_templates.lua\")",
+      "required": true,
+      "warnings": []
+    }
+  }
+]

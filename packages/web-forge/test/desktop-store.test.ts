@@ -14,6 +14,7 @@ const transport = (saved: boolean): ForgeTransport & { calls: string[] } => {
     label: "test",
     calls,
     assetUrl: () => "",
+    modelFileUrl: () => "",
     async send(method, path) {
       calls.push(`${method} ${path}`);
       return saved

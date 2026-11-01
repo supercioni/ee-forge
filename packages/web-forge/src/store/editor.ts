@@ -114,6 +114,7 @@ import {
 import { getDesktop } from "../api/desktop.js";
 import { setAssetInstall, setAssetTarget } from "../api/transport.js";
 import { outcomeFromBuild, type VerificationRecord } from "../ui/verification.js";
+import { chosenModelSourceId } from "./model-source.js";
 import { DEFAULT_CAMERA, type Camera } from "../canvas/geometry.js";
 
 /**
@@ -912,6 +913,7 @@ export const useEditor = create<EditorState>((set, get) => ({
         install && eeDir !== "" ? { eeDir, patchShipTemplates: true, overwrite } : null,
         mode ?? null,
         get().libraryInstall?.id ?? null,
+        chosenModelSourceId(project.id),
       );
       // The answer is about a document that is no longer open: it is dropped, not shown as the open one's result.
       if (get().session !== session) return null;

@@ -19,6 +19,8 @@ export interface ForgeTransport {
   send(method: string, path: string, body?: unknown): Promise<ForgeTransportResponse>;
   /** URL an `<img>` or glTF loader can fetch for a service asset. */
   assetUrl(path: string, target: string | null, install?: string | null): string;
+  /** URL of one model resource (mesh or texture) read live from the named installation's resources and packs. */
+  modelFileUrl(install: string, path: string): string;
 }
 
 declare global {
@@ -57,6 +59,9 @@ export function httpTransport(base: string): ForgeTransport {
       const encoded = path.split("/").map(encodeURIComponent).join("/");
       const query = [target === null ? "" : `target=${encodeURIComponent(target)}`, install === null ? "" : `install=${encodeURIComponent(install)}`].filter((q) => q !== "");
       return `${base}/forge/assets/${encoded}${query.length === 0 ? "" : `?${query.join("&")}`}`;
+    },
+    modelFileUrl(install, path) {
+      return `${base}/forge/model-source/${encodeURIComponent(install)}/file/${path.split("/").map(encodeURIComponent).join("/")}`;
     },
   };
 }
@@ -113,6 +118,15 @@ export function bumpAssetEpoch(): void {
 export function assetUrl(path: string): string {
   const url = getTransport().assetUrl(path, assetTarget, assetInstall);
   return assetEpoch === 0 ? url : `${url}${url.includes("?") ? "&" : "?"}v=${assetEpoch}`;
+}
+
+/**
+ * URL of a model resource of the chosen model source. `stamp` identifies the state the page looked at (the resource
+ * report it fetched), so a changed installation is never answered from a browser-cached older file.
+ */
+export function modelFileUrl(install: string, path: string, stamp: string): string {
+  const url = getTransport().modelFileUrl(install, path);
+  return `${url}?v=${encodeURIComponent(stamp)}`;
 }
 
 /**

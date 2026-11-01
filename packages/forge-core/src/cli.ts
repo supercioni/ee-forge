@@ -1,3 +1,4 @@
+import { buildFileBytes, buildOutputPath } from "./model-assets.js";
 import { createHash } from "node:crypto";
 import {
   existsSync,
@@ -242,7 +243,9 @@ function cmdBuild(args: Args): void {
   const outDir = flagString(args, "out-dir") ?? join(projectDir, "build");
   mkdirSync(outDir, { recursive: true });
   for (const file of result.files) {
-    writeFileSync(join(outDir, file.name), file.contents, "utf8");
+    const dest = buildOutputPath(outDir, file);
+    mkdirSync(dirname(dest), { recursive: true });
+    writeFileSync(dest, buildFileBytes(file));
     console.log(`  wrote ${join(outDir, file.name)}`);
   }
 

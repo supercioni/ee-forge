@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 5,
+  "id": "model_fixture",
+  "name": "Imported model fixture",
+  "description": "",
+  "eeVersion": "EE-2026.09.22PR",
+  "requires": [],
+  "factions": [],
+  "models": [
+    {
+      "resources": [
+        {
+          "path": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-fixture.obj",
+          "base64": "IyBFRSBGT1JHRSBzaW5nbGUtbWF0ZXJpYWwgdHJpYW5ndWxhdGVkIE9CSgp2IC0xMiAwIDAKdnQgMCAwCnZuIDAgMSAwCnYgOCAwIC02CnZ0IDEgMAp2biAwIDEgMAp2IDggMCA2CnZ0IDAgMQp2biAwIDEgMApmIDEvMS8xIDIvMi8yIDMvMy8zCnYgLTEyIDAgMAp2dCAwIDAKdm4gMCAxIDAKdiA0IDQgMAp2dCAxIDAKdm4gMCAxIDAKdiA4IDAgLTYKdnQgMCAxCnZuIDAgMSAwCmYgNC80LzQgNS81LzUgNi82LzYKdiAtMTIgMCAwCnZ0IDAgMAp2biAwIDEgMAp2IDggMCA2CnZ0IDEgMAp2biAwIDEgMAp2IDQgNCAwCnZ0IDAgMQp2biAwIDEgMApmIDcvNy83IDgvOC84IDkvOS85CnYgOCAwIC02CnZ0IDAgMAp2biAwIDEgMAp2IDQgNCAwCnZ0IDEgMAp2biAwIDEgMAp2IDggMCA2CnZ0IDAgMQp2biAwIDEgMApmIDEwLzEwLzEwIDExLzExLzExIDEyLzEyLzEy"
+        },
+        {
+          "path": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-texture.png",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAEUlEQVR4nGMw2nIHK2IYWhIAys1wgfJC5dkAAAAASUVORK5CYII="
+        }
+      ],
+      "id": "model_1",
+      "name": "model_trial_model_2",
+      "mesh": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-fixture.obj",
+      "texture": "forge-models/2bc00ed6-966e-440f-84ea-7df13bff6779/model-texture.png",
+      "specular": null,
+      "illumination": null,
+      "normalMap": null,
+      "scale": 2.5,
+      "radius": 40,
+      "collisionBox": null,
+      "renderOffset": null,
+      "beamPositions": [],
+      "tubePositions": [],
+      "engineEmitters": [
+        {
+          "position": [
+            -8,
+            3,
+            0
+          ],
+          "color": [
+            0.2,
+            0.6,
+            1
+          ],
+          "scale": 2
+        }
+      ]
+    }
+  ],
+  "templates": [],
+  "map": {
+    "sectors": [],
+    "startSector": null,
+    "groups": [],
+    "markers": []
+  },
+  "logic": {
+    "variables": [],
+    "beats": [],
+    "rules": [],
+    "gmButtons": [],
+    "dialogues": [],
+    "exodusSteps": []
+  },
+  "campaign": {
+    "persistence": false
+  },
+  "unmodelled": {}
+}

@@ -12,6 +12,7 @@ import type {
 import { fetchCompatibility, fetchInstallations, fetchProjects, rescanInstallation, removeInstallation } from "../api/client.js";
 import { getDesktop } from "../api/desktop.js";
 import { useEditor } from "./editor.js";
+import { useModelSource } from "./model-source.js";
 
 /**
  * Desktop-only state: the shell's information, the registered installations, the open dialog, and
@@ -194,6 +195,8 @@ export const useDesktop = create<DesktopState>((set, get) => {
         bumpAssetEpoch();
         resetIconAvailability();
         await get().refreshInstallations();
+        // The model source reads archives live, but its catalogue and resource report must be re-read after a scan.
+        if (useModelSource.getState().projectId !== null) void useModelSource.getState().refresh();
         // The project's own engine may be the one just indexed: reload its lists.
         const { project, openProject, dirty, eeDir, libraryInstall, useInstallLibrary } = useEditor.getState();
         const sameEngine = project !== null && project.eeVersion === (result.target ?? result.library.eeVersion);
@@ -216,6 +219,7 @@ export const useDesktop = create<DesktopState>((set, get) => {
       try {
         await removeInstallation(id);
         await get().refreshInstallations();
+        if (useModelSource.getState().projectId !== null) void useModelSource.getState().refresh();
         if (useEditor.getState().eeDir === id) useEditor.getState().setEeDir(get().installations[0]?.id ?? "");
         say("Installation forgotten (its files were not touched).");
       } catch (error) {

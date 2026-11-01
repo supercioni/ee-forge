@@ -5,6 +5,7 @@ import { previewInstallOnBridge } from "../api/client.js";
 import { getDesktop } from "../api/desktop.js";
 import { useDesktop } from "../store/desktop.js";
 import { useEditor } from "../store/editor.js";
+import { chosenModelSourceId } from "../store/model-source.js";
 import { Modal } from "../ui/Modal.js";
 import { describeOutcome, documentLine, freshnessOf } from "../ui/verification.js";
 import { InstallSelect } from "./DesktopPanels.js";
@@ -72,7 +73,7 @@ export function InstallDialog({ onClose }: { onClose: () => void }): JSX.Element
         setFailure("The project could not be saved, so the install was not checked.");
         return;
       }
-      const value = await previewInstallOnBridge(project.id, eeDir, null, libraryInstall?.id ?? null);
+      const value = await previewInstallOnBridge(project.id, eeDir, null, libraryInstall?.id ?? null, chosenModelSourceId(project.id));
       setPreview({ value, revision: useEditor.getState().revision });
       setOverwrite(false);
     } catch (error) {

@@ -1,7 +1,8 @@
 import { createHash } from "node:crypto";
 import { closeSync, copyFileSync, existsSync, mkdirSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
-import { dirname, join, relative, sep } from "node:path";
+import { dirname, join } from "node:path";
 import type { BuildFile } from "./codegen/build.js";
+import { buildFileBytes, installFilePath, installFileKey } from "./model-assets.js";
 import { requireLineFor } from "./install-notes.js";
 
 /**
@@ -82,7 +83,7 @@ export interface InstallOptions {
   /** Test seam: the clock for the backup folder name. */
   readonly now?: () => Date;
   /** Test seam: replaces the atomic write of one file (throw to simulate a failure part-way). */
-  readonly writeFile?: (path: string, contents: string) => void;
+  readonly writeFile?: (path: string, contents: string | Buffer) => void;
 }
 
 const LEDGER = ".ee-forge-ledger.json";
@@ -126,7 +127,6 @@ function writable(path: string): boolean {
   }
 }
 
-const rel = (scripts: string, path: string): string => relative(scripts, path).split(sep).join("/");
 
 const emptyRestore = { restored: [], unrestored: [] } as const;
 
@@ -160,12 +160,12 @@ export function installBuild(
   const ledger = readLedger(scripts);
   const stamp = (options.now?.() ?? new Date()).toISOString();
 
-  interface Entry { file: BuildFile; target: string; key: string; text: string; hash: string; existed: boolean; existingHash: string | null; unreadable: boolean; action: "create" | "update" | "unchanged" }
+  interface Entry { file: BuildFile; target: string; key: string; text: string | Buffer; hash: string; existed: boolean; existingHash: string | null; unreadable: boolean; action: "create" | "update" | "unchanged" }
   const entries: Entry[] = files.map((file) => {
-    const target = file.install === "shiptemplates" ? join(scripts, "shiptemplates", file.name) : join(scripts, file.name);
-    const text = contentsOf(file);
+    const target = installFilePath(eeInstall, file);
+    const text = file.encoding === "base64" ? buildFileBytes({ ...file, contents: contentsOf(file) }) : contentsOf(file);
     const hash = sha(text);
-    const key = rel(scripts, target);
+    const key = installFileKey(file);
     const existed = existsSync(target);
     // A file another program holds open exclusively cannot even be read on Windows: that is "locked", not a crash.
     let existingHash: string | null = null;
@@ -181,7 +181,7 @@ export function installBuild(
     return { file, target, key, text, hash, existed, existingHash, unreadable, action };
   });
 
-  const restartFiles = entries.filter((e) => e.file.install === "shiptemplates" && e.action !== "unchanged").map((e) => e.target);
+  const restartFiles = entries.filter((e) => e.file.install !== "scripts" && e.action !== "unchanged").map((e) => e.target);
 
   const refuse = (status: InstallStatus, extra: Partial<InstallResult>): InstallResult => ({
     status, ok: false, installed: [], unchanged: [], locked: [], collisions: [], backupDir: null, restore: emptyRestore, error: null,
@@ -321,9 +321,9 @@ export function previewInstall(
   if (!existsSync(scripts)) throw new Error(`no scripts/ directory under ${eeInstall}`);
   const ledger = readLedger(scripts);
   const rows = files.map((file) => {
-    const path = file.install === "shiptemplates" ? join(scripts, "shiptemplates", file.name) : join(scripts, file.name);
-    const hash = sha(contentsOf(file));
-    const key = rel(scripts, path);
+    const path = installFilePath(eeInstall, file);
+    const hash = sha(buildFileBytes({ ...file, contents: contentsOf(file) }));
+    const key = installFileKey(file);
     if (!existsSync(path)) return { file, path, key, action: "create" as InstallFileAction, existing: null as string | null };
     let existing: string | null = null;
     try {
@@ -350,7 +350,7 @@ export function previewInstall(
     wouldBackUp: rows.filter((r) => r.action === "replace" || r.action === "collision").map((r) => r.path),
     requireLine: plan === null ? null : plan.requireLine,
     requireState,
-    needsRestart: rows.some((r) => r.file.install === "shiptemplates" && r.action !== "unchanged") || requireState === "will-add",
+    needsRestart: rows.some((r) => r.file.install !== "scripts" && r.action !== "unchanged") || requireState === "will-add",
     clear: collisions.length === 0 && locked.length === 0,
   };
 }

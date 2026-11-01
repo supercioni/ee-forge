@@ -18,7 +18,7 @@ export type GuardResult =
   | { readonly ok: true; readonly request: RawForgeRequest }
   | { readonly ok: false; readonly status: number; readonly error: string };
 
-const AREAS = new Set(["health", "catalog", "library", "installations", "assets", "extensions", "compatibility", "dmx", "projects"]);
+const AREAS = new Set(["health", "catalog", "library", "installations", "assets", "model-source", "extensions", "compatibility", "dmx", "projects"]);
 const SAFE_PATH = /^\/forge(\/[A-Za-z0-9_.~%-]+)*\/?$/;
 
 const refuse = (status: number, error: string): GuardResult => ({ ok: false, status, error });
@@ -81,6 +81,18 @@ export function guardRequest(raw: unknown, context: GuardContext): GuardResult {
   }
   // Assets are read through the app protocol, not this channel.
   if (area === "assets") return refuse(404, "assets are served by the app protocol");
+  // Model resources: the report is a JSON answer about a registered installation (never a path); the bytes use the protocol.
+  if (area === "model-source") {
+    if (request.method !== "GET" || b !== "report" || segments.length !== 4) return refuse(404, "model resources are served by the app protocol");
+    if (a === undefined || !context.isInstallId(a)) return refuse(403, "pass a registered installation, not a path");
+  }
+  // The installation the models were previewed from is named the same way.
+  if (area === "projects" && (b === "build" || b === "install-preview")) {
+    const source = field(body, "modelSource");
+    if (source !== undefined && source !== null && source !== "") {
+      if (typeof source !== "string" || !context.isInstallId(source)) return refuse(403, "pass a registered installation, not a path");
+    }
+  }
 
   return { ok: true, request };
 }

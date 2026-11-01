@@ -5,6 +5,8 @@ import {
   ForgeBuildResultSchema,
   ForgeCreateResultSchema,
   ForgeInstallPreviewSchema,
+  ForgeModelSourceReportSchema,
+  type ForgeModelSourceReport,
   ForgeLibraryRescanResultSchema,
   ForgeLibraryResponseSchema,
   type ForgeInstallPreview,
@@ -177,12 +179,14 @@ export async function buildProjectOnBridge(
   install: { readonly eeDir: string; readonly patchShipTemplates: boolean; readonly overwrite?: boolean } | null = null,
   mode: ForgeBuildMode | null = null,
   libraryInstall: string | null = null,
+  modelSource: string | null = null,
 ): Promise<ForgeBuildResult> {
   return ForgeBuildResultSchema.parse(
     await request(`/forge/projects/${encodeURIComponent(id)}/build`, {
       method: "POST",
       body: {
         ...(libraryInstall === null ? {} : { libraryInstall }),
+        ...(modelSource === null ? {} : { modelSource }),
         ...(install === null ? {} : { install: install.eeDir, patchShipTemplates: install.patchShipTemplates, overwrite: install.overwrite === true }),
         ...(mode === null ? {} : { mode }),
       },
@@ -191,11 +195,11 @@ export async function buildProjectOnBridge(
 }
 
 /** What installing would do — the preflight, with nothing written. */
-export async function previewInstallOnBridge(id: string, install: string, mode: ForgeBuildMode | null, libraryInstall: string | null): Promise<ForgeInstallPreview> {
+export async function previewInstallOnBridge(id: string, install: string, mode: ForgeBuildMode | null, libraryInstall: string | null, modelSource: string | null = null): Promise<ForgeInstallPreview> {
   return ForgeInstallPreviewSchema.parse(
     await request(`/forge/projects/${encodeURIComponent(id)}/install-preview`, {
       method: "POST",
-      body: { install, ...(mode === null ? {} : { mode }), ...(libraryInstall === null ? {} : { libraryInstall }) },
+      body: { install, ...(mode === null ? {} : { mode }), ...(libraryInstall === null ? {} : { libraryInstall }), ...(modelSource === null ? {} : { modelSource }) },
     }),
   );
 }
@@ -249,4 +253,14 @@ export async function buildDmxRig(install: string | null): Promise<ForgeDmxBuild
 /** What the rig's triggers read on the live ship, for the preview. */
 export async function fetchDmxTriggers(target: string | null = null): Promise<EEDmxTriggerReading> {
   return EEDmxTriggerReadingSchema.parse(await request(withQuery("/forge/dmx/triggers", { target })));
+}
+
+/**
+ * What the chosen model source provides for these resource paths, read live from its resources/ and packs/.
+ * An installation that is not registered is an error (404), not an empty answer.
+ */
+export async function fetchModelSourceReport(install: string, paths: readonly string[]): Promise<ForgeModelSourceReport> {
+  return ForgeModelSourceReportSchema.parse(
+    await request(withQuery(`/forge/model-source/${encodeURIComponent(install)}/report`, { paths: JSON.stringify(paths) })),
+  );
 }

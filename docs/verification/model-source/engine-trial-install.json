@@ -1,0 +1,74 @@
+[
+  {
+    "target": "EE-2024.12.08",
+    "clone": "e24",
+    "port": 19824,
+    "mesh": "LindwurmFighter/LindwurmFighterHull.model",
+    "texture": "LindwurmFighter/AlbedoAO/LindwurmFighterBlueAlbedoAO.png",
+    "scale": 3.5,
+    "radius": 55,
+    "engineEmitters": 3,
+    "files": [
+      {
+        "name": "archive_trial_content.lua",
+        "install": "scripts",
+        "bytes": 362
+      },
+      {
+        "name": "archive_trial_map.lua",
+        "install": "scripts",
+        "bytes": 1961
+      },
+      {
+        "name": "scenario_archive_trial.lua",
+        "install": "scripts",
+        "bytes": 7600
+      },
+      {
+        "name": "archive_trial_templates.lua",
+        "install": "shiptemplates",
+        "bytes": 3346
+      }
+    ],
+    "warnings": [],
+    "status": "installed",
+    "installed": [],
+    "requireLine": "require(\"shiptemplates/archive_trial_templates.lua\")"
+  },
+  {
+    "target": "EE-2026.09.22PR",
+    "clone": "e26",
+    "port": 19826,
+    "mesh": "LindwurmFighter/LindwurmFighterHull.model",
+    "texture": "LindwurmFighter/AlbedoAO/LindwurmFighterBlueAlbedoAO.png",
+    "scale": 3.5,
+    "radius": 55,
+    "engineEmitters": 3,
+    "files": [
+      {
+        "name": "archive_trial_content.lua",
+        "install": "scripts",
+        "bytes": 364
+      },
+      {
+        "name": "archive_trial_map.lua",
+        "install": "scripts",
+        "bytes": 1963
+      },
+      {
+        "name": "scenario_archive_trial.lua",
+        "install": "scripts",
+        "bytes": 7665
+      },
+      {
+        "name": "archive_trial_templates.lua",
+        "install": "shiptemplates",
+        "bytes": 3411
+      }
+    ],
+    "warnings": [],
+    "status": "installed",
+    "installed": [],
+    "requireLine": "require(\"shiptemplates/archive_trial_templates.lua\")"
+  }
+]

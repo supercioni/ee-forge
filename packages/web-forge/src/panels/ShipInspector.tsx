@@ -1,3 +1,4 @@
+import { ModelWorkbench } from "./ModelWorkbench.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { EECatalog, EELibrary, EEProject, EETemplateDef, EETemplateRef } from "@forge/contracts";
 import {
@@ -248,6 +249,7 @@ function ProjectTemplate({
   library: EELibrary | null;
 }): JSX.Element {
   const catalog = useEditor((s) => s.catalog);
+  const section = useEditor((s) => s.shipSection);
   const updateTemplate = useEditor((s) => s.updateTemplate);
 
   const set = (key: string, value: unknown): void =>
@@ -315,13 +317,14 @@ function ProjectTemplate({
           Hull: (
             <>
               <ShipResources template={template} library={library} target={target} />
-              <ShipPreview template={template} templates={project.templates} library={library} target={target} />
+              <p className="hint">Edit the actual model in the Model workshop below.</p>
             </>
           ),
           Weapons: <ShipDiagram template={template} />,
           "Deck plan": <DeckPlan template={template} />,
         }}
       />
+      {section === "hull" && <ModelWorkbench key={template.id} template={template} />}
     </section>
   );
 }

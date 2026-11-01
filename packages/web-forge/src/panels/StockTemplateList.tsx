@@ -61,7 +61,7 @@ export function StockTemplateList(): JSX.Element {
         Original ships <span className="muted">{library.templates.length}</span>
       </h2>
       <p className="hint">
-        Read-only, from {installLabel ?? `the ${library.eeVersion} install`} ({library.eeVersion}, {library.installPath}). Copy one to change it.
+        Read-only, from {installLabel ?? `the ${library.eeVersion} install`} ({library.eeVersion}, {library.installPath}). Copy one to change it. These templates always come from the project's target engine; the 3D models shown under Hull are read from the separately chosen “Model source”.
       </p>
       <input
         aria-label="Filter original ships"

@@ -535,7 +535,15 @@ export const EEFactionDefSchema = z.object({
 });
 export type EEFactionDef = z.infer<typeof EEFactionDefSchema>;
 
+/** Embedded resources make project import/copy portable; only namespaced mesh/image files are accepted. */
+export const EEModelResourceSchema = z.object({
+  path: z.string().regex(/^forge-models\/[a-z0-9_-]+\/[a-z0-9_.-]+\.(obj|png|jpg|jpeg)$/),
+  base64: z.string().max(12 * 1024 * 1024).regex(/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/),
+});
 export const EEModelDefSchema = z.object({
+  /** Where a copy came from: the stock model's name and the engine whose installation it was read from. No paths. */
+  origin: z.object({ model: z.string(), target: z.string() }).optional(),
+  resources: z.array(EEModelResourceSchema).max(32).optional(),
   id: EEIdSchema,
   /** `ModelData:setName` — referenced by `ShipTemplate:setModel`. */
   name: z.string().min(1),
@@ -543,6 +551,8 @@ export const EEModelDefSchema = z.object({
   texture: z.string().nullable(),
   specular: z.string().nullable(),
   illumination: z.string().nullable(),
+  /** EE 2026 only; omission preserves existing project exports. */
+  normalMap: z.string().nullable().optional(),
   scale: z.number().positive().nullable(),
   /** Collision + render radius in EE game units. */
   radius: z.number().positive().nullable(),
@@ -553,7 +563,8 @@ export const EEModelDefSchema = z.object({
   engineEmitters: z.array(
     z.object({
       position: z.tuple([z.number(), z.number(), z.number()]),
-      color: EEColorSchema,
+      /** Linear RGB used by ModelData, not integer GM/radar colours. Legacy values are preserved. */
+      color: z.tuple([z.number().nonnegative().finite(), z.number().nonnegative().finite(), z.number().nonnegative().finite()]),
       scale: z.number().positive(),
     }),
   ),

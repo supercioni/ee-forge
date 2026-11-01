@@ -1,0 +1,240 @@
+{
+  "at": "2026-10-21T22:53:00.947Z",
+  "results": [
+    {
+      "name": "2026 has no loose copy of the pack-only model",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "with two 2026 installations registered nothing is chosen for the author",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit choice of the real 2026 installation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2026: pack-only model shows a real preview (canvas, no placeholder)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2026: mesh origin is the archive",
+      "ok": true,
+      "detail": "EE_2026/EmptyEpsilon · packs/msgamedev-2.pack → LindwurmFighter/LindwurmFighterHull.model (offset 3223, 100228 bytes) ; EE_2026/EmptyEpsilon · packs/msgamedev-2.pack → LindwurmFighter/AlbedoAO/LindwurmFighterBlueAlbedoAO.png (offset 103451, 1225783 bytes) ; EE_2026/EmptyEpsilon · packs/msgamedev-2.pack → LindwurmFighter/LindwurmFighterPBRSpecular.png (offset 8902309, 1442609 bytes) ; EE_2026/EmptyEpsilon · packs/msgamedev-2.pack → LindwurmFighter/LindwurmFighterIllumination.png (offset 7371966, 18213 bytes) ; EE_2026/EmptyEpsilon · packs/msgamedev-2.pack → LindwurmFighter/LindwurmFighterNormal.png (offset 7390179, 1512130 bytes)"
+    },
+    {
+      "name": "2026: bytes served for the preview equal the archive range (independent parser)",
+      "ok": true,
+      "detail": "8bf8112af01a"
+    },
+    {
+      "name": "no extracted copy of stock models exists in Forge's cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "choosing the model assigned it; the project is dirty only because of that",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "customised model still previews from the archive",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "saved copy keeps references, edits and origin",
+      "ok": true,
+      "detail": "{\"origin\":{\"model\":\"LindwurmFighterBlue\",\"target\":\"EE-2026.09.22PR\"},\"scale\":2.5,\"radius\":45,\"tex\":\"LindwurmFighter/AlbedoAO/LindwurmFighterBlueAlbedoAO.png\",\"engines\":3}"
+    },
+    {
+      "name": "project file contains no machine path and no model source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "after restart the model source selection is remembered",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "after restart the project model resolves from the archive again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "reopening does not dirty the document",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "fixture truth: the same texture name differs between 2024 and 2026",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2026 source: texture bytes are 2026's",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "switch to 2024: preview now reads 2024's archive",
+      "ok": true,
+      "detail": "Win32_EmptyEpsilon_EE-2024.12.08/EmptyEpsilon · packs/Angryfly.pack → small_fighter_1.model (offset 18680938, 33988 bytes) ; Win32_EmptyEpsilon_EE-2024.12.08/EmptyEpsilon · packs/Angryfly.pack → small_fighter_1_color.jpg (offset 20723280, 113000 bytes) ; Win32_EmptyEpsilon_EE-2024.12.08/EmptyEpsilon · packs/Angryfly.pack → small_fighter_1_specular.jpg (offset 13404148, 67881 bytes) ; Win32_EmptyEpsilon_EE-2024.12.08/EmptyEpsilon · packs/Angryfly.pack → small_fighter_1_illumination.jpg (offset 20694233, 29047 bytes)"
+    },
+    {
+      "name": "switch to 2024 did not change the project target",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "switch to 2024 did not dirty or rewrite the document",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "switch to 2024 did not move the install destination",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "back to 2026: 2026 bytes again, no contamination from 2024",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2026 → 2024 → 2026 left the assigned model untouched",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "twin RED: preview-only banner, nothing assigned",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "two installations of one version serve different bytes for one name",
+      "ok": true,
+      "detail": "e6c79220 vs 111948c0"
+    },
+    {
+      "name": "twin GREEN preview is not twin RED's cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "exploring twins left the document unchanged",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "vanished source is reported as unavailable",
+      "ok": true,
+      "detail": "Twin GREEN (EE 2026 stand-in) cannot be read: installation EE-2026.09.22PR-555a2b70 is gone: /tmp/forge-fixtures-61177/twin-green. Choose another model source; nothing was substituted."
+    },
+    {
+      "name": "vanished source stays chosen (no fallback to 2026 or the newest scan)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "choosing another source recovers",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "fault \"nomesh\": reported, no placeholder, no preview",
+      "ok": true,
+      "detail": "1 resource(s) cannot be shown from Faulty fixtures (EE 2026 stand-in): absent.obj — Not found in readable sources; unreadable archive(s): packs/broken.pack: Invalid resource bounds: inpack.obj"
+    },
+    {
+      "name": "fault \"notex\": reported, no placeholder, no preview",
+      "ok": true,
+      "detail": "1 resource(s) cannot be shown from Faulty fixtures (EE 2026 stand-in): absent.png — Not found in readable sources; unreadable archive(s): packs/broken.pack: Invalid resource bounds: inpack.obj"
+    },
+    {
+      "name": "fault \"badpack\": reported, no placeholder, no preview",
+      "ok": true,
+      "detail": "1 resource(s) cannot be shown from Faulty fixtures (EE 2026 stand-in): inpack.obj — Not found in readable sources; unreadable archive(s): packs/broken.pack: Invalid resource bounds: inpack.obj"
+    },
+    {
+      "name": "fault \"tgafmt\": reported, no placeholder, no preview",
+      "ok": true,
+      "detail": "1 resource(s) cannot be shown from Faulty fixtures (EE 2026 stand-in): skin.tga — Unsupported format for preview (.tga); supported: .model, .obj, .png, .jpg, .jpeg"
+    },
+    {
+      "name": "okmodel previews while its files exist",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "stale: after the resource disappears nothing old is presented as available",
+      "ok": true,
+      "detail": "1 resource(s) cannot be shown from Faulty fixtures (EE 2026 stand-in): ok.png — Not found in readable sources; unreadable archive(s): packs/broken.pack: Invalid"
+    },
+    {
+      "name": "single 2024 installation is the unambiguous starting default for a 2024 project",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2026-only model in a 2024 project is preview-only, not assigned",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2026 normal map copied into a 2024 project is refused with the reason (property incompatibility)",
+      "ok": true,
+      "detail": "This model uses a normal map, which EE 2024 does not support, so the project cannot be built or installed for 2024 as it is. Remove normal map for 2024"
+    },
+    {
+      "name": "after removing the normal map the install is not blocked, and different content behind the same name is reported",
+      "ok": true,
+      "detail": "⚠ Astroid_1.model exists in both installations but with different content: the ship will look as the destination's file, not as previewed from the model source."
+    },
+    {
+      "name": "a copied model whose mesh/texture the destination lacks blocks the install and names them",
+      "ok": true,
+      "detail": "Cannot install: Models cannot load in the destination installation: - probe.obj (used by probe24_model_2) cannot be loaded from the destination: Not found in resources/ or any packs/*.pack of this installation. The ship "
+    },
+    {
+      "name": "2024 has no loose copy of its pack-only model",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2024: pack-only model previews from msgamedev.pack",
+      "ok": true,
+      "detail": "msgamedev.pack → LindwurmFighter/LindwurmFighterHull.model (offset 49784489, 100228 bytes) ;  LindwurmFighter/AlbedoAO/LindwurmFighterBlueAlbedoAO.png (offset 21663275, 1222971 bytes) ; dev.pack → LindwurmFighter/LindwurmFighterPBRSpecular.png (offset 31190214, 1272352 bytes) ; edev.pack → LindwurmFighter/LindwurmFighterIllumination.png (offset 19094931, 18213 bytes)"
+    },
+    {
+      "name": "2024: bytes served for the preview equal the archive range (independent parser)",
+      "ok": true,
+      "detail": "84983dd60227 vs 2026 8bf8112af01a"
+    },
+    {
+      "name": "2024: saved copy keeps archive references and edits",
+      "ok": true,
+      "detail": "{\"scale\":3.5,\"radius\":55,\"origin\":{\"model\":\"LindwurmFighterBlue\",\"target\":\"EE-2024.12.08\"}}"
+    },
+    {
+      "name": "2024: after restart the customised model resolves from the archive",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "2024 project's model list survives restart on disk",
+      "ok": true,
+      "detail": "[\"probe24b_model_1\"]"
+    },
+    {
+      "name": "no renderer console errors (the radar/ship.png thumbnail 404 predates this work and is unrelated)",
+      "ok": true,
+      "detail": " 404s: "
+    }
+  ]
+}

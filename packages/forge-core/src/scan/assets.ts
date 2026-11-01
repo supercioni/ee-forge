@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 /**
@@ -25,9 +25,8 @@ const IMAGE_EXT = [".png", ".jpg", ".jpeg"];
 /**
  * The subdirectories worth mirroring: the ones something renders from.
  *
- * `meshes` are deliberately absent — the 3D viewer has its own pipeline
- * and its own manifest (ADR-0020), and a blind copy of every `.obj` would
- * fight it.
+ * Meshes and their materials are not mirrored at all: Forge reads them from the installation (loose files and
+ * `packs/*.pack`) when they are asked for (ADR-0060), so there is no copy to go stale.
  */
 const MIRRORED = ["planets", "radar"];
 
@@ -90,6 +89,12 @@ export function mirrorInstallAssets(eeInstall: string, assetsDir: string): Mirro
         warnings.push(`resources/${name}: could not copy (${String(error)})`);
       }
     }
+  }
+  // Earlier builds copied model resources here. Nothing reads them any more, and a leftover would outlive the
+  // resource it was copied from, so a rescan removes it. Only this cache folder is touched, never the installation.
+  const legacy = join(assetsDir, "model-resources");
+  if (existsSync(legacy)) {
+    try { rmSync(legacy, { recursive: true, force: true }); } catch (error) { warnings.push(`model-resources: old copy could not be removed (${String(error)})`); }
   }
   return { copied, warnings };
 }

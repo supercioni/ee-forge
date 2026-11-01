@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
-import { basename, join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import {
   EEProjectSchema,
   ForgeCreateRequestSchema,
@@ -20,6 +20,10 @@ import {
 } from "@forge/contracts";
 import {
   buildProject,
+  checkModelDependencies,
+  buildFileBytes,
+  buildOutputPath,
+  installFilePath,
   detectInstallTarget,
   extensionCompatibility,
   INSTALL_NOTES_FILE,
@@ -65,6 +69,8 @@ export interface BuildRequest {
    * It must be an installation of that engine: another engine's library is not evidence about this one.
    */
   readonly libraryInstall?: string | null;
+  /** The installation the project's models were previewed from. Only used to compare content with the destination's. */
+  readonly modelSource?: string | null;
 }
 
 const launchItemsOf = (project: EEProject): { templates: string[]; models: string[]; requireLine: string | null } => ({
@@ -225,15 +231,35 @@ export class ProjectService {
     return { ...built, source };
   }
 
+  /**
+   * Can the project's models load in `destination`? Errors (a mesh or texture the destination does not have, a stock
+   * model it does not define) are returned as `blocked`; differences and unverifiable items as warnings. Without a
+   * destination nothing is claimed: the requirements are listed as unverified.
+   */
+  private modelCompat(project: EEProject, destination: string | null, modelSource: string | null | undefined): { blocked: string | null; warnings: string[]; unverified: string[]; checked: string[] } {
+    const sourcePath = modelSource !== undefined && modelSource !== null && modelSource !== "" ? this.installations.get(modelSource)?.path ?? null : null;
+    const report = checkModelDependencies(project, destination, sourcePath);
+    const errors = report.issues.filter((i) => i.severity === "error").map((i) => i.message);
+    const warnings = report.issues.filter((i) => i.severity === "warning").map((i) => i.message);
+    const unverified = report.issues.filter((i) => i.severity === "unverified").map((i) => i.message);
+    if (destination !== null) warnings.push(...unverified);
+    const checked = destination === null ? [] : [`${report.verified} of ${report.dependencies.length} model dependencies found in the destination installation.`];
+    if (destination === null && unverified.length > 0) warnings.push(`${unverified.length} model requirement(s) could not be checked without a destination installation; see INSTALL.txt. Compatibility is not claimed.`);
+    return { blocked: errors.length === 0 ? null : `Models cannot load in the destination installation:\n${errors.map((e) => `- ${e}`).join("\n")}`, warnings, unverified: destination === null ? unverified : [], checked };
+  }
+
   build(id: string, request: BuildRequest = {}): ForgeBuildResult {
     const { project, raw } = this.read(id);
-    const built = this.compile(project, raw, request.mode, request.libraryInstall);
+    let built = this.compile(project, raw, request.mode, request.libraryInstall);
 
     const target = this.resolveInstallTarget(project, request.install ?? null);
+    const compat = this.modelCompat(project, target?.path ?? null, request.modelSource);
+    if (compat.blocked !== null) throw unprocessable(compat.blocked, "models");
+    built = { ...built, warnings: [...built.warnings, ...compat.warnings] };
 
     const outDir = join(this.ctx.projectsDir, project.id, "build");
     mkdirSync(outDir, { recursive: true });
-    for (const file of built.files) writeFileSync(join(outDir, file.name), file.contents, "utf8");
+    for (const file of built.files) { const dest = buildOutputPath(outDir, file); mkdirSync(dirname(dest), { recursive: true }); writeFileSync(dest, buildFileBytes(file)); }
 
     let install: ForgeBuildResult["install"] = null;
     if (target !== null) {
@@ -265,7 +291,7 @@ export class ProjectService {
       target: project.eeVersion,
       library: built.source,
       mode: built.mode,
-      files: built.files.map((f) => ({ name: f.name, install: f.install, bytes: Buffer.byteLength(f.contents, "utf8") })),
+      files: built.files.map((f) => ({ name: f.name, install: f.install, bytes: buildFileBytes(f).length })),
       warnings: [...built.warnings],
       outDir,
       needsLaunchInstall: built.files.some((f) => f.install === "shiptemplates"),
@@ -350,14 +376,17 @@ export class ProjectService {
         extensions: this.extensions.map((extension) => ({ id: extension.id, ...extensionCompatibility(extension, target) })),
       };
       try {
-        const built = this.compile({ ...project, eeVersion: target }, raw, request.mode, scanFor(target));
+        const compiled = this.compile({ ...project, eeVersion: target }, raw, request.mode, scanFor(target));
+        // No destination installation exists for an export: say what it relies on, claim nothing.
+        const compat = this.modelCompat({ ...project, eeVersion: target }, null, null);
+        const built = { ...compiled, warnings: [...compiled.warnings, ...compat.warnings] };
         for (const file of built.files) {
-          const dest = file.install === "shiptemplates" ? join(outDir, "scripts", "shiptemplates", file.name) : join(outDir, "scripts", file.name);
+          const dest = installFilePath(outDir, file);
           mkdirSync(join(dest, ".."), { recursive: true });
-          writeFileSync(dest, file.contents, "utf8");
+          writeFileSync(dest, buildFileBytes(file));
         }
         const instructionsFile = join(outDir, INSTALL_NOTES_FILE);
-        writeFileSync(instructionsFile, manualInstallNotes({ projectId: project.id, target, files: built.files }), "utf8");
+        writeFileSync(instructionsFile, manualInstallNotes({ projectId: project.id, target, files: built.files, unverifiedRequirements: compat.unverified }), "utf8");
         return {
           target,
           library: built.source,
@@ -365,7 +394,7 @@ export class ProjectService {
           instructionsFile,
           outDir,
           mode: built.mode,
-          files: built.files.map((f) => ({ name: f.name, install: f.install, bytes: Buffer.byteLength(f.contents, "utf8") })),
+          files: built.files.map((f) => ({ name: f.name, install: f.install, bytes: buildFileBytes(f).length })),
           warnings: [...built.warnings],
           error: null,
           needsLaunchInstall: built.files.some((f) => f.install === "shiptemplates"),
@@ -401,7 +430,7 @@ export class ProjectService {
    * the install nor in the project's build folder). The same engine check as the install itself: a mismatch is
    * reported as `blocked`, not thrown, so a dialog can show it next to everything else.
    */
-  installPreview(id: string, request: { install: string; mode?: ForgeBuildMode; libraryInstall?: string | null; patchShipTemplates?: boolean }): ForgeInstallPreview {
+  installPreview(id: string, request: { install: string; mode?: ForgeBuildMode; libraryInstall?: string | null; modelSource?: string | null; patchShipTemplates?: boolean }): ForgeInstallPreview {
     const { project, raw } = this.read(id);
     const built = this.compile(project, raw, request.mode, request.libraryInstall);
     const registered = this.installations.get(request.install);
@@ -423,6 +452,8 @@ export class ProjectService {
     try {
       const target = this.resolveInstallTarget(project, request.install);
       if (target === null) return { ...base, blocked: "no installation chosen" };
+      const compat = this.modelCompat(project, target.path, request.modelSource);
+      if (compat.blocked !== null) return { ...base, blocked: compat.blocked, warnings: compat.warnings };
       const preview = previewInstall(target.path, built.files, (f) => f.contents, { patchShipTemplates: request.patchShipTemplates !== false });
       return {
         ...base,
@@ -435,7 +466,7 @@ export class ProjectService {
         needsRestart: preview.needsRestart,
         clear: preview.clear,
         blocked: null,
-        warnings: target.verified ? [] : [`${target.path} is not a recognised build; its version was not verified`],
+        warnings: [...compat.warnings, ...(target.verified ? [] : [`${target.path} is not a recognised build; its version was not verified`])],
       };
     } catch (error) {
       return { ...base, blocked: error instanceof Error ? error.message : String(error) };

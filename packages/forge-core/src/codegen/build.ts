@@ -1,4 +1,5 @@
 import type { EECatalog, EELibrary, EEProject, EETemplateDef } from "@forge/contracts";
+import { modelResourceFiles } from "../model-assets.js";
 import { emitContent, emitTemplates } from "./content.js";
 import { emitLogic, makeBuildContext, runtimeNames, type BuildContext } from "./logic.js";
 import {
@@ -38,7 +39,8 @@ export interface BuildFile {
    *   `shipTemplates.lua`, because EE only accepts `ShipTemplate()` during
    *   its launch-time template phase (ADR-0034 §3 correction).
    */
-  readonly install: "scripts" | "shiptemplates";
+  readonly install: "scripts" | "shiptemplates" | "resources";
+  readonly encoding?: "base64";
 }
 
 export interface BuildResult {
@@ -533,5 +535,6 @@ export function buildProject(
     });
   }
 
+  files.push(...modelResourceFiles(project));
   return { mode, files, warnings };
 }
