@@ -51,6 +51,8 @@ cpSync(join(pkgRoot, "build"), join(stage, "build"), { recursive: true });
 cpSync(join(pkgRoot, "electron-builder.yml"), join(stage, "electron-builder.yml"));
 // The optional campaign-save backup utility: a stage folder that electron-builder copies BESIDE the program (extraFiles), not into app.asar.
 cpSync(join(pkgRoot, "resources", "save-backup"), join(stage, "save-backup"), { recursive: true });
+// The notices beside the program: a separate copy, because electron-builder drops an extraFiles source from app.asar.
+cpSync(join(pkgRoot, "dist", "resources", "licenses", "THIRD-PARTY-NOTICES.txt"), join(stage, "notices", "THIRD-PARTY-NOTICES.txt"));
 
 const env = {
   ...process.env,

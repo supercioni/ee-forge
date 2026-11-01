@@ -15,6 +15,7 @@ files:
   - "**/*"
   - "!**/*.map"
   - "!save-backup/**"       # the optional backup utility goes beside the program (extraFiles below), not inside app.asar
+  - "!notices/**"           # the copy of the notices placed beside the program (extraFiles below)
 extraMetadata:
   main: main.cjs
 # Hardening baked into the executable (flipped by electron-builder after packaging): the program cannot be turned into
@@ -27,9 +28,10 @@ electronFuses:
   enableEmbeddedAsarIntegrityValidation: true
   onlyLoadAppFromAsar: true
   grantFileProtocolExtraPrivileges: false
-# The notices go beside the program too (the copy inside app.asar is not something a user can open).
+# The notices go beside the program too (the copy inside app.asar is not something a user can open). From a separate stage
+# copy: electron-builder leaves out of app.asar any file an extraFiles entry names, and app.asar must keep its own.
 extraFiles:
-  - from: resources/licenses/THIRD-PARTY-NOTICES.txt
+  - from: notices/THIRD-PARTY-NOTICES.txt
     to: THIRD-PARTY-NOTICES.txt
   # Optional, separate: a PowerShell utility that copies/restores EmptyEpsilon's scriptstorage.json (campaign saves) on request. No service, no EXODUS.
   - from: save-backup

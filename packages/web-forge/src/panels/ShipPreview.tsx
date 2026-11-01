@@ -1,110 +1,58 @@
-import { Suspense, lazy, useCallback, useEffect, useMemo, useState } from "react";
-import type { AssetManifest, EELibrary, EETemplateDef } from "@forge/contracts";
-import { describePreview, resolveShipModel } from "@forge/core/editor";
-import { fetchAssetManifest } from "../api/client.js";
-import { assetScopeKey, assetUrl } from "../api/transport.js";
-import { describeAssetFailure } from "../ui/asset-failure.js";
+import { Suspense, lazy, useEffect } from "react";
+import type { EELibrary, EETemplateDef } from "@forge/contracts";
 import { useEditor } from "../store/editor.js";
+import { useModelSource } from "../store/model-source.js";
 import { ErrorBoundary } from "../ui/ErrorBoundary.js";
-import { ResourceLine } from "./ShipResources.js";
+import type { ModelViewSource } from "./ModelViewport.js";
 
 /**
- * Gate in front of the 3D preview.
+ * Read-only 3D view of an original hull: the game's own mesh and textures, read live from the model source
+ * installation (ADR-0061) — the same viewer as the Model workshop, without the editing controls.
  *
- * The heavy component is behind `lazy`, so three.js is a chunk the editor
- * fetches only when someone opens a ship. The manifest is fetched once and
- * kept here rather than in the store: it describes the *asset library*, not
- * the project, and the store's rule is that it holds the document.
- *
- * What the preview shows is said in words above it (`describePreview`): the
- * model of this hull, the likeness of the hull it copies, a stand-in that
- * is not the hull, or a file that failed — never a picture that looks like
- * the hull without being it.
+ * The heavy component is behind `lazy`, so three.js is a chunk the editor fetches only when someone opens a ship.
+ * When the model cannot be shown the panel says why in words; it never draws a stand-in that looks like the hull.
  */
-const ShipPreview3D = lazy(async () => import("./ShipPreview3D.js"));
-
-/** The manifest of one engine and one scan; a different engine or a rescan asks again. */
-let cached: { readonly scope: string; readonly manifest: AssetManifest } | null = null;
+const Viewport = lazy(async () => import("./ModelViewport.js"));
 
 export function ShipPreview({
   template,
-  templates,
   library,
-  target,
 }: {
   template: EETemplateDef;
   templates: readonly EETemplateDef[];
   library: EELibrary | null;
   target: string;
 }): JSX.Element {
-  const scope = assetScopeKey();
-  const [manifest, setManifest] = useState<AssetManifest | null>(cached?.scope === scope ? cached.manifest : null);
-  const [failed, setFailed] = useState<string | null>(null);
-  const [file, setFile] = useState<"loading" | "loaded" | "failed">("loading");
-  const [failure, setFailure] = useState<string | null>(null);
-
+  const project = useEditor((s) => s.project);
+  const src = useModelSource();
+  const projectId = project?.id ?? null, projectTarget = project?.eeVersion ?? null;
   useEffect(() => {
-    if (cached?.scope === scope) {
-      setManifest(cached.manifest);
-      setFailed(null);
-      return;
-    }
-    setManifest(null);
-    let alive = true;
-    void fetchAssetManifest(target)
-      .then((loaded) => {
-        cached = { scope, manifest: loaded };
-        if (alive) {
-          setManifest(loaded);
-          setFailed(null);
-        }
-      })
-      .catch((cause: unknown) => {
-        if (alive) setFailed(cause instanceof Error ? cause.message : String(cause));
-      });
-    return () => {
-      alive = false;
-    };
-  }, [scope, target]);
+    const state = useModelSource.getState();
+    if (projectId !== null && projectTarget !== null && (state.projectId !== projectId || state.target !== projectTarget)) void state.open(projectId, projectTarget);
+  }, [projectId, projectTarget]);
 
-  // The URL the loader will ask for, resolved here as well as inside the
-  // preview so the failure message can name the file without the boundary
-  // having to dig it out of a three.js error.
-  const entry = manifest === null ? null : resolveShipModel(manifest, template, templates);
-  const url = entry === null ? "" : assetUrl(entry.entry.model);
+  const name = template.model;
+  const stock = name === null ? undefined : (src.library?.models.find((m) => m.name === name) ?? library?.models.find((m) => m.name === name));
+  const model = stock?.definition ?? null;
+  const source: ModelViewSource | null = src.installation && src.phase !== "unavailable" ? { installId: src.installation.id, label: src.installation.label, epoch: src.epoch } : null;
 
-  // A different hull, or a different file, starts from "loading" again.
-  useEffect(() => {
-    setFile("loading");
-    setFailure(null);
-  }, [template.id, url]);
-
-  const loaded = useCallback(() => setFile("loaded"), []);
-  const installLabel = useEditor((s) => s.libraryInstall?.label);
-  const report = useMemo(
-    () => describePreview({ template, templates, manifest, manifestError: failed, library, target, ...(installLabel !== undefined ? { installLabel } : {}), file, failure }),
-    [template, templates, manifest, failed, library, target, installLabel, file, failure],
-  );
+  let message: string | null = null;
+  if (name === null) message = "No model is set for this hull.";
+  else if (src.phase === "loading" || src.phase === "idle") message = "Reading the model source…";
+  else if (stock === undefined) message = `“${name}” is not among the models of ${src.installation?.label ?? "the scanned installation"}.`;
+  else if (model === null) message = `The scan of ${src.installation?.label ?? "the installation"} predates complete model definitions. Rescan it (Installations…) to see “${name}”.`;
 
   return (
     <div className="diagram" data-testid="ship-preview">
       <h3>3D preview</h3>
-      <ResourceLine report={report} />
-      {failed !== null ? null : (
-        // `useGLTF` throws on a missing or unreadable mesh, and Suspense
-        // catches suspensions, not throws — without this the editor went
-        // blank on any ship whose .glb was never produced. Keyed on the
-        // template so selecting another hull clears a caught error.
-        <ErrorBoundary
-          resetKey={`${template.id}|${url}`}
-          onError={(error) => {
-            setFile("failed");
-            setFailure(describeAssetFailure(error, url));
-          }}
-          fallback={() => null}
-        >
+      {src.installation && <p className="hint">Model “{name}” read from {src.installation.label} ({src.installation.target}). Choose another model source in the Model workshop of a project ship.</p>}
+      {src.problem && <p className="banner warn" role="alert">{src.problem}</p>}
+      {message !== null || model === null ? (
+        <p className="hint">{message}</p>
+      ) : (
+        <ErrorBoundary resetKey={`${template.id}|${model.mesh}`} fallback={() => <p className="hint error">3D preview unavailable.</p>}>
           <Suspense fallback={<p className="hint">Loading the 3D view…</p>}>
-            <ShipPreview3D template={template} templates={templates} manifest={manifest} onLoaded={loaded} />
+            <Viewport key={`${name}-${source?.installId ?? ""}`} model={model} selected={null} onSelect={() => undefined} source={source} sourceNote={src.problem} />
           </Suspense>
         </ErrorBoundary>
       )}

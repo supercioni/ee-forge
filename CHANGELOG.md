@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.4 — Original hulls in 3D (1 November 2026)
+- Fleet → Hull, original ships: the 3D preview now shows the game's own mesh and textures, read from the model source installation like the Model workshop, instead of a generic stand-in from Forge's asset manifest (empty in the desktop build). When the model cannot be shown the panel says why.
+- Installer: `THIRD-PARTY-NOTICES.txt` is again inside `app.asar` as well as beside the program (electron-builder drops an `extraFiles` source from the archive, which failed the package check). Builds on Linux/WSL with 32-bit wine.
+
 ## 0.9.3 — Model source (22 October 2026)
 - Model workshop reads meshes and textures straight from the installation, including `packs/*.pack`, with no manual extraction and no copy: only the archive index and the one byte range asked for are read, so a resource that disappears is reported missing and nothing stale is shown. The old per-installation copy of model files is removed on rescan.
 - New **Model source** selector (Fleet → Hull → Model workshop): any registered installation, 2024, 2026 or another, with name, version and path. Remembered per project on this machine, never saved in the project file. Project target, model source and Install scenario destination are shown separately; changing the source changes none of them, nor any ship, and does not dirty the document. An unavailable source is reported, not replaced.
